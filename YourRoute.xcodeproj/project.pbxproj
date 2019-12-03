@@ -32,6 +32,11 @@
 		77C6B2FF238C41790059219E /* CarParkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6B2FE238C41790059219E /* CarParkProvider.swift */; };
 		77C6B303238C41AB0059219E /* CarParkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6B302238C41AB0059219E /* CarParkResult.swift */; };
 		77C6B30A238C425B0059219E /* CodingUserInfoKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6B309238C425B0059219E /* CodingUserInfoKey.swift */; };
+		77CAF85F2396949A00134A10 /* PlanClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CAF85E2396949A00134A10 /* PlanClient.swift */; };
+		77CAF861239694A200134A10 /* PlanProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CAF860239694A200134A10 /* PlanProvider.swift */; };
+		77CAF863239698CA00134A10 /* PlanResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CAF862239698CA00134A10 /* PlanResult.swift */; };
+		77CAF8652396996500134A10 /* Itinerarie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CAF8642396996500134A10 /* Itinerarie.swift */; };
+		77CAF8672396997000134A10 /* Leg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CAF8662396997000134A10 /* Leg.swift */; };
 		77DC7C3C238D588A0040D541 /* CarPark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC7C3B238D588A0040D541 /* CarPark.swift */; };
 		77DC7C3F238D64A80040D541 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC7C3E238D64A80040D541 /* ViewModel.swift */; };
 		77DC7C41238D6ED30040D541 /* CarParkAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC7C40238D6ED30040D541 /* CarParkAnnotation.swift */; };
@@ -69,6 +74,11 @@
 		77C6B2FE238C41790059219E /* CarParkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarParkProvider.swift; sourceTree = "<group>"; };
 		77C6B302238C41AB0059219E /* CarParkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarParkResult.swift; sourceTree = "<group>"; };
 		77C6B309238C425B0059219E /* CodingUserInfoKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingUserInfoKey.swift; sourceTree = "<group>"; };
+		77CAF85E2396949A00134A10 /* PlanClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanClient.swift; sourceTree = "<group>"; };
+		77CAF860239694A200134A10 /* PlanProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanProvider.swift; sourceTree = "<group>"; };
+		77CAF862239698CA00134A10 /* PlanResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanResult.swift; sourceTree = "<group>"; };
+		77CAF8642396996500134A10 /* Itinerarie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Itinerarie.swift; sourceTree = "<group>"; };
+		77CAF8662396997000134A10 /* Leg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leg.swift; sourceTree = "<group>"; };
 		77DC7C3B238D588A0040D541 /* CarPark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPark.swift; sourceTree = "<group>"; };
 		77DC7C3E238D64A80040D541 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		77DC7C40238D6ED30040D541 /* CarParkAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarParkAnnotation.swift; sourceTree = "<group>"; };
@@ -217,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				77C6B300238C417D0059219E /* CarParks */,
+				77CAF8682396998100134A10 /* Plan */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -225,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				77C6B302238C41AB0059219E /* CarParkResult.swift */,
+				77CAF862239698CA00134A10 /* PlanResult.swift */,
 			);
 			path = "Feed Results";
 			sourceTree = "<group>";
@@ -245,11 +257,22 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		77CAF8682396998100134A10 /* Plan */ = {
+			isa = PBXGroup;
+			children = (
+				77CAF860239694A200134A10 /* PlanProvider.swift */,
+				77CAF85E2396949A00134A10 /* PlanClient.swift */,
+			);
+			path = Plan;
+			sourceTree = "<group>";
+		};
 		77DC7C3D238D589B0040D541 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
 				77DC7C3B238D588A0040D541 /* CarPark.swift */,
 				77DC7C40238D6ED30040D541 /* CarParkAnnotation.swift */,
+				77CAF8642396996500134A10 /* Itinerarie.swift */,
+				77CAF8662396997000134A10 /* Leg.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -360,17 +383,22 @@
 				7730A20E23915BA000424E5B /* MainViewController.swift in Sources */,
 				77C6B2F8238C40CF0059219E /* EndPoint.swift in Sources */,
 				77C6B2FA238C40DA0059219E /* ApiError.swift in Sources */,
+				77CAF861239694A200134A10 /* PlanProvider.swift in Sources */,
 				7730A224239183CF00424E5B /* ResultListView.swift in Sources */,
 				77F70C91238C7EBF00685107 /* CharacterSet+Extensions.swift in Sources */,
 				77DC7C43238D72D90040D541 /* Bindable.swift in Sources */,
 				77C6B30A238C425B0059219E /* CodingUserInfoKey.swift in Sources */,
+				77CAF863239698CA00134A10 /* PlanResult.swift in Sources */,
 				7730A21723915F2100424E5B /* SearchViewModel.swift in Sources */,
+				77CAF8652396996500134A10 /* Itinerarie.swift in Sources */,
 				77C6B2F6238C40C30059219E /* ApiClient.swift in Sources */,
 				7730A22723918DCD00424E5B /* SearchPlacesDataSource.swift in Sources */,
 				77DC7C41238D6ED30040D541 /* CarParkAnnotation.swift in Sources */,
 				77F70C8F238C7E9A00685107 /* Dictionary+Extensions.swift in Sources */,
 				7730A22B2391CB3100424E5B /* ResultListViewModel.swift in Sources */,
 				77DC7C3C238D588A0040D541 /* CarPark.swift in Sources */,
+				77CAF8672396997000134A10 /* Leg.swift in Sources */,
+				77CAF85F2396949A00134A10 /* PlanClient.swift in Sources */,
 				7730A21023915BAE00424E5B /* MainViewModel.swift in Sources */,
 				7730A21F239171A200424E5B /* ResultRouteView.swift in Sources */,
 			);
