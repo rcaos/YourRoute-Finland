@@ -13,8 +13,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ResultRouteView" customModule="YourRoute" customModuleProvider="target">
             <connections>
                 <outlet property="centerView" destination="f1k-WQ-mOq" id="deM-Nf-eec"/>
+                <outlet property="descriptionLabel" destination="hTP-gd-MEK" id="YTG-Fc-nmK"/>
+                <outlet property="detailButton" destination="5Kc-SQ-Pwt" id="Ad7-WE-UbP"/>
+                <outlet property="infoLabel" destination="Ezc-T5-ONi" id="zox-oA-jDR"/>
                 <outlet property="rounderView" destination="IbY-fG-bJQ" id="bhd-Gv-sxH"/>
-                <outlet property="segmentedView" destination="LTd-wz-yEu" id="MgG-Xh-sLu"/>
+                <outlet property="segmentedControl" destination="LTd-wz-yEu" id="j5Z-8N-b1u"/>
                 <outlet property="superView" destination="iN0-l3-epB" id="s2i-Za-Z56"/>
             </connections>
         </placeholder>

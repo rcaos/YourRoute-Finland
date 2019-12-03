@@ -23,7 +23,7 @@ extension PlanProvider: EndPoint {
     }
     
     var path: String {
-        return "/routing/v1/routers/hsl/index/graphql"
+        return "/routing/v1/routers/finland/index/graphql"
     }
     
     var headers: [String : String]? {

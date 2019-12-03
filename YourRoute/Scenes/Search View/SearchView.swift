@@ -10,7 +10,9 @@ import UIKit
 
 protocol SearchViewDelegate: class {
     
-    func searchViewDelegate(_ searchMoviesResultController: SearchView, didChangeSource source: ResultListViewModel)
+    func searchViewDelegate(_ searchView: SearchView, didChangeSource source: ResultListViewModel)
+    
+    func searchViewDelegate(_ searchView: SearchView, planningTrip searchModel: SearchViewModel?)
     
 }
 
@@ -100,6 +102,11 @@ class SearchView: NibView {
         viewModel?.selectPlace = { [weak self] text, type in
             guard let strongSelf = self else { return }
             strongSelf.selectPlace(with: text, at: type)
+        }
+        
+        viewModel?.planningTrip = { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.delegate?.searchViewDelegate(strongSelf, planningTrip: strongSelf.viewModel)
         }
     }
     

@@ -17,15 +17,17 @@ final class SearchViewModel {
     
     //En el Model tengo que tener un objeto encapsulado con las Coordenates
     
-    private var originPlace: ResultPlace?
+    var originPlace: ResultPlace?
     
-    private var destinationPlace: ResultPlace?
+    var destinationPlace: ResultPlace?
     
     //Reactive
     
     var changeDataSource: Bindable<(ResultListViewModel?)> = Bindable(nil)
     
     var selectPlace: ((String, SearchBarType ) -> Void)?
+    
+    var planningTrip: (() -> Void)?
     
     //MARK: - Life Cycle
     
@@ -80,6 +82,7 @@ final class SearchViewModel {
         //MARK: -
         if let origin = originPlace, let destination = destinationPlace {
             print("recien conectar a servidor Graph con: Origin: [\(origin.coordinate)], Destination: [\(destination.coordinate)]")
+            planningTrip?()
         }
     }
 }

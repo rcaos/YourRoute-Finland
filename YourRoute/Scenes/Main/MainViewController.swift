@@ -65,6 +65,14 @@ class MainViewController: UIViewController {
             guard let strongSelf = self else { return }
             strongSelf.configTableView()
         }
+        
+        viewModel.showResultRoute = { [weak self] resultRouteViewModel in
+            guard let strongSelf = self else { return }
+            strongSelf.resultRouteView.viewModel = resultRouteViewModel
+            
+            strongSelf.searchView.isHidden = true
+            strongSelf.resultRouteView.isHidden = false
+        }
     }
     
     func configTableView() {
@@ -90,10 +98,13 @@ extension MainViewController: UITableViewDelegate {
 
 extension MainViewController: SearchViewDelegate {
     
-    func searchViewDelegate(_ searchMoviesResultController: SearchView, didChangeSource source: ResultListViewModel) {
-        //print("print SearchViewDelegate")
-        //configTableView(with: source)
+    func searchViewDelegate(_ searchView: SearchView, didChangeSource source: ResultListViewModel) {
         viewModel.configResultListModel(with: source)
+    }
+    
+    func searchViewDelegate(_ searchView: SearchView, planningTrip searchModel: SearchViewModel?) {
+        guard let searchModel = searchModel else { return }
+        viewModel.planningTrip(with: searchModel)
     }
 }
 
