@@ -8,6 +8,12 @@
 
 import UIKit
 
+protocol ResultRouteViewDelegate: class {
+    
+    func resultRouteViewDelegate(_ resultView: ResultRouteView, didSelectRouteDetail detail: DetailRouteViewModel)
+    
+}
+
 class ResultRouteView: NibView {
     
     var viewModel: ResultRouteViewModel? {
@@ -15,6 +21,8 @@ class ResultRouteView: NibView {
             setupViewModel()
         }
     }
+    
+    weak var delegate: ResultRouteViewDelegate?
     
     @IBOutlet var superView: UIView!
     @IBOutlet weak var rounderView: UIView!
@@ -58,10 +66,7 @@ class ResultRouteView: NibView {
         detailButton.setTitleColor(.white, for: .normal)
         detailButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title3)
         
-        //Only for Test
-//        segmentedControl.setTitle("Fastest Route: 37 mins", forSegmentAt: 0)
-//        segmentedControl.setTitle("Check Other Routes (5)", forSegmentAt: 1)
-//        infoLabel.text = "The route has 2 buses"
+        detailButton.addTarget(self, action: #selector(self.actionSegue(sender:)), for: .touchUpInside)
     }
     
     func setupViewModel() {
@@ -75,6 +80,13 @@ class ResultRouteView: NibView {
         segmentedControl.setTitle(viewModel.otherRoutes, forSegmentAt: 1)
         
         infoLabel.text = viewModel.infoAboutRoute
+    }
+    
+    @objc func actionSegue(sender: UIButton) {
+        
+        if let viewModel = viewModel?.buildDetailRouteViewModel() {
+            delegate?.resultRouteViewDelegate(self, didSelectRouteDetail: viewModel)
+        }
     }
     
 }

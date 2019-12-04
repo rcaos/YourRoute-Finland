@@ -28,6 +28,17 @@ class MainViewController: UIViewController {
         setupModels()
         setupTableView()
         setupBindables()
+        
+        //ONly for Test
+        resultRouteView.isHidden = false
+        let testlegs = [
+            Leg(startTime: 1575472391000.0, endTime: 1575472980000.0, mode: "WALK", duration: 589) ,
+            Leg(startTime: 1575472980000.0, endTime: 1575474120000.0, mode: "RAIL", duration: 1140) ,
+            Leg(startTime: 1575474120000.0, endTime: 1575474375000.0, mode: "WALK", duration: 255) ,
+        ]
+        let testItinerarie = Itinerarie(walkDistance: 300, duration: 120, legs: testlegs)
+        resultRouteView.viewModel = ResultRouteViewModel(itineraries: [], selectedRoute: testItinerarie)
+        //End Only for Test
     }
     
     func setupViews() {
@@ -52,6 +63,8 @@ class MainViewController: UIViewController {
     func setupModels() {
         searchView.delegate = self
         searchView.viewModel = viewModel.searchViewModel
+        
+        resultRouteView.delegate = self
     }
     
     func setupTableView() {
@@ -85,6 +98,16 @@ class MainViewController: UIViewController {
         //resultListView.tableView.flashScrollIndicators()
         resultListView.isHidden = false
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetailRouteSegue" {
+            //if let destination = segue.destination as? DetailRouteViewController {
+            if let navigation = segue.destination as? UINavigationController,
+                let destination  = navigation.topViewController as? DetailRouteViewController {
+                destination.viewModel = sender as? DetailRouteViewModel
+            }
+        }
+    }
 }
 
 extension MainViewController: UITableViewDelegate {
@@ -95,6 +118,8 @@ extension MainViewController: UITableViewDelegate {
         resultListView.isHidden = true
     }
 }
+
+//MARK: - SearchViewDelegate
 
 extension MainViewController: SearchViewDelegate {
     
@@ -108,4 +133,13 @@ extension MainViewController: SearchViewDelegate {
     }
 }
 
+//MARK: - ResultRouteViewDelegate
+
+extension MainViewController: ResultRouteViewDelegate {
+    
+    func resultRouteViewDelegate(_ resultView: ResultRouteView, didSelectRouteDetail detail: DetailRouteViewModel) {
+        performSegue(withIdentifier: "DetailRouteSegue", sender: detail)
+    }
+    
+}
 

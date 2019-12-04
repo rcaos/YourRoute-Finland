@@ -10,6 +10,8 @@ import Foundation
 
 final class ResultRouteViewModel {
     
+    private var selectedRoute: Itinerarie?
+    
     var optimeRoute: String?
     
     var otherRoutes: String?
@@ -18,8 +20,12 @@ final class ResultRouteViewModel {
     
     //MARK: - Life Cycle
     
-    init(itineraries: [Itinerarie]) {
-        calculateOptimalRoute(for: itineraries)
+    init(itineraries: [Itinerarie], selectedRoute: Itinerarie? = nil) {
+        if let selected = selectedRoute {
+            self.selectedRoute = selected
+        } else {
+            calculateOptimalRoute(for: itineraries)
+        }
     }
     
     
@@ -29,7 +35,8 @@ final class ResultRouteViewModel {
         
         //For now temporarily
         if itineraries.count > 0 {
-            setupView(for: itineraries[0])
+            selectedRoute = itineraries[0]
+            setupView(for: selectedRoute)
         }
         
         if itineraries.count > 1 {
@@ -40,7 +47,9 @@ final class ResultRouteViewModel {
         
     }
     
-    private func setupView(for itinerarie: Itinerarie) {
+    private func setupView(for itinerarie: Itinerarie?) {
+        guard let itinerarie = itinerarie else { return }
+        
         optimeRoute = "Fastest Route: \( Int(itinerarie.duration / 60)) mins"
         
         let numberOfBuses = itinerarie.legs.filter({ $0.mode == "BUS" }).count
@@ -48,5 +57,13 @@ final class ResultRouteViewModel {
         if  numberOfBuses > 1 {
             infoAboutRoute = "The route has \(numberOfBuses) buses"
         }
+    }
+    
+    //MARK: - Build Models
+    
+    func buildDetailRouteViewModel() -> DetailRouteViewModel? {
+        guard let itinerarie = selectedRoute else { return nil }
+        
+        return DetailRouteViewModel(itinerarie: itinerarie)
     }
 }

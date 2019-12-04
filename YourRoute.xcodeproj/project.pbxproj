@@ -38,10 +38,16 @@
 		77CAF8652396996500134A10 /* Itinerarie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CAF8642396996500134A10 /* Itinerarie.swift */; };
 		77CAF8672396997000134A10 /* Leg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CAF8662396997000134A10 /* Leg.swift */; };
 		77CAF86A2396A9E200134A10 /* ResultRouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CAF8692396A9E200134A10 /* ResultRouteViewModel.swift */; };
+		77CAF86C2396CACA00134A10 /* DetailRoute.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77CAF86B2396CACA00134A10 /* DetailRoute.storyboard */; };
+		77CAF86E2396CAF400134A10 /* DetailRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CAF86D2396CAF400134A10 /* DetailRouteViewController.swift */; };
+		77CAF8702396CB1400134A10 /* DetailRouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CAF86F2396CB1400134A10 /* DetailRouteViewModel.swift */; };
 		77DC7C3C238D588A0040D541 /* CarPark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC7C3B238D588A0040D541 /* CarPark.swift */; };
 		77DC7C3F238D64A80040D541 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC7C3E238D64A80040D541 /* ViewModel.swift */; };
 		77DC7C41238D6ED30040D541 /* CarParkAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC7C40238D6ED30040D541 /* CarParkAnnotation.swift */; };
 		77DC7C43238D72D90040D541 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC7C42238D72D90040D541 /* Bindable.swift */; };
+		77F1629E2397D70E00541D91 /* DetailRouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F1629C2397D70E00541D91 /* DetailRouteTableViewCell.swift */; };
+		77F1629F2397D70E00541D91 /* DetailRouteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77F1629D2397D70E00541D91 /* DetailRouteTableViewCell.xib */; };
+		77F162A12397E98E00541D91 /* DetailRouteTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F162A02397E98E00541D91 /* DetailRouteTableViewModel.swift */; };
 		77F70C8C238C773E00685107 /* URLRequest+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F70C8B238C773E00685107 /* URLRequest+Extensions.swift */; };
 		77F70C8F238C7E9A00685107 /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F70C8E238C7E9A00685107 /* Dictionary+Extensions.swift */; };
 		77F70C91238C7EBF00685107 /* CharacterSet+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F70C90238C7EBF00685107 /* CharacterSet+Extensions.swift */; };
@@ -81,10 +87,16 @@
 		77CAF8642396996500134A10 /* Itinerarie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Itinerarie.swift; sourceTree = "<group>"; };
 		77CAF8662396997000134A10 /* Leg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leg.swift; sourceTree = "<group>"; };
 		77CAF8692396A9E200134A10 /* ResultRouteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRouteViewModel.swift; sourceTree = "<group>"; };
+		77CAF86B2396CACA00134A10 /* DetailRoute.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailRoute.storyboard; sourceTree = "<group>"; };
+		77CAF86D2396CAF400134A10 /* DetailRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouteViewController.swift; sourceTree = "<group>"; };
+		77CAF86F2396CB1400134A10 /* DetailRouteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouteViewModel.swift; sourceTree = "<group>"; };
 		77DC7C3B238D588A0040D541 /* CarPark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPark.swift; sourceTree = "<group>"; };
 		77DC7C3E238D64A80040D541 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		77DC7C40238D6ED30040D541 /* CarParkAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarParkAnnotation.swift; sourceTree = "<group>"; };
 		77DC7C42238D72D90040D541 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		77F1629C2397D70E00541D91 /* DetailRouteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouteTableViewCell.swift; sourceTree = "<group>"; };
+		77F1629D2397D70E00541D91 /* DetailRouteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailRouteTableViewCell.xib; sourceTree = "<group>"; };
+		77F162A02397E98E00541D91 /* DetailRouteTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouteTableViewModel.swift; sourceTree = "<group>"; };
 		77F70C8B238C773E00685107 /* URLRequest+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extensions.swift"; sourceTree = "<group>"; };
 		77F70C8E238C7E9A00685107 /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
 		77F70C90238C7EBF00685107 /* CharacterSet+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacterSet+Extensions.swift"; sourceTree = "<group>"; };
@@ -111,6 +123,7 @@
 				7730A21D239165C800424E5B /* Map View */,
 				7730A225239183D200424E5B /* Result List View */,
 				7730A220239171A500424E5B /* Result Route View */,
+				77CAF8712396CB6000134A10 /* Detail Route */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -119,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				77C6B2E7238C3E060059219E /* Main.storyboard */,
+				77CAF86B2396CACA00134A10 /* DetailRoute.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -269,6 +283,16 @@
 			path = Plan;
 			sourceTree = "<group>";
 		};
+		77CAF8712396CB6000134A10 /* Detail Route */ = {
+			isa = PBXGroup;
+			children = (
+				77CAF86D2396CAF400134A10 /* DetailRouteViewController.swift */,
+				77CAF86F2396CB1400134A10 /* DetailRouteViewModel.swift */,
+				77F162A22397E9FC00541D91 /* Walk View Cells */,
+			);
+			path = "Detail Route";
+			sourceTree = "<group>";
+		};
 		77DC7C3D238D589B0040D541 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +311,16 @@
 				7730A21223915ED500424E5B /* NibView.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		77F162A22397E9FC00541D91 /* Walk View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				77F1629C2397D70E00541D91 /* DetailRouteTableViewCell.swift */,
+				77F1629D2397D70E00541D91 /* DetailRouteTableViewCell.xib */,
+				77F162A02397E98E00541D91 /* DetailRouteTableViewModel.swift */,
+			);
+			path = "Walk View Cells";
 			sourceTree = "<group>";
 		};
 		77F70C8D238C774800685107 /* Extensions */ = {
@@ -358,8 +392,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7730A21A23915FD100424E5B /* SearchView.xib in Resources */,
+				77CAF86C2396CACA00134A10 /* DetailRoute.storyboard in Resources */,
 				77C6B2EE238C3E070059219E /* LaunchScreen.storyboard in Resources */,
 				7730A222239171BA00424E5B /* ResultRouteView.xib in Resources */,
+				77F1629F2397D70E00541D91 /* DetailRouteTableViewCell.xib in Resources */,
 				77C6B2EB238C3E070059219E /* Assets.xcassets in Resources */,
 				77C6B2E9238C3E060059219E /* Main.storyboard in Resources */,
 			);
@@ -386,6 +422,7 @@
 				7730A20E23915BA000424E5B /* MainViewController.swift in Sources */,
 				77C6B2F8238C40CF0059219E /* EndPoint.swift in Sources */,
 				77C6B2FA238C40DA0059219E /* ApiError.swift in Sources */,
+				77F1629E2397D70E00541D91 /* DetailRouteTableViewCell.swift in Sources */,
 				77CAF861239694A200134A10 /* PlanProvider.swift in Sources */,
 				7730A224239183CF00424E5B /* ResultListView.swift in Sources */,
 				77F70C91238C7EBF00685107 /* CharacterSet+Extensions.swift in Sources */,
@@ -394,6 +431,7 @@
 				77CAF863239698CA00134A10 /* PlanResult.swift in Sources */,
 				7730A21723915F2100424E5B /* SearchViewModel.swift in Sources */,
 				77CAF8652396996500134A10 /* Itinerarie.swift in Sources */,
+				77CAF8702396CB1400134A10 /* DetailRouteViewModel.swift in Sources */,
 				77C6B2F6238C40C30059219E /* ApiClient.swift in Sources */,
 				7730A22723918DCD00424E5B /* SearchPlacesDataSource.swift in Sources */,
 				77DC7C41238D6ED30040D541 /* CarParkAnnotation.swift in Sources */,
@@ -403,6 +441,8 @@
 				77CAF8672396997000134A10 /* Leg.swift in Sources */,
 				77CAF86A2396A9E200134A10 /* ResultRouteViewModel.swift in Sources */,
 				77CAF85F2396949A00134A10 /* PlanClient.swift in Sources */,
+				77CAF86E2396CAF400134A10 /* DetailRouteViewController.swift in Sources */,
+				77F162A12397E98E00541D91 /* DetailRouteTableViewModel.swift in Sources */,
 				7730A21023915BAE00424E5B /* MainViewModel.swift in Sources */,
 				7730A21F239171A200424E5B /* ResultRouteView.swift in Sources */,
 			);

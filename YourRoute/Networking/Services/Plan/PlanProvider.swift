@@ -51,6 +51,7 @@ extension PlanProvider: EndPoint {
                 from: {lat: \(originCoordinate.latitude), lon: \(originCoordinate.longitude)}
                 to: {lat: \(destinationCoordinate.latitude), lon: \(destinationCoordinate.longitude)}
                 numItineraries: \(numberOfItineraries)
+                transportModes: [ { mode: WALK}, { mode: BUS } ]
             ) {
                 itineraries {
                     walkDistance,
