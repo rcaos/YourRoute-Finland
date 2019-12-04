@@ -30,14 +30,15 @@ class MainViewController: UIViewController {
         setupBindables()
         
         //ONly for Test
-        resultRouteView.isHidden = false
-        let testlegs = [
-            Leg(startTime: 1575472391000.0, endTime: 1575472980000.0, mode: "WALK", duration: 589) ,
-            Leg(startTime: 1575472980000.0, endTime: 1575474120000.0, mode: "RAIL", duration: 1140) ,
-            Leg(startTime: 1575474120000.0, endTime: 1575474375000.0, mode: "WALK", duration: 255) ,
-        ]
-        let testItinerarie = Itinerarie(walkDistance: 300, duration: 120, legs: testlegs)
-        resultRouteView.viewModel = ResultRouteViewModel(itineraries: [], selectedRoute: testItinerarie)
+//        resultRouteView.isHidden = false
+//        let testlegs = [
+//            Leg(startTime: 1575492053000.0, endTime: 1575492240000.0, mode: "WALK", duration: 187) ,
+//            Leg(startTime: 1575492240000.0, endTime: 1575493020000.0, mode: "BUS", duration: 780) ,
+//            Leg(startTime: 1575493140000.0, endTime: 1575495000000.0, mode: "BUS", duration: 1860) ,
+//            Leg(startTime: 1575495000000.0, endTime: 1575495091000.0, mode: "WALK", duration: 91)
+//        ]
+//        let testItinerarie = Itinerarie(walkDistance: 300, duration: 120, legs: testlegs)
+//        resultRouteView.viewModel = ResultRouteViewModel(itineraries: [], selectedRoute: testItinerarie)
         //End Only for Test
     }
     

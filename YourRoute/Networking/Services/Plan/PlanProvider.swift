@@ -61,8 +61,20 @@ extension PlanProvider: EndPoint {
                         startTime
                         endTime
                         duration
-                        realTime
-                        distance
+                        from {
+                            name
+                            stop {
+                                code
+                                desc
+                                platformCode
+                            }
+                        }
+                        route {
+                            shortName
+                        }
+                        intermediateStops {
+                            code
+                        }
                     }
                 }
             }

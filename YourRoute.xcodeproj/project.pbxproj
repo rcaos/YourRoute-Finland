@@ -48,6 +48,9 @@
 		77F1629E2397D70E00541D91 /* DetailRouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F1629C2397D70E00541D91 /* DetailRouteTableViewCell.swift */; };
 		77F1629F2397D70E00541D91 /* DetailRouteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77F1629D2397D70E00541D91 /* DetailRouteTableViewCell.xib */; };
 		77F162A12397E98E00541D91 /* DetailRouteTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F162A02397E98E00541D91 /* DetailRouteTableViewModel.swift */; };
+		77F162A523981BD300541D91 /* DetailRouteBusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F162A323981BD300541D91 /* DetailRouteBusTableViewCell.swift */; };
+		77F162A623981BD300541D91 /* DetailRouteBusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77F162A423981BD300541D91 /* DetailRouteBusTableViewCell.xib */; };
+		77F162A823981BE400541D91 /* DetailRouteBusTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F162A723981BE400541D91 /* DetailRouteBusTableViewModel.swift */; };
 		77F70C8C238C773E00685107 /* URLRequest+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F70C8B238C773E00685107 /* URLRequest+Extensions.swift */; };
 		77F70C8F238C7E9A00685107 /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F70C8E238C7E9A00685107 /* Dictionary+Extensions.swift */; };
 		77F70C91238C7EBF00685107 /* CharacterSet+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F70C90238C7EBF00685107 /* CharacterSet+Extensions.swift */; };
@@ -97,6 +100,9 @@
 		77F1629C2397D70E00541D91 /* DetailRouteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouteTableViewCell.swift; sourceTree = "<group>"; };
 		77F1629D2397D70E00541D91 /* DetailRouteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailRouteTableViewCell.xib; sourceTree = "<group>"; };
 		77F162A02397E98E00541D91 /* DetailRouteTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouteTableViewModel.swift; sourceTree = "<group>"; };
+		77F162A323981BD300541D91 /* DetailRouteBusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouteBusTableViewCell.swift; sourceTree = "<group>"; };
+		77F162A423981BD300541D91 /* DetailRouteBusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailRouteBusTableViewCell.xib; sourceTree = "<group>"; };
+		77F162A723981BE400541D91 /* DetailRouteBusTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouteBusTableViewModel.swift; sourceTree = "<group>"; };
 		77F70C8B238C773E00685107 /* URLRequest+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extensions.swift"; sourceTree = "<group>"; };
 		77F70C8E238C7E9A00685107 /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
 		77F70C90238C7EBF00685107 /* CharacterSet+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacterSet+Extensions.swift"; sourceTree = "<group>"; };
@@ -319,8 +325,19 @@
 				77F1629C2397D70E00541D91 /* DetailRouteTableViewCell.swift */,
 				77F1629D2397D70E00541D91 /* DetailRouteTableViewCell.xib */,
 				77F162A02397E98E00541D91 /* DetailRouteTableViewModel.swift */,
+				77F162A923981BE900541D91 /* Bus Mode */,
 			);
 			path = "Walk View Cells";
+			sourceTree = "<group>";
+		};
+		77F162A923981BE900541D91 /* Bus Mode */ = {
+			isa = PBXGroup;
+			children = (
+				77F162A323981BD300541D91 /* DetailRouteBusTableViewCell.swift */,
+				77F162A423981BD300541D91 /* DetailRouteBusTableViewCell.xib */,
+				77F162A723981BE400541D91 /* DetailRouteBusTableViewModel.swift */,
+			);
+			path = "Bus Mode";
 			sourceTree = "<group>";
 		};
 		77F70C8D238C774800685107 /* Extensions */ = {
@@ -398,6 +415,7 @@
 				77F1629F2397D70E00541D91 /* DetailRouteTableViewCell.xib in Resources */,
 				77C6B2EB238C3E070059219E /* Assets.xcassets in Resources */,
 				77C6B2E9238C3E060059219E /* Main.storyboard in Resources */,
+				77F162A623981BD300541D91 /* DetailRouteBusTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +436,7 @@
 				77C6B2FF238C41790059219E /* CarParkProvider.swift in Sources */,
 				7730A21323915ED500424E5B /* NibView.swift in Sources */,
 				77C6B2E4238C3E060059219E /* AppDelegate.swift in Sources */,
+				77F162A823981BE400541D91 /* DetailRouteBusTableViewModel.swift in Sources */,
 				77DC7C3F238D64A80040D541 /* ViewModel.swift in Sources */,
 				7730A20E23915BA000424E5B /* MainViewController.swift in Sources */,
 				77C6B2F8238C40CF0059219E /* EndPoint.swift in Sources */,
@@ -425,6 +444,7 @@
 				77F1629E2397D70E00541D91 /* DetailRouteTableViewCell.swift in Sources */,
 				77CAF861239694A200134A10 /* PlanProvider.swift in Sources */,
 				7730A224239183CF00424E5B /* ResultListView.swift in Sources */,
+				77F162A523981BD300541D91 /* DetailRouteBusTableViewCell.swift in Sources */,
 				77F70C91238C7EBF00685107 /* CharacterSet+Extensions.swift in Sources */,
 				77DC7C43238D72D90040D541 /* Bindable.swift in Sources */,
 				77C6B30A238C425B0059219E /* CodingUserInfoKey.swift in Sources */,

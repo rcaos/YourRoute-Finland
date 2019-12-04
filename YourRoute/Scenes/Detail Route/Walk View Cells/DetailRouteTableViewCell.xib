@@ -12,29 +12,29 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="117" id="KGk-i7-Jjw" customClass="DetailRouteTableViewCell" customModule="YourRoute" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="676" height="117"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="114" id="KGk-i7-Jjw" customClass="DetailRouteTableViewCell" customModule="YourRoute" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="676" height="114"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="676" height="116.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="676" height="113.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vne-Eh-aV5">
-                        <rect key="frame" x="0.0" y="0.0" width="676" height="116.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="676" height="113.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKp-XY-ecd">
-                                <rect key="frame" x="0.0" y="0.0" width="169" height="116.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="169" height="113.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22:17" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLW-Gc-kzf">
-                                        <rect key="frame" x="8" y="8" width="153" height="48.5"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <rect key="frame" x="8" y="8" width="153" height="29.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walk" translatesAutoresizingMaskIntoConstraints="NO" id="EGI-Gq-EGa">
-                                        <rect key="frame" x="64.5" y="68.5" width="40" height="40"/>
+                                        <rect key="frame" x="54.5" y="45.5" width="60" height="60"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="L8c-gG-S21"/>
+                                            <constraint firstAttribute="height" constant="60" id="L8c-gG-S21"/>
                                             <constraint firstAttribute="width" secondItem="EGI-Gq-EGa" secondAttribute="height" multiplier="1:1" id="ma9-JH-Qoq"/>
                                         </constraints>
                                     </imageView>
@@ -44,13 +44,13 @@
                                     <constraint firstItem="EGI-Gq-EGa" firstAttribute="centerX" secondItem="xKp-XY-ecd" secondAttribute="centerX" id="1HI-kf-TFV"/>
                                     <constraint firstAttribute="bottom" secondItem="EGI-Gq-EGa" secondAttribute="bottom" constant="8" id="2WY-Fh-qT3"/>
                                     <constraint firstAttribute="trailing" secondItem="LLW-Gc-kzf" secondAttribute="trailing" constant="8" id="Htb-P8-dqT"/>
+                                    <constraint firstItem="EGI-Gq-EGa" firstAttribute="top" secondItem="LLW-Gc-kzf" secondAttribute="bottom" constant="8" id="aaU-DM-Y1l"/>
                                     <constraint firstItem="LLW-Gc-kzf" firstAttribute="leading" secondItem="xKp-XY-ecd" secondAttribute="leading" constant="8" id="dtQ-qq-Alx"/>
-                                    <constraint firstItem="EGI-Gq-EGa" firstAttribute="top" secondItem="LLW-Gc-kzf" secondAttribute="bottom" constant="12" id="hsN-UB-qfK"/>
                                     <constraint firstItem="LLW-Gc-kzf" firstAttribute="top" secondItem="xKp-XY-ecd" secondAttribute="top" constant="8" id="kTs-jQ-0vQ"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BH2-qe-Vuf">
-                                <rect key="frame" x="169" y="0.0" width="67.5" height="116.5"/>
+                                <rect key="frame" x="169" y="0.0" width="67.5" height="113.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="origin" translatesAutoresizingMaskIntoConstraints="NO" id="hFi-rH-brz">
                                         <rect key="frame" x="19" y="8" width="30" height="30"/>
@@ -67,7 +67,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hP0-cJ-9pQ">
-                                <rect key="frame" x="236.5" y="0.0" width="439.5" height="116.5"/>
+                                <rect key="frame" x="236.5" y="0.0" width="439.5" height="113.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kamppi, Helsinki" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJa-Gf-np0">
                                         <rect key="frame" x="16" y="8" width="415.5" height="20.5"/>
@@ -115,7 +115,7 @@
                 <outlet property="startPlaceLabel" destination="kJa-Gf-np0" id="BoD-JR-1A2"/>
                 <outlet property="startTimeLabel" destination="LLW-Gc-kzf" id="GHU-ZA-po9"/>
             </connections>
-            <point key="canvasLocation" x="139.13043478260872" y="112.83482142857142"/>
+            <point key="canvasLocation" x="139.13043478260872" y="111.83035714285714"/>
         </tableViewCell>
     </objects>
     <resources>

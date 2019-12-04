@@ -17,4 +17,38 @@ struct Leg: Decodable {
     var mode: String
     
     var duration: Int
+    
+    var from: Place?
+    
+    var route: Route?
+    
+    var intermediateStops: [Stop?]
 }
+
+//MARK: - Place
+
+struct Place: Decodable {
+    
+    var name: String?
+    
+    var stop: Stop?
+}
+
+//MARK: - Route
+
+struct Route: Decodable {
+    
+    var shortName: String?
+}
+
+//MARK: - Stop
+
+struct Stop: Decodable {
+    
+    var code: String?
+    
+    var desc: String?
+    
+    var platformCode: String?
+}
+

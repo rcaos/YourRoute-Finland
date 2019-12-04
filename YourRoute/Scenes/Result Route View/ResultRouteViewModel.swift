@@ -22,16 +22,15 @@ final class ResultRouteViewModel {
     
     init(itineraries: [Itinerarie], selectedRoute: Itinerarie? = nil) {
         if let selected = selectedRoute {
+            print("Recibi una ruta Preseleccionada")
             self.selectedRoute = selected
         } else {
+            print("Se recibieron \(itineraries.count) itinerarios, obtendré el primero")
             calculateOptimalRoute(for: itineraries)
         }
     }
     
-    
     private func calculateOptimalRoute(for itineraries: [Itinerarie]) {
-        
-        print("Se recibieron \(itineraries.count) itinerarios")
         
         //For now temporarily
         if itineraries.count > 0 {
