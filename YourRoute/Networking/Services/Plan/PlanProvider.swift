@@ -61,6 +61,7 @@ extension PlanProvider: EndPoint {
                         startTime
                         endTime
                         duration
+                        distance
                         from {
                             name
                             stop {
@@ -68,6 +69,9 @@ extension PlanProvider: EndPoint {
                                 desc
                                 platformCode
                             }
+                        }
+                        to {
+                            name
                         }
                         route {
                             shortName

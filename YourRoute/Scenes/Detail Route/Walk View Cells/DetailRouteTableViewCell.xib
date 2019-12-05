@@ -53,9 +53,9 @@
                                 <rect key="frame" x="169" y="0.0" width="67.5" height="113.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="origin" translatesAutoresizingMaskIntoConstraints="NO" id="hFi-rH-brz">
-                                        <rect key="frame" x="19" y="8" width="30" height="30"/>
+                                        <rect key="frame" x="14" y="8" width="40" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="KTM-il-1vy"/>
+                                            <constraint firstAttribute="height" constant="40" id="KTM-il-1vy"/>
                                             <constraint firstAttribute="width" secondItem="hFi-rH-brz" secondAttribute="height" multiplier="1:1" id="Ow7-hg-y8x"/>
                                         </constraints>
                                     </imageView>

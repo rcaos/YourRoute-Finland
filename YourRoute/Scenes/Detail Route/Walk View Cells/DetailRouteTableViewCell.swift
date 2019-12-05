@@ -33,7 +33,10 @@ class DetailRouteTableViewCell: UITableViewCell {
         instructionsLabel.text = viewModel?.instructions
         
         modeImage.image = UIImage(named: "walk")
-        placeHolderImage.image = UIImage(named: "origin")
+        
+        if let image = viewModel?.placeHolderImage {
+            placeHolderImage.image = UIImage(named: image)
+        }
     }
     
 }

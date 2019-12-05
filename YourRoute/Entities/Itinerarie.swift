@@ -15,6 +15,10 @@ struct Itinerarie: Decodable {
     var duration: Int
     
     var legs: [Leg]
+    
+    var originPlace: String?
+    
+    var destinationPlace: String?
 }
 
 

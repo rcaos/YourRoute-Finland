@@ -16,18 +16,84 @@ final class DetailRouteTableViewModel {
     
     var instructions: String?
     
+    var placeHolderImage: String?
+    
+    private var timeFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter
+    }
+    
+    private var distanceFormatter: MeasurementFormatter {
+        let distanceFormatter = MeasurementFormatter()
+        distanceFormatter.unitStyle = .medium
+        distanceFormatter.unitOptions = .naturalScale
+        distanceFormatter.locale = Locale(identifier: "es_PE")
+        return distanceFormatter
+    }
+    
     //MARK: - Life Cycle
     
     init(leg: Leg) {
         setupView(for: leg)
+        setupImagePlaceHolder(for: leg)
     }
     
     //MARK: - Private
     
     private func setupView(for leg: Leg) {
-        //startTime = String( leg.startTime )
-        startTime = "22:15"
-        startPlace = "Kamppi, Helsinki"
-        instructions = "Walk 300 m (\(leg.duration) min)"
+        let startDate = Date(timeIntervalSince1970: leg.startTime / 1000)
+        startTime = timeFormatter.string(from: startDate)
+        
+        startPlace = leg.from?.name
+        
+        if leg.distance > 0 {
+            let distanceInMeters = Measurement(value: leg.distance, unit: UnitLength.meters)
+            let distance = distanceFormatter.string(from: distanceInMeters)
+            
+            let duration = formatDuration(seconds: leg.duration)
+            instructions = "Walk \(distance) (\(duration))"
+        }
+    }
+    
+    private func formatDuration(seconds: Double) -> String {
+        
+        let duration: TimeInterval = seconds
+        let date = Date()
+        let calendar = Calendar(identifier: .gregorian)
+        let start = calendar.startOfDay(for: date)
+        let newDate = start.addingTimeInterval(duration)
+        
+        let formatter = DateFormatter()
+        
+        var result = ""
+        
+        if duration < 60 {
+            formatter.dateFormat = "ss"
+            result = "\(formatter.string(from: newDate)) s"
+        } else if duration >= 60 && duration < 3600 {
+            formatter.dateFormat = "mm"
+            result = "\(formatter.string(from: newDate)) min"
+        } else {
+            formatter.dateFormat = "HH"
+            let hour = formatter.string(from: newDate)
+            
+            formatter.dateFormat = "mm"
+            let min = formatter.string(from: newDate)
+            result = "\(hour) h \(min) min"
+        }
+        
+        return result
+    }
+    
+    func setupImagePlaceHolder(for leg: Leg) {
+        guard let type = leg.legType else { return }
+        
+        switch type {
+        case .origin:
+            placeHolderImage = "origin"
+        case .destination:
+            placeHolderImage = "destination"
+        }
     }
 }

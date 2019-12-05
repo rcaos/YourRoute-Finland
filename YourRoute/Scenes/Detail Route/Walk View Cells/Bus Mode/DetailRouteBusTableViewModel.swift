@@ -22,6 +22,20 @@ final class DetailRouteBusTableViewModel {
     
     var durationTrip: String?
     
+    private var timeFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter
+    }
+    
+    private var distanceFormatter: MeasurementFormatter {
+        let distanceFormatter = MeasurementFormatter()
+        distanceFormatter.unitStyle = .medium
+        distanceFormatter.unitOptions = .naturalScale
+        distanceFormatter.locale = Locale(identifier: "es_PE")
+        return distanceFormatter
+    }
+    
     //MARK: - Life Cycle
     
     init(leg: Leg) {
@@ -31,15 +45,60 @@ final class DetailRouteBusTableViewModel {
     //MARK: - Private
     
     private func setupView(for leg: Leg) {
-        //startTime = String( leg.startTime )
-        startTime = "22:15"
-        startPlace = "Kamppi"
-        platForm = "Platform 41"
+        let startDate = Date(timeIntervalSince1970: leg.startTime / 1000)
+        startTime = timeFormatter.string(from: startDate)
         
-        busDescription = "Bus 345N"
+        startPlace = leg.from?.name
         
-        stopsCount = "32 stops"
-        durationTrip = "(28 min)"
+        if let platformCode = leg.from?.stop?.platformCode {
+            platForm = "Platform: \(platformCode)"
+        } else {
+            platForm = ""
+        }
+        
+        if let busName = leg.route?.shortName {
+            busDescription = "Bus \(busName)"
+        } else {
+            busDescription = ""
+        }
+        
+        if leg.intermediateStops.count == 0 {
+            stopsCount = "No stops"
+        } else {
+            stopsCount = "\(leg.intermediateStops.count) stops"
+        }
+        
+        durationTrip = formatDuration(seconds: leg.duration)
+    }
+    
+    private func formatDuration(seconds: Double) -> String {
+        
+        let duration: TimeInterval = seconds
+        let date = Date()
+        let calendar = Calendar(identifier: .gregorian)
+        let start = calendar.startOfDay(for: date)
+        let newDate = start.addingTimeInterval(duration)
+        
+        let formatter = DateFormatter()
+        
+        var result = ""
+        
+        if duration < 60 {
+            formatter.dateFormat = "ss"
+            result = "\(formatter.string(from: newDate)) s"
+        } else if duration >= 60 && duration < 3600 {
+            formatter.dateFormat = "mm"
+            result = "\(formatter.string(from: newDate)) min"
+        } else {
+            formatter.dateFormat = "HH"
+            let hour = formatter.string(from: newDate)
+            
+            formatter.dateFormat = "mm"
+            let min = formatter.string(from: newDate)
+            result = "\(hour) h \(min) min"
+        }
+        
+        return result
     }
     
     

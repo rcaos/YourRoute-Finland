@@ -16,12 +16,47 @@ final class DetailRouteViewModel {
 //    
     var legs: [Leg]
     
+    private var itinerarie: Itinerarie
+    
     init(itinerarie : Itinerarie) {
+        self.itinerarie = itinerarie
         self.legs = itinerarie.legs
         
 //        for leg in legs {
 //            print(leg)
 //        }
+        formatOriginPoint()
+        addDestinationPoint()
+    }
+    
+    private func formatOriginPoint() {
+        guard var leg = legs.first ,
+            let fromPlace = leg.from,
+            let namePlace = fromPlace.name,
+            namePlace == "Origin" else { return }
+        
+        leg.from?.name = itinerarie.originPlace
+        leg.type = "origin"
+        legs[legs.startIndex] = leg
+    }
+    
+    private func addDestinationPoint() {
+        let startTime = getTimeDestination()
+        let endLeg = Leg(startTime: startTime, endTime: 0, mode: "WALK", duration: 0, distance: 0,
+                      from: Place(name: itinerarie.destinationPlace, stop: nil),
+                      to: nil,
+                      route: nil, intermediateStops: [],
+                      type: "destination")
+        self.legs.append( endLeg )
+    }
+    
+    private func getTimeDestination() -> Double {
+        guard let lastLeg = legs.last,
+            let toPlace = lastLeg.to,
+            let namePlace = toPlace.name,
+            namePlace == "Destination" else { return 0 }
+        
+        return lastLeg.endTime
     }
     
     func getMode(at indexPath: IndexPath) -> ItinerarieModeCell {
