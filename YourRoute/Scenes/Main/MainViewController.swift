@@ -30,7 +30,7 @@ class MainViewController: UIViewController {
         setupBindables()
         
         //ONly for Test
-        setupTest()
+        //setupTest()
     }
     
     //MARK: - only for Test

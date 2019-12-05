@@ -53,7 +53,7 @@ final class MainViewModel {
             switch( result ) {
             case .success(let response):
                 guard let itineraries = response?.data.plan.itineraries else { return }
-                self.handleResponse(with: itineraries)
+                self.handleResponse(with: itineraries, originPlace: origin, destinationPlace: destination)
                 
             case .failure(let error):
                 print("error to Planning Trip: \(error.localizedDescription)")
@@ -63,10 +63,18 @@ final class MainViewModel {
         })
     }
     
-    func handleResponse(with itineraries: [Itinerarie]) {
+    func handleResponse(with itineraries: [Itinerarie], originPlace: ResultPlace?, destinationPlace: ResultPlace?) {
+        
+        var newItineraries = itineraries
+        
+        for index in newItineraries.indices {
+            newItineraries[index].originPlace = originPlace?.name
+            newItineraries[index].destinationPlace = destinationPlace?.name
+        }
+        
         //set State == Populated
-        print("Main VM: Se recibieron \(itineraries.count) itinerarios")
-        let resultRouteViewModel = ResultRouteViewModel(itineraries: itineraries)
+        print("Main VM: Se recibieron \(newItineraries.count) itinerarios")
+        let resultRouteViewModel = ResultRouteViewModel(itineraries: newItineraries)
         showResultRoute?(resultRouteViewModel)
         
         //set State == Empty

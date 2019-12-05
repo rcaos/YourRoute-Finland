@@ -29,7 +29,7 @@ class DetailRouteViewController: UIViewController {
     }
     
     func setupTable() {
-        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
         
         let nibDefault = UINib(nibName: "DetailRouteTableViewCell", bundle: nil)
         tableView.register(nibDefault, forCellReuseIdentifier: "DetailRouteTableViewCell")

@@ -27,6 +27,8 @@ class DetailRouteBusTableViewCell: UITableViewCell {
     
     @IBOutlet weak var modeImage: UIImageView!
     @IBOutlet weak var placeHolderImage: UIImageView!
+    
+    @IBOutlet weak var separatorView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,6 +46,9 @@ class DetailRouteBusTableViewCell: UITableViewCell {
         
         modeImage.image = UIImage(named: "bus2")
         placeHolderImage.image = UIImage(named: "circle")
+     
+        separatorView.backgroundColor = UIColor(red: 2/255, green: 136/255, blue: 206/255, alpha: 1.0)
+        //2,136, 206
     }
     
 }

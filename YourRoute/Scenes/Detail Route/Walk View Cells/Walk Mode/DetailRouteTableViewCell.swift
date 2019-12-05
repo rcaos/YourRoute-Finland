@@ -9,7 +9,7 @@
 import UIKit
 
 class DetailRouteTableViewCell: UITableViewCell {
-
+    
     var viewModel: DetailRouteTableViewModel? {
         didSet {
             setupViewModel()
@@ -22,6 +22,8 @@ class DetailRouteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var modeImage: UIImageView!
     @IBOutlet weak var placeHolderImage: UIImageView!
+    
+    @IBOutlet weak var dotsView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,6 +38,11 @@ class DetailRouteTableViewCell: UITableViewCell {
         
         if let image = viewModel?.placeHolderImage {
             placeHolderImage.image = UIImage(named: image)
+        }
+        
+        if let isHidden = viewModel?.isHiddenDots {
+            dotsView.isHidden = isHidden
+            modeImage.isHidden = isHidden
         }
     }
     

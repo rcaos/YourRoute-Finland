@@ -98,7 +98,7 @@ final class DetailRouteBusTableViewModel {
             result = "\(hour) h \(min) min"
         }
         
-        return result
+        return "(\(result))"
     }
     
     

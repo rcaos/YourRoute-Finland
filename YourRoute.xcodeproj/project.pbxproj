@@ -119,6 +119,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		771BFE6E239939D100DAABA0 /* Walk Mode */ = {
+			isa = PBXGroup;
+			children = (
+				77F1629C2397D70E00541D91 /* DetailRouteTableViewCell.swift */,
+				77F1629D2397D70E00541D91 /* DetailRouteTableViewCell.xib */,
+				77F162A02397E98E00541D91 /* DetailRouteTableViewModel.swift */,
+			);
+			path = "Walk Mode";
+			sourceTree = "<group>";
+		};
 		7730A20B23915AED00424E5B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,7 +220,7 @@
 		77C6B2E2238C3E060059219E /* YourRoute */ = {
 			isa = PBXGroup;
 			children = (
-				77C6B30B238C425F0059219E /* Core Darta */,
+				77C6B30B238C425F0059219E /* Core Data */,
 				77C6B2FB238C41040059219E /* Networking */,
 				77DC7C3D238D589B0040D541 /* Entities */,
 				7730A20B23915AED00424E5B /* Scenes */,
@@ -264,12 +274,12 @@
 			path = "Feed Results";
 			sourceTree = "<group>";
 		};
-		77C6B30B238C425F0059219E /* Core Darta */ = {
+		77C6B30B238C425F0059219E /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
 				77C6B30C238C42680059219E /* Extensions */,
 			);
-			path = "Core Darta";
+			path = "Core Data";
 			sourceTree = "<group>";
 		};
 		77C6B30C238C42680059219E /* Extensions */ = {
@@ -322,9 +332,7 @@
 		77F162A22397E9FC00541D91 /* Walk View Cells */ = {
 			isa = PBXGroup;
 			children = (
-				77F1629C2397D70E00541D91 /* DetailRouteTableViewCell.swift */,
-				77F1629D2397D70E00541D91 /* DetailRouteTableViewCell.xib */,
-				77F162A02397E98E00541D91 /* DetailRouteTableViewModel.swift */,
+				771BFE6E239939D100DAABA0 /* Walk Mode */,
 				77F162A923981BE900541D91 /* Bus Mode */,
 			);
 			path = "Walk View Cells";

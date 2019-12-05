@@ -18,6 +18,8 @@ final class DetailRouteTableViewModel {
     
     var placeHolderImage: String?
     
+    var isHiddenDots: Bool?
+    
     private var timeFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
@@ -92,8 +94,10 @@ final class DetailRouteTableViewModel {
         switch type {
         case .origin:
             placeHolderImage = "origin"
+            isHiddenDots = false
         case .destination:
             placeHolderImage = "destination"
+            isHiddenDots = true
         }
     }
 }
