@@ -80,7 +80,7 @@ class MainMapView: UIView {
     }
     
     func centerAnnotations() {
-        guard let places = viewModel?.places else { return }
+        guard let _ = viewModel?.places else { return }
         let (topLeftCoord, bottomRightCoord) = calculateEdgeCorners()
         
         let center = CLLocationCoordinate2D(latitude:

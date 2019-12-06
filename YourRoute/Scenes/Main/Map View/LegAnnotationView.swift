@@ -13,7 +13,7 @@ class LegAnnotationView: MKMarkerAnnotationView {
     
     override var annotation: MKAnnotation? {
         willSet {
-            if let legAnnotation = newValue as? LegPlaceView {
+            if let _ = newValue as? LegPlaceView {
                 glyphText = "🚕"
             }
         }

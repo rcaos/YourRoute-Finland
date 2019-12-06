@@ -25,16 +25,12 @@
 		774FA102239966BB0046486F /* LegAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774FA101239966BB0046486F /* LegAnnotationView.swift */; };
 		774FA1042399685C0046486F /* LegPlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774FA1032399685C0046486F /* LegPlaceView.swift */; };
 		77C6B2E4238C3E060059219E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6B2E3238C3E060059219E /* AppDelegate.swift */; };
-		77C6B2E6238C3E060059219E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6B2E5238C3E060059219E /* ViewController.swift */; };
 		77C6B2E9238C3E060059219E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77C6B2E7238C3E060059219E /* Main.storyboard */; };
 		77C6B2EB238C3E070059219E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77C6B2EA238C3E070059219E /* Assets.xcassets */; };
 		77C6B2EE238C3E070059219E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77C6B2EC238C3E070059219E /* LaunchScreen.storyboard */; };
 		77C6B2F6238C40C30059219E /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6B2F5238C40C30059219E /* ApiClient.swift */; };
 		77C6B2F8238C40CF0059219E /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6B2F7238C40CF0059219E /* EndPoint.swift */; };
 		77C6B2FA238C40DA0059219E /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6B2F9238C40DA0059219E /* ApiError.swift */; };
-		77C6B2FD238C416D0059219E /* CarParksClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6B2FC238C416D0059219E /* CarParksClient.swift */; };
-		77C6B2FF238C41790059219E /* CarParkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6B2FE238C41790059219E /* CarParkProvider.swift */; };
-		77C6B303238C41AB0059219E /* CarParkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6B302238C41AB0059219E /* CarParkResult.swift */; };
 		77C6B30A238C425B0059219E /* CodingUserInfoKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6B309238C425B0059219E /* CodingUserInfoKey.swift */; };
 		77CAF85F2396949A00134A10 /* PlanClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CAF85E2396949A00134A10 /* PlanClient.swift */; };
 		77CAF861239694A200134A10 /* PlanProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CAF860239694A200134A10 /* PlanProvider.swift */; };
@@ -45,9 +41,6 @@
 		77CAF86C2396CACA00134A10 /* DetailRoute.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77CAF86B2396CACA00134A10 /* DetailRoute.storyboard */; };
 		77CAF86E2396CAF400134A10 /* DetailRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CAF86D2396CAF400134A10 /* DetailRouteViewController.swift */; };
 		77CAF8702396CB1400134A10 /* DetailRouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CAF86F2396CB1400134A10 /* DetailRouteViewModel.swift */; };
-		77DC7C3C238D588A0040D541 /* CarPark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC7C3B238D588A0040D541 /* CarPark.swift */; };
-		77DC7C3F238D64A80040D541 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC7C3E238D64A80040D541 /* ViewModel.swift */; };
-		77DC7C41238D6ED30040D541 /* CarParkAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC7C40238D6ED30040D541 /* CarParkAnnotation.swift */; };
 		77DC7C43238D72D90040D541 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC7C42238D72D90040D541 /* Bindable.swift */; };
 		77F1629E2397D70E00541D91 /* DetailRouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F1629C2397D70E00541D91 /* DetailRouteTableViewCell.swift */; };
 		77F1629F2397D70E00541D91 /* DetailRouteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77F1629D2397D70E00541D91 /* DetailRouteTableViewCell.xib */; };
@@ -80,7 +73,6 @@
 		774FA1032399685C0046486F /* LegPlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegPlaceView.swift; sourceTree = "<group>"; };
 		77C6B2E0238C3E060059219E /* YourRoute.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourRoute.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C6B2E3238C3E060059219E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		77C6B2E5238C3E060059219E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		77C6B2E8238C3E060059219E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		77C6B2EA238C3E070059219E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77C6B2ED238C3E070059219E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -88,9 +80,6 @@
 		77C6B2F5238C40C30059219E /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		77C6B2F7238C40CF0059219E /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		77C6B2F9238C40DA0059219E /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
-		77C6B2FC238C416D0059219E /* CarParksClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarParksClient.swift; sourceTree = "<group>"; };
-		77C6B2FE238C41790059219E /* CarParkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarParkProvider.swift; sourceTree = "<group>"; };
-		77C6B302238C41AB0059219E /* CarParkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarParkResult.swift; sourceTree = "<group>"; };
 		77C6B309238C425B0059219E /* CodingUserInfoKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingUserInfoKey.swift; sourceTree = "<group>"; };
 		77CAF85E2396949A00134A10 /* PlanClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanClient.swift; sourceTree = "<group>"; };
 		77CAF860239694A200134A10 /* PlanProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanProvider.swift; sourceTree = "<group>"; };
@@ -101,9 +90,6 @@
 		77CAF86B2396CACA00134A10 /* DetailRoute.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailRoute.storyboard; sourceTree = "<group>"; };
 		77CAF86D2396CAF400134A10 /* DetailRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouteViewController.swift; sourceTree = "<group>"; };
 		77CAF86F2396CB1400134A10 /* DetailRouteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouteViewModel.swift; sourceTree = "<group>"; };
-		77DC7C3B238D588A0040D541 /* CarPark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPark.swift; sourceTree = "<group>"; };
-		77DC7C3E238D64A80040D541 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		77DC7C40238D6ED30040D541 /* CarParkAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarParkAnnotation.swift; sourceTree = "<group>"; };
 		77DC7C42238D72D90040D541 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		77F1629C2397D70E00541D91 /* DetailRouteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouteTableViewCell.swift; sourceTree = "<group>"; };
 		77F1629D2397D70E00541D91 /* DetailRouteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailRouteTableViewCell.xib; sourceTree = "<group>"; };
@@ -140,13 +126,7 @@
 		7730A20B23915AED00424E5B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				77C6B2E5238C3E060059219E /* ViewController.swift */,
-				77DC7C3E238D64A80040D541 /* ViewModel.swift */,
 				7730A21123915BB200424E5B /* Main */,
-				7730A21823915F2500424E5B /* Search View */,
-				7730A21D239165C800424E5B /* Map View */,
-				7730A225239183D200424E5B /* Result List View */,
-				7730A220239171A500424E5B /* Result Route View */,
 				77CAF8712396CB6000134A10 /* Detail Route */,
 			);
 			path = Scenes;
@@ -166,6 +146,10 @@
 			children = (
 				7730A20D23915BA000424E5B /* MainViewController.swift */,
 				7730A20F23915BAE00424E5B /* MainViewModel.swift */,
+				7730A21823915F2500424E5B /* Search View */,
+				7730A21D239165C800424E5B /* Map View */,
+				7730A225239183D200424E5B /* Result List View */,
+				7730A220239171A500424E5B /* Result Route View */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -259,19 +243,9 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		77C6B300238C417D0059219E /* CarParks */ = {
-			isa = PBXGroup;
-			children = (
-				77C6B2FE238C41790059219E /* CarParkProvider.swift */,
-				77C6B2FC238C416D0059219E /* CarParksClient.swift */,
-			);
-			path = CarParks;
-			sourceTree = "<group>";
-		};
 		77C6B301238C41850059219E /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				77C6B300238C417D0059219E /* CarParks */,
 				77CAF8682396998100134A10 /* Plan */,
 			);
 			path = Services;
@@ -280,7 +254,6 @@
 		77C6B304238C41AF0059219E /* Feed Results */ = {
 			isa = PBXGroup;
 			children = (
-				77C6B302238C41AB0059219E /* CarParkResult.swift */,
 				77CAF862239698CA00134A10 /* PlanResult.swift */,
 			);
 			path = "Feed Results";
@@ -324,8 +297,6 @@
 		77DC7C3D238D589B0040D541 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				77DC7C3B238D588A0040D541 /* CarPark.swift */,
-				77DC7C40238D6ED30040D541 /* CarParkAnnotation.swift */,
 				77CAF8642396996500134A10 /* Itinerarie.swift */,
 				77CAF8662396997000134A10 /* Leg.swift */,
 			);
@@ -448,17 +419,12 @@
 			files = (
 				774FA102239966BB0046486F /* LegAnnotationView.swift in Sources */,
 				7730A21523915F1900424E5B /* SearchView.swift in Sources */,
-				77C6B2E6238C3E060059219E /* ViewController.swift in Sources */,
 				7730A2292391CA1200424E5B /* ResultListViewDataSource.swift in Sources */,
 				7730A21C239165C400424E5B /* MainMapView.swift in Sources */,
-				77C6B303238C41AB0059219E /* CarParkResult.swift in Sources */,
-				77C6B2FD238C416D0059219E /* CarParksClient.swift in Sources */,
 				77F70C8C238C773E00685107 /* URLRequest+Extensions.swift in Sources */,
-				77C6B2FF238C41790059219E /* CarParkProvider.swift in Sources */,
 				7730A21323915ED500424E5B /* NibView.swift in Sources */,
 				77C6B2E4238C3E060059219E /* AppDelegate.swift in Sources */,
 				77F162A823981BE400541D91 /* DetailRouteBusTableViewModel.swift in Sources */,
-				77DC7C3F238D64A80040D541 /* ViewModel.swift in Sources */,
 				7730A20E23915BA000424E5B /* MainViewController.swift in Sources */,
 				77C6B2F8238C40CF0059219E /* EndPoint.swift in Sources */,
 				77C6B2FA238C40DA0059219E /* ApiError.swift in Sources */,
@@ -477,10 +443,8 @@
 				77CAF8702396CB1400134A10 /* DetailRouteViewModel.swift in Sources */,
 				77C6B2F6238C40C30059219E /* ApiClient.swift in Sources */,
 				7730A22723918DCD00424E5B /* SearchPlacesDataSource.swift in Sources */,
-				77DC7C41238D6ED30040D541 /* CarParkAnnotation.swift in Sources */,
 				77F70C8F238C7E9A00685107 /* Dictionary+Extensions.swift in Sources */,
 				7730A22B2391CB3100424E5B /* ResultListViewModel.swift in Sources */,
-				77DC7C3C238D588A0040D541 /* CarPark.swift in Sources */,
 				77CAF8672396997000134A10 /* Leg.swift in Sources */,
 				77CAF86A2396A9E200134A10 /* ResultRouteViewModel.swift in Sources */,
 				77CAF85F2396949A00134A10 /* PlanClient.swift in Sources */,
