@@ -29,6 +29,8 @@ struct Leg: Decodable {
     var intermediateStops: [Stop?]
     
     var type: String?
+    
+    var legGeometry: Geometry?
 }
 
 //MARK: - Extension Leg
@@ -63,6 +65,10 @@ struct Place: Decodable {
     
     var name: String?
     
+    var lat: Double
+    
+    var lon: Double
+    
     var stop: Stop?
 }
 
@@ -84,3 +90,11 @@ struct Stop: Decodable {
     var platformCode: String?
 }
 
+//MARK: - Geometry
+
+struct Geometry: Decodable {
+    
+    var length: Int?
+    
+    var points: String?
+}

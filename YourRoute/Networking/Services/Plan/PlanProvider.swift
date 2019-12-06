@@ -69,9 +69,17 @@ extension PlanProvider: EndPoint {
                                 desc
                                 platformCode
                             }
+                            lat
+                            lon
                         }
                         to {
                             name
+                            lat
+                            lon
+                        }
+                        legGeometry {
+                            length
+                            points
                         }
                         route {
                             shortName

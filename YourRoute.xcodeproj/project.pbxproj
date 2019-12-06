@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		770ECA812399A240004FC75F /* Polyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770ECA802399A240004FC75F /* Polyline.swift */; };
 		7730A20E23915BA000424E5B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7730A20D23915BA000424E5B /* MainViewController.swift */; };
 		7730A21023915BAE00424E5B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7730A20F23915BAE00424E5B /* MainViewModel.swift */; };
 		7730A21323915ED500424E5B /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7730A21223915ED500424E5B /* NibView.swift */; };
@@ -20,6 +21,9 @@
 		7730A22723918DCD00424E5B /* SearchPlacesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7730A22623918DCD00424E5B /* SearchPlacesDataSource.swift */; };
 		7730A2292391CA1200424E5B /* ResultListViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7730A2282391CA1200424E5B /* ResultListViewDataSource.swift */; };
 		7730A22B2391CB3100424E5B /* ResultListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7730A22A2391CB3100424E5B /* ResultListViewModel.swift */; };
+		774FA100239965090046486F /* MainMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774FA0FF239965090046486F /* MainMapViewModel.swift */; };
+		774FA102239966BB0046486F /* LegAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774FA101239966BB0046486F /* LegAnnotationView.swift */; };
+		774FA1042399685C0046486F /* LegPlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774FA1032399685C0046486F /* LegPlaceView.swift */; };
 		77C6B2E4238C3E060059219E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6B2E3238C3E060059219E /* AppDelegate.swift */; };
 		77C6B2E6238C3E060059219E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6B2E5238C3E060059219E /* ViewController.swift */; };
 		77C6B2E9238C3E060059219E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77C6B2E7238C3E060059219E /* Main.storyboard */; };
@@ -57,6 +61,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		770ECA802399A240004FC75F /* Polyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polyline.swift; sourceTree = "<group>"; };
 		7730A20D23915BA000424E5B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7730A20F23915BAE00424E5B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		7730A21223915ED500424E5B /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
@@ -70,6 +75,9 @@
 		7730A22623918DCD00424E5B /* SearchPlacesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlacesDataSource.swift; sourceTree = "<group>"; };
 		7730A2282391CA1200424E5B /* ResultListViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultListViewDataSource.swift; sourceTree = "<group>"; };
 		7730A22A2391CB3100424E5B /* ResultListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultListViewModel.swift; sourceTree = "<group>"; };
+		774FA0FF239965090046486F /* MainMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapViewModel.swift; sourceTree = "<group>"; };
+		774FA101239966BB0046486F /* LegAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegAnnotationView.swift; sourceTree = "<group>"; };
+		774FA1032399685C0046486F /* LegPlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegPlaceView.swift; sourceTree = "<group>"; };
 		77C6B2E0238C3E060059219E /* YourRoute.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourRoute.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C6B2E3238C3E060059219E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77C6B2E5238C3E060059219E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +185,10 @@
 			isa = PBXGroup;
 			children = (
 				7730A21B239165C400424E5B /* MainMapView.swift */,
+				774FA0FF239965090046486F /* MainMapViewModel.swift */,
+				774FA101239966BB0046486F /* LegAnnotationView.swift */,
+				774FA1032399685C0046486F /* LegPlaceView.swift */,
+				770ECA802399A240004FC75F /* Polyline.swift */,
 			);
 			path = "Map View";
 			sourceTree = "<group>";
@@ -434,6 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				774FA102239966BB0046486F /* LegAnnotationView.swift in Sources */,
 				7730A21523915F1900424E5B /* SearchView.swift in Sources */,
 				77C6B2E6238C3E060059219E /* ViewController.swift in Sources */,
 				7730A2292391CA1200424E5B /* ResultListViewDataSource.swift in Sources */,
@@ -454,10 +467,12 @@
 				7730A224239183CF00424E5B /* ResultListView.swift in Sources */,
 				77F162A523981BD300541D91 /* DetailRouteBusTableViewCell.swift in Sources */,
 				77F70C91238C7EBF00685107 /* CharacterSet+Extensions.swift in Sources */,
+				774FA1042399685C0046486F /* LegPlaceView.swift in Sources */,
 				77DC7C43238D72D90040D541 /* Bindable.swift in Sources */,
 				77C6B30A238C425B0059219E /* CodingUserInfoKey.swift in Sources */,
 				77CAF863239698CA00134A10 /* PlanResult.swift in Sources */,
 				7730A21723915F2100424E5B /* SearchViewModel.swift in Sources */,
+				774FA100239965090046486F /* MainMapViewModel.swift in Sources */,
 				77CAF8652396996500134A10 /* Itinerarie.swift in Sources */,
 				77CAF8702396CB1400134A10 /* DetailRouteViewModel.swift in Sources */,
 				77C6B2F6238C40C30059219E /* ApiClient.swift in Sources */,
@@ -473,6 +488,7 @@
 				77F162A12397E98E00541D91 /* DetailRouteTableViewModel.swift in Sources */,
 				7730A21023915BAE00424E5B /* MainViewModel.swift in Sources */,
 				7730A21F239171A200424E5B /* ResultRouteView.swift in Sources */,
+				770ECA812399A240004FC75F /* Polyline.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

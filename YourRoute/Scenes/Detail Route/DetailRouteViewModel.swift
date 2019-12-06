@@ -43,10 +43,11 @@ final class DetailRouteViewModel {
     private func addDestinationPoint() {
         let startTime = getTimeDestination()
         let endLeg = Leg(startTime: startTime, endTime: 0, mode: "WALK", duration: 0, distance: 0,
-                      from: Place(name: itinerarie.destinationPlace, stop: nil),
+                         from: Place(name: itinerarie.destinationPlace, lat: 0, lon: 0,stop: nil),
                       to: nil,
                       route: nil, intermediateStops: [],
-                      type: "destination")
+                      type: "destination",
+                      legGeometry: nil)
         self.legs.append( endLeg )
     }
     
