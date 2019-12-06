@@ -16,9 +16,9 @@ struct Itinerarie: Decodable {
     
     var legs: [Leg]
     
-    var originPlace: String?
+    var originPlace: ResultPlace?
     
-    var destinationPlace: String?
+    var destinationPlace: ResultPlace?
 }
 
 

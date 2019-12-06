@@ -13,8 +13,16 @@ class LegAnnotationView: MKMarkerAnnotationView {
     
     override var annotation: MKAnnotation? {
         willSet {
-            if let _ = newValue as? LegPlaceView {
-                glyphText = "🚕"
+            if let place = newValue as? LegPlaceView {
+                
+                if let type = place.typePlace {
+                    switch type {
+                    case .origin:
+                        markerTintColor = UIColor(red: 25/255, green: 175/255, blue: 51/255, alpha: 1.0)
+                    default:
+                        break
+                    }
+                }
             }
         }
     }

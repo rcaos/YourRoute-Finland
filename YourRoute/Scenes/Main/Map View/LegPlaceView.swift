@@ -11,18 +11,18 @@ import MapKit
 
 class LegPlaceView: NSObject {
     
-    var name: String?
+    var place: ResultPlace
     
-    var latitude: Double
+    var typePlace: LegType?
     
-    var longitude: Double
+    init(name: String, latitude: Double, longitude: Double, type: LegType? = nil) {
+        self.place = ResultPlace(name: name, latitude: latitude, longitude: longitude)
+        self.typePlace = type
+    }
     
-    //var route: [CLLocationCoordinate2D]?
-    
-    init(name: String, latitude: Double, longitude: Double) {
-        self.name = name
-        self.latitude = latitude
-        self.longitude = longitude
+    init(place: ResultPlace, type: LegType? = nil) {
+        self.place = place
+        self.typePlace = type
     }
 }
 
@@ -32,13 +32,14 @@ extension LegPlaceView: MKAnnotation {
     
     var coordinate: CLLocationCoordinate2D {
         get {
-            return CLLocation(latitude: latitude, longitude: longitude).coordinate
+            return CLLocation(latitude: place.coordinate.latitude,
+                              longitude: place.coordinate.longitude).coordinate
         }
     }
     
     var title: String? {
         get {
-            return name
+            return place.name
         }
     }
 }

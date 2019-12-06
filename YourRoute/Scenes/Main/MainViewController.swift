@@ -37,71 +37,21 @@ class MainViewController: UIViewController {
     //MARK: - only for Test
     
     func setupTestShowRoute() {
-        let mapViewModel = MainMapViewModel()
+        let testItinerarie = MakeData.makeItinerariePoints()
+        let mapViewModel = MainMapViewModel(itinerarie: testItinerarie)
         mapView.viewModel = mapViewModel
         mapViewModel.showRoute()
+        
+        searchView.isHidden = true
     }
     
     func setupTestDetailItinerarie() {
+        let testItinerarie = MakeData.makeItinerarieDetail()
+        
         resultRouteView.isHidden = false
-        
-        var testLegs = [Leg]()
-        testLegs.append(
-        Leg(startTime: 1575495226000.0, endTime: 1575495748000.0,
-                      mode: "WALK", duration: 40, distance: 428,
-                      from: Place(name: "Origin", lat: 0, lon: 0, stop: nil),
-                      to: nil,
-                    route: nil, intermediateStops: [],
-                    type: nil,
-                    legGeometry: nil) )
-        
-        testLegs.append(
-        Leg(startTime: 1575495748000.0, endTime: 1575496034000.0,
-            mode: "BUS", duration: 286, distance: 5430,
-            from: Place(name: "Haapaniemi", lat: 0, lon: 0,
-                        stop: Stop(code: "2406", desc: "Hämeentie 16", platformCode: nil)),
-            to: nil,
-        route: Route(shortName: "65"),
-        intermediateStops: [],
-        type: nil,
-        legGeometry: nil) )
-        
-        testLegs.append(
-        Leg(startTime: 1575496034000.0, endTime: 1575496640000.0,
-            mode: "WALK", duration: 606, distance: 1230,
-            from: Place(name: Optional("Rautatientori"), lat: 0, lon: 0,
-                        stop: Stop(code: Optional("2139"), desc: Optional("Vilhonkatu"), platformCode: nil)),
-            to: nil,
-            route: nil, intermediateStops: [],
-            type: nil,
-            legGeometry: nil) )
-        
-        testLegs.append(
-            Leg(startTime: 1575498120000.0, endTime: 1575499800000.0,
-                mode: "BUS", duration: 1680, distance: 12450,
-                from: Place(name: Optional("Kamppi"), lat: 0, lon: 0,
-                            stop: Stop(code: Optional("1249"), desc: Optional("Kamppi"), platformCode: "49")),
-                to: nil,
-        route: Route(shortName: "134N"),
-                intermediateStops:
-                [Optional(YourRoute.Stop(code: Optional("1234"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("1011"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E2205"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E2037"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E2016"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E2151"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E2132"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E3227"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E3228"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E3256"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E3268"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E3266"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E3263"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E3204"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E3206"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E3224"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E3209"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E4934"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E4325"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E4327"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E4301"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E6167"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E6171"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E6015"), desc: nil, platformCode: nil)), Optional(YourRoute.Stop(code: Optional("E6025"), desc: nil, platformCode: nil))],
-                type: nil,
-                legGeometry: nil) )
-        
-        testLegs.append(
-            Leg(startTime: 1575499800000.0, endTime: 1575500314000.0,
-                mode: "WALK", duration: 3750, distance: 300,
-                from: Place(name: "Espoon asema", lat: 0, lon: 0,
-                            stop: Stop(code: "E6024", desc: Optional("Siltakatu"), platformCode: "22")),
-                to: nil,
-                route: nil, intermediateStops: [],
-                type: nil,
-                legGeometry: nil) )
-        
-        let testItinerarie = Itinerarie(walkDistance: 300, duration: 120, legs: testLegs,
-                                        originPlace: "Kamppi, Helsinki - Start", destinationPlace: "Espoo, Espoo - End")
         resultRouteView.viewModel = ResultRouteViewModel(itineraries: [], selectedRoute: testItinerarie)
     }
+    //END:  Only for Tests
     
     func setupViews() {
         navigationController?.navigationBar.isHidden = true
@@ -118,7 +68,6 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func hideKeyboard(_ sender: AnyObject?) {
-        print("tap here")
         self.view.endEditing(true)
     }
     

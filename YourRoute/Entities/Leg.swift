@@ -46,16 +46,34 @@ extension Leg {
         }
     }
     
+    var legMode: LegMode? {
+        
+        if let legMode = LegMode(rawValue: mode) {
+            return legMode
+        } else {
+            return nil
+        }
+    }
+    
 }
 
 //MARK: - LegType
 
-enum LegType:String , Decodable{
+enum LegType:String , Decodable {
     
     case origin
     
     case destination
     
+}
+
+//MARK: - LegMode
+
+enum LegMode: String, Decodable {
+    
+    case WALK
+    
+    case BUS
 }
 
 

@@ -14,22 +14,7 @@ import MapKit
 //MARK: -TODO Crear un Protocol para Otro tipo de Data SOurce
 //Apple vs Google Maps
 
-struct ResultPlace {
-    
-    var name: String
-    
-    var coordinate: CLLocationCoordinate2D
-    
-    var address: String?
-
-    init(name: String, coordinate: CLLocationCoordinate2D) {
-        self.name = name
-        self.coordinate = coordinate
-    }
-}
-
 class SearchPlacesDataSource {
-    
     
     var places: [ResultPlace] = []
     
@@ -68,7 +53,10 @@ class SearchPlacesDataSource {
     private func processFetched(with response: MKLocalSearch.Response) {
         for item in response.mapItems {
             if let name = item.placemark.name {
-                places.append( ResultPlace(name: name, coordinate: item.placemark.coordinate) )
+                places.append(
+                    ResultPlace(name: name,
+                                latitude: item.placemark.coordinate.latitude,
+                                longitude: item.placemark.coordinate.longitude ) )
             }
         }
     }

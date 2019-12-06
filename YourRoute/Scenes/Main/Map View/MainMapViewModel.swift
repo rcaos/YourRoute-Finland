@@ -13,22 +13,68 @@ import CoreLocation
 
 final class MainMapViewModel {
     
+    //Su función es mostrar un Itinerarie
+    private let itinerarie: Itinerarie
+    
     var places: [LegPlaceView] = []
     
-    var route: [CLLocationCoordinate2D] = []
+    var routes: [(type: LegMode, coordinates: [CLLocationCoordinate2D])] = []
     
     //Reactive
     var updateAnnotations: (()->Void)?
     
-    init() {
-        
+    init(itinerarie: Itinerarie) {
+        self.itinerarie = itinerarie
     }
     
     func showRoute() {
-        //Mock data
+        addMarkPlaces()
+        decodedRoutes()
+        updateAnnotations?()
+    }
+    
+    //MARK: - for now only origin and destination
+    
+    private func addMarkPlaces() {
         
-        //let from = LegPlaceView(name: "Kampii", latitude: 60.184229958105, longitude: 24.949350357055664)
-        //let to = LegPlaceView(name: "Bus Stop", latitude: 60.18287, longitude: 24.94524)
+        if let place = itinerarie.originPlace {
+            let origin = LegPlaceView(place: place, type: .origin)
+            places.append(origin)
+        }
+        
+        if let place = itinerarie.destinationPlace {
+            let destination = LegPlaceView(place: place, type: .destination)
+            places.append(destination)
+        }
+        
+        //Missing the intermediate places
+        //TODO
+    }
+    
+    //MARK: - Decoded Routes
+    
+    private func decodedRoutes() {
+        for leg in itinerarie.legs {
+            
+            guard let mode = leg.legMode else { continue }
+            
+            if let coordinates = decodedSingleRoute(encoded: leg.legGeometry?.points) {
+                routes.append( (type: mode , coordinates: coordinates) )
+            }
+        }
+    }
+    
+    private func decodedSingleRoute(encoded: String?) -> [CLLocationCoordinate2D]? {
+        guard let encodedString = encoded else { return nil }
+        
+        let decoded = Polyline(encodedPolyline: encodedString)
+        guard let coordinates = decoded.coordinates else { return nil }
+        
+        return coordinates
+    }
+    
+    func showRouteForTest() {
+        //Mock data
         
         let from = LegPlaceView(name: "Kampii", latitude: 60.184229958105, longitude: 24.949350357055664)
         let to = LegPlaceView(name: "Bus Stop", latitude: 60.18433, longitude: 24.92357)
@@ -38,7 +84,7 @@ final class MainMapViewModel {
         let encodedPoints = "kvinJuzgwCB??b@@fACHTb@GTGR{B|HGRGRBDBDPZh@dAHLHN`AfBHLCFER_@tAk@nBCFM`@[hAGREPENsApEAFM`@GVSr@Sr@_@tAOd@@R@LBNPxBVxCH`AVbDPdB\\vEJVBLBRb@zEHrAp@xIDTDLJDA`@ANAPAD?HALATARf@NP|@C|@EpAOv@Mh@G`@C^?TNdE@TDv@P~EBTD|@@R@\\?b@AZCRENEHEFGHMRABMTMPCDEFFVBJBFDTFTJZb@rAFVPl@DJi@~@"
         let decoded = Polyline(encodedPolyline: encodedPoints)
         if let coordinates = decoded.coordinates  {
-            route = coordinates
+            routes.append( (type: .WALK, coordinates: coordinates) )
         }
         
         updateAnnotations?()

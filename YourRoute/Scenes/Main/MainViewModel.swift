@@ -68,8 +68,8 @@ final class MainViewModel {
         var newItineraries = itineraries
         
         for index in newItineraries.indices {
-            newItineraries[index].originPlace = originPlace?.name
-            newItineraries[index].destinationPlace = destinationPlace?.name
+            newItineraries[index].originPlace = originPlace
+            newItineraries[index].destinationPlace = destinationPlace
         }
         
         //set State == Populated

@@ -88,7 +88,7 @@ class MainMapView: UIView {
                                             longitude:
             topLeftCoord.longitude - (topLeftCoord.longitude - bottomRightCoord.longitude) / 2 )
         
-        let extraSpace = 1.5
+        let extraSpace = 1.3
         let span = MKCoordinateSpan(latitudeDelta:
             abs(topLeftCoord.latitude - bottomRightCoord.latitude) * extraSpace
             , longitudeDelta:
@@ -119,9 +119,14 @@ class MainMapView: UIView {
     //MARK: - Draw Routes
     
     func drawRoutes() {
-        guard let route = viewModel?.route else { return }
-        let line = MKPolyline(coordinates: route, count: route.count)
-        mapView.addOverlay(line)
+        guard let routes = viewModel?.routes else { return }
+        
+        for (type,route) in routes {
+            let line = CustomMKPolyline(coordinates: route, count: route.count)
+            line.type = type
+            mapView.addOverlay(line)
+        }
+        
     }
 }
 
@@ -130,19 +135,13 @@ class MainMapView: UIView {
 extension MainMapView: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if overlay is MKPolyline {
+        
+        if let customPolyLine = overlay as? CustomMKPolyline {
             let polyLine = MKPolylineRenderer(overlay: overlay)
             
-            //for Bus
-            polyLine.strokeColor = .blue
-            polyLine.lineWidth = 3.0
-            
-            //for Walk
-            //polyLine.strokeColor = UIColor(red: 103/255, green: 186/255, blue: 125/255, alpha: 1.0)
-            
-//            polyLine.lineWidth = 5.0
-//            polyLine.lineDashPattern = [0,8]
-//            polyLine.strokeColor = .green
+            polyLine.strokeColor = customPolyLine.color
+            polyLine.lineWidth = customPolyLine.width
+            polyLine.lineDashPattern = customPolyLine.dashPatter
             
             return polyLine
         }

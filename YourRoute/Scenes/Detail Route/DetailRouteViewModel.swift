@@ -35,15 +35,19 @@ final class DetailRouteViewModel {
             let namePlace = fromPlace.name,
             namePlace == "Origin" else { return }
         
-        leg.from?.name = itinerarie.originPlace
+        leg.from?.name = itinerarie.originPlace?.name
         leg.type = "origin"
         legs[legs.startIndex] = leg
     }
     
     private func addDestinationPoint() {
         let startTime = getTimeDestination()
+        
+        let latitude = itinerarie.destinationPlace?.coordinate.latitude ?? 0
+        let longitude = itinerarie.destinationPlace?.coordinate.longitude ?? 0
+        
         let endLeg = Leg(startTime: startTime, endTime: 0, mode: "WALK", duration: 0, distance: 0,
-                         from: Place(name: itinerarie.destinationPlace, lat: 0, lon: 0,stop: nil),
+                         from: Place(name: itinerarie.destinationPlace?.name, lat: latitude, lon: longitude, stop: nil),
                       to: nil,
                       route: nil, intermediateStops: [],
                       type: "destination",
