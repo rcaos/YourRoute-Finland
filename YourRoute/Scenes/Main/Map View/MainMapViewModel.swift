@@ -49,6 +49,25 @@ final class MainMapViewModel {
         
         //Missing the intermediate places
         //TODO
+        for leg in itinerarie.legs {
+            guard let mode = leg.legMode, case .BUS = mode else { continue }
+            
+            if let fromPlace = leg.from {
+                let placeView = LegPlaceView(name: fromPlace.name ?? "",
+                                         latitude: fromPlace.lat, longitude: fromPlace.lon,
+                                        type: .busStation)
+                places.append(placeView)
+            }
+            
+            if let toPlace = leg.to {
+                let placeView = LegPlaceView(name: toPlace.name ?? "",
+                                             latitude: toPlace.lat, longitude: toPlace.lon,
+                    type: .busStation)
+                places.append(placeView)
+            }
+            
+            
+        }
     }
     
     //MARK: - Decoded Routes
