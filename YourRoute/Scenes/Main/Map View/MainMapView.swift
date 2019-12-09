@@ -54,6 +54,8 @@ class MainMapView: UIView {
         
         mapView.register(LegAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         mapView.delegate = self
+        
+        setDefaultRegion()
     }
     
     func setDefaultRegion() {

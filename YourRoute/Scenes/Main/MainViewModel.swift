@@ -21,7 +21,7 @@ final class MainViewModel {
     //Reactive
     var reloadTable: (()->Void)?
     
-    var showResultRoute: ((ResultRouteViewModel)->Void)?
+    var showResultRoute: ((ResultRouteViewModel, MainMapViewModel?)->Void)?
     
     //MARK: - Life Cycle
     
@@ -63,10 +63,11 @@ final class MainViewModel {
         })
     }
     
-    func handleResponse(with itineraries: [Itinerarie], originPlace: ResultPlace?, destinationPlace: ResultPlace?) {
+    private func handleResponse(with itineraries: [Itinerarie], originPlace: ResultPlace?, destinationPlace: ResultPlace?) {
         
         var newItineraries = itineraries
         
+        //its really needed??
         for index in newItineraries.indices {
             newItineraries[index].originPlace = originPlace
             newItineraries[index].destinationPlace = destinationPlace
@@ -75,7 +76,14 @@ final class MainViewModel {
         //set State == Populated
         print("Main VM: Se recibieron \(newItineraries.count) itinerarios")
         let resultRouteViewModel = ResultRouteViewModel(itineraries: newItineraries)
-        showResultRoute?(resultRouteViewModel)
+        
+        //MARK: - TODO Siempre mostrar el primero?, o el optimo???
+        var mapViewModel: MainMapViewModel? = nil
+        if let firstItinerarie = newItineraries.first {
+            mapViewModel = MainMapViewModel(itinerarie: firstItinerarie)
+        }
+        
+        showResultRoute?(resultRouteViewModel, mapViewModel)
         
         //set State == Empty
     }

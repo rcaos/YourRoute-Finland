@@ -31,7 +31,7 @@ class MainViewController: UIViewController {
         
         //ONly for Test
         //setupTest()
-        setupTestShowRoute()
+        //setupTestShowRoute()
     }
     
     //MARK: - only for Test
@@ -90,9 +90,14 @@ class MainViewController: UIViewController {
             strongSelf.configTableView()
         }
         
-        viewModel.showResultRoute = { [weak self] resultRouteViewModel in
+        viewModel.showResultRoute = { [weak self] resultRouteViewModel, mapViewModel in
             guard let strongSelf = self else { return }
             strongSelf.resultRouteView.viewModel = resultRouteViewModel
+            
+            if let mapViewModel = mapViewModel {
+                strongSelf.mapView.viewModel = mapViewModel
+                mapViewModel.showRoute()
+            }
             
             strongSelf.searchView.isHidden = true
             strongSelf.resultRouteView.isHidden = false
