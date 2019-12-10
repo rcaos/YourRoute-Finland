@@ -91,18 +91,27 @@ class MainViewController: UIViewController {
             strongSelf.configTableView()
         }
         
-        viewModel.showResultRoute = { [weak self] resultRouteViewModel, mapViewModel in
+        viewModel.showResultRoute = { [weak self] resultRouteViewModel in
             guard let strongSelf = self else { return }
-            strongSelf.resultRouteView.viewModel = resultRouteViewModel
             
-            if let mapViewModel = mapViewModel {
-                strongSelf.mapView.viewModel = mapViewModel
-                mapViewModel.showRoute()
-            }
-            
-            strongSelf.searchView.isHidden = true
-            strongSelf.resultRouteView.isHidden = false
+            strongSelf.configResultView(witth: resultRouteViewModel)
         }
+    }
+    
+    func configResultView(witth viewModel: ResultRouteViewModel?) {
+        guard let resultRouteViewModel = viewModel else { return }
+        resultRouteView.viewModel = resultRouteViewModel
+        resultRouteView.viewModel?.checkFirstItinerarie()
+        
+        searchView.isHidden = true
+        resultRouteView.isHidden = false
+    }
+    
+    func configMap(with viewModel: MainMapViewModel?) {
+        guard let mapViewModel = viewModel else { return }
+        
+        mapView.viewModel = mapViewModel
+        mapViewModel.showRoute()
     }
     
     func configTableView() {
@@ -158,5 +167,8 @@ extension MainViewController: ResultRouteViewDelegate {
         performSegue(withIdentifier: "DetailRouteSegue", sender: detail)
     }
     
+    func resultRouteViewDelegate(_ resultView: ResultRouteView, didChangeItinerarie mapViewModel: MainMapViewModel) {
+        configMap(with: mapViewModel)
+    }
 }
 

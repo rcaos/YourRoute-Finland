@@ -29,10 +29,14 @@ final class DetailRouteBusTableViewModel {
     }
     
     private var distanceFormatter: MeasurementFormatter {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.maximumFractionDigits = 1
+        
         let distanceFormatter = MeasurementFormatter()
         distanceFormatter.unitStyle = .medium
         distanceFormatter.unitOptions = .naturalScale
         distanceFormatter.locale = Locale(identifier: "es_PE")
+        distanceFormatter.numberFormatter = numberFormatter
         return distanceFormatter
     }
     

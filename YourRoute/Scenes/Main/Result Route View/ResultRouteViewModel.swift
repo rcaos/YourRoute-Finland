@@ -16,10 +16,11 @@ final class ResultRouteViewModel {
         return itineraries.map{ ItinerarieCollectionCellViewModel(itinerarie: $0) }
     }
     
+    var showRoute: ((Int) -> Void)?
+    
     //MARK: - Life Cycle
     
     init(itineraries: [Itinerarie]) {
-        print("Se recibieron \(itineraries.count) itinerarios para mostrar")
         self.itineraries = itineraries
         
         calculateOptimalRoute(for: itineraries)
@@ -27,7 +28,20 @@ final class ResultRouteViewModel {
     
     private func calculateOptimalRoute(for itineraries: [Itinerarie]) {
         //MARK: - TODO
-        //Order Itineraries by some kind of attribute
+        //Order Itineraries by some kind of attribute,
+        //Less walk?
         //For now temporarily
+    }
+    
+    func checkFirstItinerarie() {
+        if let _ = itineraries.first {
+            showRoute?(0)
+        }
+    }
+    
+    //MARK: - Build Models
+    
+    func buildMapViewModel(for index: Int) -> MainMapViewModel {
+        return MainMapViewModel(itinerarie: itineraries[index])
     }
 }

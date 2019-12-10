@@ -75,6 +75,8 @@ class MainMapView: UIView {
     func setupAnnotations() {
         guard let viewModel = viewModel else { return }
         
+        mapView.removeAnnotations( mapView.annotations )
+        
         //Check first Correct Annotations
         mapView.addAnnotations( viewModel.places )
         drawRoutes()
@@ -121,6 +123,8 @@ class MainMapView: UIView {
     //MARK: - Draw Routes
     
     func drawRoutes() {
+        mapView.removeOverlays( mapView.overlays )
+        
         guard let routes = viewModel?.routes else { return }
         
         for (type,route) in routes {

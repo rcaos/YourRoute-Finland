@@ -12,6 +12,8 @@ protocol ResultRouteViewDelegate: class {
     
     func resultRouteViewDelegate(_ resultView: ResultRouteView, didSelectRouteDetail detail: DetailRouteViewModel)
     
+    func resultRouteViewDelegate(_ resultView: ResultRouteView, didChangeItinerarie mapViewModel: MainMapViewModel)
+    
 }
 
 class ResultRouteView: UIView {
@@ -42,7 +44,15 @@ class ResultRouteView: UIView {
     
     private var indexOfCellBeforeDragging = 0
     
-    private var lastIndexSelected = 0
+    private var lastIndexSelected: Int? {
+        didSet {
+            if let newIndex = lastIndexSelected {
+                if let mapViewModel = viewModel?.buildMapViewModel(for: newIndex) {
+                    delegate?.resultRouteViewDelegate(self, didChangeItinerarie: mapViewModel)
+                }
+            }
+        }
+    }
     
     
     //MARK: - Life Cycle
@@ -102,9 +112,13 @@ class ResultRouteView: UIView {
     }
     
     func setupViewModel() {
-        guard let _ = viewModel else { return }
+        guard let viewModel = viewModel else { return }
         
         collectionView.reloadData()
+        
+        viewModel.showRoute = {[weak self] index in
+            self?.lastIndexSelected = 0
+        }
     }
 }
 
@@ -181,9 +195,12 @@ extension ResultRouteView: UICollectionViewDelegateFlowLayout {
     }
     
     func checkIndex(for newIndex: Int) {
-        if newIndex != lastIndexSelected {
+        if let lastIndex = lastIndexSelected {
+            if newIndex != lastIndex {
+                lastIndexSelected = newIndex
+            }
+        } else {
             lastIndexSelected = newIndex
-            print("talk to delegate: \(lastIndexSelected)")
         }
     }
 }

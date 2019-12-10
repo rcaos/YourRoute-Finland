@@ -21,7 +21,7 @@ final class MainViewModel {
     //Reactive
     var reloadTable: (()->Void)?
     
-    var showResultRoute: ((ResultRouteViewModel, MainMapViewModel?)->Void)?
+    var showResultRoute: ((ResultRouteViewModel)->Void)?
     
     //MARK: - Life Cycle
     
@@ -74,16 +74,10 @@ final class MainViewModel {
         }
         
         //set State == Populated
-        print("Main VM: Se recibieron \(newItineraries.count) itinerarios")
+        print("Fetched: \(newItineraries.count) itinerary")
         let resultRouteViewModel = ResultRouteViewModel(itineraries: newItineraries)
         
-        //MARK: - TODO Siempre mostrar el primero?, o el optimo???
-        var mapViewModel: MainMapViewModel? = nil
-        if let firstItinerarie = newItineraries.first {
-            mapViewModel = MainMapViewModel(itinerarie: firstItinerarie)
-        }
-        
-        showResultRoute?(resultRouteViewModel, mapViewModel)
+        showResultRoute?(resultRouteViewModel)
         
         //set State == Empty
     }
