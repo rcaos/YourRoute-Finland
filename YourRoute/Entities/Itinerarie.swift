@@ -12,13 +12,28 @@ struct Itinerarie: Decodable {
     
     var walkDistance: Double
     
-    var duration: Int
+    var walkDuration: Double
+    
+    var duration: Double
     
     var legs: [Leg]
     
     var originPlace: ResultPlace?
     
     var destinationPlace: ResultPlace?
+    
+    //MARK: - CodingKeys
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case walkDistance
+        case walkDuration = "walkTime"
+        case duration
+        case legs
+        case originPlace
+        case destinationPlace
+        
+    }
 }
 
 

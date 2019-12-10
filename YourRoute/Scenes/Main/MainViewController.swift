@@ -30,7 +30,7 @@ class MainViewController: UIViewController {
         setupBindables()
         
         //ONly for Test
-        //setupTest()
+        //setupTestDetailItinerarie()
         //setupTestShowRoute()
     }
     
@@ -46,10 +46,11 @@ class MainViewController: UIViewController {
     }
     
     func setupTestDetailItinerarie() {
-        let testItinerarie = MakeData.makeItinerarieDetail()
+        let itineraries = MakeData.makeItinerarieDetail()
         
+        searchView.isHidden = true
         resultRouteView.isHidden = false
-        resultRouteView.viewModel = ResultRouteViewModel(itineraries: [], selectedRoute: testItinerarie)
+        resultRouteView.viewModel = ResultRouteViewModel(itineraries: itineraries)
     }
     //END:  Only for Tests
     

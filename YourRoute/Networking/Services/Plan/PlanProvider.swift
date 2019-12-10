@@ -55,6 +55,7 @@ extension PlanProvider: EndPoint {
             ) {
                 itineraries {
                     walkDistance,
+                    walkTime,
                     duration,
                     legs {
                         mode

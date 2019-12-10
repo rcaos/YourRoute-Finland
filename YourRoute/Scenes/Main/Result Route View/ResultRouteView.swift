@@ -1,8 +1,8 @@
 //
-//  ResultRouteView.swift
+//  ResultView.swift
 //  YourRoute
 //
-//  Created by Jeans on 11/29/19.
+//  Created by Jeans on 12/9/19.
 //  Copyright © 2019 Jeans. All rights reserved.
 //
 
@@ -14,7 +14,7 @@ protocol ResultRouteViewDelegate: class {
     
 }
 
-class ResultRouteView: NibView {
+class ResultRouteView: UIView {
     
     var viewModel: ResultRouteViewModel? {
         didSet {
@@ -24,69 +24,175 @@ class ResultRouteView: NibView {
     
     weak var delegate: ResultRouteViewDelegate?
     
-    @IBOutlet var superView: UIView!
-    @IBOutlet weak var rounderView: UIView!
-    @IBOutlet weak var centerView: UIView!
+    var flowLayout = UICollectionViewFlowLayout()
     
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var infoLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var detailButton: UIButton!
+    lazy var collectionView: UICollectionView = {
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumLineSpacing = 0
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
+        //collectionView.isPagingEnabled = true
+        
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        return collectionView
+    }()
     
-    //MARK: - Initializers
+    private var indexOfCellBeforeDragging = 0
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    private var lastIndexSelected = 0
+    
+    
+    //MARK: - Life Cycle
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         setupUI()
     }
     
     func setupUI() {
-        setupView()
+        backgroundColor = .clear
+        
+        self.addSubview(collectionView)
+        NSLayoutConstraint.activate([
+            self.topAnchor.constraint(equalTo: collectionView.topAnchor),
+            self.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor),
+            self.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
+            self.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor) ])
+        
+        setupCollectionView()
     }
     
-    func setupView() {
-        superView.backgroundColor = .clear
+    private func setupCollectionView() {
+        let nibName = UINib(nibName: "ItinerarieCollectionCellView", bundle: nil)
+        collectionView.register(nibName, forCellWithReuseIdentifier: "ItinerarieCollectionCellView")
         
-        rounderView.layer.cornerRadius = 8
-        rounderView.layer.borderWidth = 1
-        rounderView.layer.borderColor = UIColor(red: 182/255, green: 182/255, blue: 182/255, alpha: 1.0).cgColor
-        rounderView.backgroundColor = UIColor(red:245/255, green:246/255, blue:247/255, alpha:1.0)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        setupLayout()
+    }
+    
+    private func setupLayout() {
+        let inset: CGFloat = 20
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
         
-        centerView.backgroundColor = .clear
+        let width = frame.size.width - (inset * 2)
+        let height = frame.size.height
+        flowLayout.itemSize = CGSize(width: width, height: height )
         
-        segmentedControl.backgroundColor = .clear
-        segmentedControl.tintColor = UIColor(red: 185/255, green: 72/255, blue: 52/255, alpha: 1.0)
+        flowLayout.minimumInteritemSpacing = 0
+    }
+    
+    private func indexOfMajorCell() -> Int {
+        let itemWidth = flowLayout.itemSize.width
         
-        infoLabel.numberOfLines = 1
-        infoLabel.textAlignment = .center
-        infoLabel.textColor = .red
+        let proportionalOffset = collectionView.contentOffset.x / itemWidth
+        let index = Int(round(proportionalOffset))
+        let numberOfItems = collectionView.numberOfItems(inSection: 0)
+        let safeIndex = max(0, min(numberOfItems - 1, index))
         
-        detailButton.setTitle("VER DETALLES DE RUTA", for: .normal)
-        detailButton.backgroundColor = UIColor(red: 185/255, green: 72/255, blue: 52/255, alpha: 1.0)
-        detailButton.setTitleColor(.white, for: .normal)
-        detailButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title3)
-        
-        detailButton.addTarget(self, action: #selector(self.actionSegue(sender:)), for: .touchUpInside)
+        return safeIndex
     }
     
     func setupViewModel() {
-        guard let viewModel = viewModel else { return }
+        guard let _ = viewModel else { return }
         
-        //UITableView,
-        //Cada cell tiene una foto y una description
-        
-        segmentedControl.setTitle(viewModel.optimeRoute, forSegmentAt: 0)
-        
-        segmentedControl.setTitle(viewModel.otherRoutes, forSegmentAt: 1)
-        
-        infoLabel.text = viewModel.infoAboutRoute
+        collectionView.reloadData()
+    }
+}
+
+//MARK: - UICollectionViewDataSource
+
+extension ResultRouteView: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let viewModel = viewModel else { return 0 }
+        return viewModel.itinerariesCells.count
     }
     
-    @objc func actionSegue(sender: UIButton) {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItinerarieCollectionCellView", for: indexPath) as? ItinerarieCollectionCellView  else {
+            fatalError("Could not cast value of type 'UICollectionViewCell'")
+        }
         
-        if let viewModel = viewModel?.buildDetailRouteViewModel() {
-            delegate?.resultRouteViewDelegate(self, didSelectRouteDetail: viewModel)
+        cell.viewModel = viewModel?.itinerariesCells[indexPath.row]
+        cell.delegate = self
+        return cell
+    }
+}
+
+//MARK: - UICollectionViewDelegateFlowLayout
+
+extension ResultRouteView: UICollectionViewDelegateFlowLayout {
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        let safeIndex = indexOfMajorCell()
+        
+        indexOfCellBeforeDragging = safeIndex
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        // Stop scrollView sliding:
+        targetContentOffset.pointee = scrollView.contentOffset
+        
+        // calculate where scrollView should snap to:
+        let indexOfMajorCell = self.indexOfMajorCell()
+        
+        // calculate conditions:
+        let dataSourceCount = collectionView(collectionView , numberOfItemsInSection: 0)
+        
+        let swipeVelocityThreshold: CGFloat = 0.5 // after some trail and error
+        let hasEnoughVelocityToSlideToTheNextCell = indexOfCellBeforeDragging + 1 < dataSourceCount && velocity.x > swipeVelocityThreshold
+        let hasEnoughVelocityToSlideToThePreviousCell = indexOfCellBeforeDragging - 1 >= 0 && velocity.x < -swipeVelocityThreshold
+        let majorCellIsTheCellBeforeDragging = indexOfMajorCell == indexOfCellBeforeDragging
+        let didUseSwipeToSkipCell = majorCellIsTheCellBeforeDragging && (hasEnoughVelocityToSlideToTheNextCell || hasEnoughVelocityToSlideToThePreviousCell)
+        
+        var newIndex = 0
+        
+        if didUseSwipeToSkipCell {
+            
+            let snapToIndex = indexOfCellBeforeDragging + (hasEnoughVelocityToSlideToTheNextCell ? 1 : -1)
+            let toValue = flowLayout.itemSize.width * CGFloat(snapToIndex)
+            
+            // Damping equal 1 => no oscillations => decay animation:
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: velocity.x, options: .allowUserInteraction, animations: {
+                scrollView.contentOffset = CGPoint(x: toValue, y: 0)
+                scrollView.layoutIfNeeded()
+            }, completion: nil)
+            
+            newIndex = Int(toValue / flowLayout.itemSize.width)
+            
+        } else {
+            // This is a much better way to scroll to a cell:
+            let indexPath = IndexPath(row: indexOfMajorCell, section: 0)
+            flowLayout.collectionView!.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            
+            newIndex = indexPath.row
+        }
+        
+        checkIndex(for: newIndex)
+    }
+    
+    func checkIndex(for newIndex: Int) {
+        if newIndex != lastIndexSelected {
+            lastIndexSelected = newIndex
+            print("talk to delegate: \(lastIndexSelected)")
         }
     }
+}
+
+//MARK: - ItinerarieCollectionCellViewDelegate
+
+extension ResultRouteView: ItinerarieCollectionCellViewDelegate {
     
+    func itinerarieCollectionCellView(_ resultView: UICollectionViewCell, didSelectRouteDetail detail: DetailRouteViewModel) {
+        delegate?.resultRouteViewDelegate(self, didSelectRouteDetail: detail)
+    }
 }

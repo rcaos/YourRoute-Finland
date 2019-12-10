@@ -10,59 +10,24 @@ import Foundation
 
 final class ResultRouteViewModel {
     
-    private var selectedRoute: Itinerarie?
+    private var itineraries: [Itinerarie] = []
     
-    var optimeRoute: String?
-    
-    var otherRoutes: String?
-    
-    var infoAboutRoute: String?
+    var itinerariesCells: [ItinerarieCollectionCellViewModel] {
+        return itineraries.map{ ItinerarieCollectionCellViewModel(itinerarie: $0) }
+    }
     
     //MARK: - Life Cycle
     
-    init(itineraries: [Itinerarie], selectedRoute: Itinerarie? = nil) {
-        if let selected = selectedRoute {
-            print("Recibi una ruta Preseleccionada")
-            self.selectedRoute = selected
-        } else {
-            print("Se recibieron \(itineraries.count) itinerarios, obtendré el primero")
-            calculateOptimalRoute(for: itineraries)
-        }
+    init(itineraries: [Itinerarie]) {
+        print("Se recibieron \(itineraries.count) itinerarios para mostrar")
+        self.itineraries = itineraries
+        
+        calculateOptimalRoute(for: itineraries)
     }
     
     private func calculateOptimalRoute(for itineraries: [Itinerarie]) {
-        
+        //MARK: - TODO
+        //Order Itineraries by some kind of attribute
         //For now temporarily
-        if itineraries.count > 0 {
-            selectedRoute = itineraries[0]
-            setupView(for: selectedRoute)
-        }
-        
-        if itineraries.count > 1 {
-            otherRoutes = "Check other Routes (\(itineraries.count - 1))"
-        } else {
-            //disable "Check Other Routes"
-        }
-        
-    }
-    
-    private func setupView(for itinerarie: Itinerarie?) {
-        guard let itinerarie = itinerarie else { return }
-        
-        optimeRoute = "Fastest Route: \( Int(itinerarie.duration / 60)) mins"
-        
-        let numberOfBuses = itinerarie.legs.filter({ $0.mode == "BUS" }).count
-        
-        if  numberOfBuses > 1 {
-            infoAboutRoute = "The route has \(numberOfBuses) buses"
-        }
-    }
-    
-    //MARK: - Build Models
-    
-    func buildDetailRouteViewModel() -> DetailRouteViewModel? {
-        guard let itinerarie = selectedRoute else { return nil }
-        
-        return DetailRouteViewModel(itinerarie: itinerarie)
     }
 }

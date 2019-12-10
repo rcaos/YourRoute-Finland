@@ -66,7 +66,7 @@
                     <connections>
                         <outlet property="mapView" destination="Ca7-hj-avu" id="JCg-QL-60w"/>
                         <outlet property="resultListView" destination="wcQ-Nd-nzf" id="qrK-z7-GFn"/>
-                        <outlet property="resultRouteView" destination="W0E-EU-hhb" id="hZi-ue-KMC"/>
+                        <outlet property="resultRouteView" destination="W0E-EU-hhb" id="kVf-BY-hZe"/>
                         <outlet property="searchView" destination="Lhl-Hy-Q5k" id="YX9-R7-orn"/>
                         <segue destination="DQA-V2-bKs" kind="presentation" identifier="DetailRouteSegue" id="XgP-Sc-lBj"/>
                     </connections>

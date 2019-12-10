@@ -62,7 +62,8 @@ struct MakeData {
                 type: nil,
                 legGeometry: Geometry(length: 14, points: "u{mnJyqnuCFZFl@D\\EF@N@LBD\\xCBR?F@J[`@m@b@")) )
         
-        let testItinerarie = Itinerarie(walkDistance: 300, duration: 120, legs: testLegs,
+        
+        let testItinerarie = Itinerarie(walkDistance: 300, walkDuration: 900, duration: 120, legs: testLegs,
                                         originPlace: ResultPlace(name: "Kamppi, Helsinki - Start", latitude: 60.184229958105, longitude: 24.949350357055664),
                                         destinationPlace: ResultPlace(name: "Espoo, Espoo - End", latitude: 60.20556641456011, longitude: 24.653427600860596))
         //before: 60.20556, longitude: 24.65573
@@ -72,7 +73,7 @@ struct MakeData {
     
     //MARK: - for Route Detail ViewController
     
-    static func makeItinerarieDetail() -> Itinerarie {
+    static func makeItinerarieDetail() -> [Itinerarie] {
         var testLegs = [Leg]()
         
         testLegs.append(
@@ -127,9 +128,24 @@ struct MakeData {
                 type: nil,
                 legGeometry: nil) )
         
-        let testItinerarie = Itinerarie(walkDistance: 300, duration: 120, legs: testLegs,
+        
+        var itineraries: [Itinerarie] = []
+        
+        var testItinerarie = Itinerarie(walkDistance: 300, walkDuration: 2300, duration: 120, legs: testLegs,
                                         originPlace: ResultPlace(name: "Kamppi, Helsinki - Start", latitude: 60.184229958105, longitude: 24.949350357055664),
                                         destinationPlace: ResultPlace(name: "Espoo, Espoo - End", latitude: 60.20556, longitude: 24.65573))
-        return testItinerarie
+        itineraries.append(testItinerarie)
+        
+        testItinerarie.walkDistance = 2500
+        testItinerarie.walkDuration = 1200
+        testItinerarie.duration = 600
+        itineraries.append(testItinerarie)
+        
+        testItinerarie.walkDistance = 4200
+        testItinerarie.walkDuration = 5100
+        testItinerarie.duration = 800
+        itineraries.append(testItinerarie)
+        
+        return itineraries
     }
 }
