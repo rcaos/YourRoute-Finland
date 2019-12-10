@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var mapView: MainMapView!
     @IBOutlet weak var searchView: SearchView!
+    @IBOutlet weak var closeView: CloseView!
     @IBOutlet weak var resultListView: ResultListView!
     @IBOutlet weak var resultRouteView: ResultRouteView!
     
@@ -28,6 +29,10 @@ class MainViewController: UIViewController {
         setupModels()
         setupTableView()
         setupBindables()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        configView(with: .initial)
         
         //ONly for Test
         //setupTestDetailItinerarie()
@@ -47,19 +52,17 @@ class MainViewController: UIViewController {
     
     func setupTestDetailItinerarie() {
         let itineraries = MakeData.makeItinerarieDetail()
-        
-        searchView.isHidden = true
-        resultRouteView.isHidden = false
         resultRouteView.viewModel = ResultRouteViewModel(itineraries: itineraries)
+        
+        configView(with: .populated)
     }
     //END:  Only for Tests
     
     func setupViews() {
         navigationController?.navigationBar.isHidden = true
-        searchView.backgroundColor = UIColor(red: 0, green: 0.1, blue: 0.58, alpha: 0)
         
-        resultListView.isHidden = true
-        resultRouteView.isHidden = true
+        //why??
+        searchView.backgroundColor = UIColor(red: 0, green: 0.1, blue: 0.58, alpha: 0)
     }
     
     private func setupGestures() {
@@ -73,10 +76,11 @@ class MainViewController: UIViewController {
     }
     
     func setupModels() {
-        searchView.delegate = self
         searchView.viewModel = viewModel.searchViewModel
         
+        searchView.delegate = self
         resultRouteView.delegate = self
+        closeView.delegate = self
     }
     
     func setupTableView() {
@@ -96,6 +100,11 @@ class MainViewController: UIViewController {
             
             strongSelf.configResultView(witth: resultRouteViewModel)
         }
+        
+        viewModel.viewState.bind({ [weak self] state in
+            guard let strongSelf = self else { return }
+            strongSelf.configView(with: state)
+        })
     }
     
     func configResultView(witth viewModel: ResultRouteViewModel?) {
@@ -103,8 +112,7 @@ class MainViewController: UIViewController {
         resultRouteView.viewModel = resultRouteViewModel
         resultRouteView.viewModel?.checkFirstItinerarie()
         
-        searchView.isHidden = true
-        resultRouteView.isHidden = false
+        configView(with: .populated)
     }
     
     func configMap(with viewModel: MainMapViewModel?) {
@@ -125,9 +133,30 @@ class MainViewController: UIViewController {
         resultListView.isHidden = false
     }
     
+    func configView(with state: MainViewModel.ViewState) {
+        searchView.isHidden = true
+        closeView.isHidden = true
+        resultListView.isHidden = true
+        resultRouteView.isHidden = true
+        //Add More defautl Views
+        
+        switch state {
+        case .initial:
+            searchView.isHidden = false
+        case .loading:
+            print("Show Loading View")
+        case .populated:
+            closeView.isHidden = false
+            resultRouteView.isHidden = false
+        case .empty:
+            print("Show Empty View")
+        case .error:
+            print("Show error View")
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailRouteSegue" {
-            //if let destination = segue.destination as? DetailRouteViewController {
             if let navigation = segue.destination as? UINavigationController,
                 let destination  = navigation.topViewController as? DetailRouteViewController {
                 destination.viewModel = sender as? DetailRouteViewModel
@@ -136,10 +165,11 @@ class MainViewController: UIViewController {
     }
 }
 
+//MARK: - UITableViewDelegate
+
 extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //print("Select Cell at index: \(indexPath.row)")
         viewModel.selectedResultListPlace(at: indexPath)
         resultListView.isHidden = true
     }
@@ -169,6 +199,15 @@ extension MainViewController: ResultRouteViewDelegate {
     
     func resultRouteViewDelegate(_ resultView: ResultRouteView, didChangeItinerarie mapViewModel: MainMapViewModel) {
         configMap(with: mapViewModel)
+    }
+}
+
+//MARK: - CloseViewDelegate
+
+extension MainViewController: CloseViewDelegate {
+    
+    func closeViewDelegateDidClose(_ searchView: CloseView) {
+        configView(with: .initial)
     }
 }
 

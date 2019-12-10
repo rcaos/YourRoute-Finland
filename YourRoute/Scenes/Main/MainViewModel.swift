@@ -19,9 +19,12 @@ final class MainViewModel {
     var resultListViewModel: ResultListViewModel?
     
     //Reactive
+    
     var reloadTable: (()->Void)?
     
     var showResultRoute: ((ResultRouteViewModel)->Void)?
+    
+    var viewState: Bindable<MainViewModel.ViewState> = Bindable(.initial)
     
     //MARK: - Life Cycle
     
@@ -48,6 +51,8 @@ final class MainViewModel {
         
         //MARK: - TODO set State = Loading..
         
+        viewState.value = .loading
+        
         planClient.getPlan(origin: originCoordinate, destination: destinationCoordinate, completion: { result in
             
             switch( result ) {
@@ -57,9 +62,9 @@ final class MainViewModel {
                 
             case .failure(let error):
                 print("error to Planning Trip: \(error.localizedDescription)")
-                //set State == error
+                
+                self.viewState.value = .error
             }
-            
         })
     }
     
@@ -67,21 +72,35 @@ final class MainViewModel {
         
         var newItineraries = itineraries
         
-        //its really needed??
+        //MARK: - TODO its really needed??
         for index in newItineraries.indices {
             newItineraries[index].originPlace = originPlace
             newItineraries[index].destinationPlace = destinationPlace
         }
         
-        //set State == Populated
-        print("Fetched: \(newItineraries.count) itinerary")
+        print("Fetched: \(newItineraries.count) itineraries")
         let resultRouteViewModel = ResultRouteViewModel(itineraries: newItineraries)
         
-        showResultRoute?(resultRouteViewModel)
-        
-        //set State == Empty
+        if newItineraries.count > 0 {
+            viewState.value = .populated
+            showResultRoute?(resultRouteViewModel)
+        } else {
+            viewState.value = .empty
+        }
     }
+}
+
+extension MainViewModel {
     
-    //MARK: - Build ViewModels
-    
+    enum ViewState {
+        case initial
+        
+        case loading
+        
+        case populated
+        
+        case empty
+        
+        case error
+    }
 }

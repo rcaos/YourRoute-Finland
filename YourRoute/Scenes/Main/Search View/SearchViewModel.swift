@@ -81,7 +81,8 @@ final class SearchViewModel {
         
         //MARK: -
         if let origin = originPlace, let destination = destinationPlace {
-            print("Connect with Server Origin: [\(origin.coordinate)], Destination: [\(destination.coordinate)]")
+            print("Connect with Server Origin: [\(origin.coordinate)]")
+            print("Destination: [\(destination.coordinate)]")
             planningTrip?()
         }
     }
