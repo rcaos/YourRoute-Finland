@@ -12,9 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchView" customModule="YourRoute" customModuleProvider="target">
             <connections>
+                <outlet property="arrowButton" destination="ve3-uO-pxv" id="Uui-in-CCe"/>
                 <outlet property="centerView" destination="8WC-fy-2Bn" id="VpM-8Z-e6Q"/>
                 <outlet property="horizontalStackView" destination="1Sq-qo-IV9" id="oBo-7C-NMH"/>
-                <outlet property="invertedDestinationImageView" destination="yAv-oF-Xgy" id="lYw-M7-gqG"/>
                 <outlet property="rounderView" destination="0Do-MP-A3L" id="sIt-o5-n9k"/>
                 <outlet property="superView" destination="iN0-l3-epB" id="dtF-iR-H2k"/>
                 <outlet property="verticalStackView" destination="0Qj-WJ-Boa" id="fwe-97-Hdv"/>
@@ -34,19 +34,20 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Sq-qo-IV9">
                                     <rect key="frame" x="0.0" y="0.0" width="669" height="280"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yAv-oF-Xgy">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ve3-uO-pxv">
                                             <rect key="frame" x="0.0" y="0.0" width="67" height="280"/>
-                                        </imageView>
+                                            <state key="normal" title="Button"/>
+                                        </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0Qj-WJ-Boa">
                                             <rect key="frame" x="67" y="0.0" width="602" height="280"/>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="yAv-oF-Xgy" firstAttribute="width" secondItem="1Sq-qo-IV9" secondAttribute="width" multiplier="0.1" id="hbn-ER-zaI"/>
+                                        <constraint firstItem="ve3-uO-pxv" firstAttribute="width" secondItem="1Sq-qo-IV9" secondAttribute="width" multiplier="0.1" id="Oqp-Xe-Ecd"/>
                                     </constraints>
                                 </stackView>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" red="0.8517945408821106" green="0.21733838319778442" blue="0.18130305409431458" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="1Sq-qo-IV9" firstAttribute="leading" secondItem="8WC-fy-2Bn" secondAttribute="leading" id="BIe-Su-ug6"/>
                                 <constraint firstItem="1Sq-qo-IV9" firstAttribute="top" secondItem="8WC-fy-2Bn" secondAttribute="top" id="Hmk-pG-JMt"/>

@@ -29,10 +29,32 @@ final class SearchViewModel {
     
     var planningTrip: (() -> Void)?
     
+    var changeAppearance: ((SearchView.SearchBarState, SearchBarType) -> Void)?
+    
     //MARK: - Life Cycle
     
     init(dataSource: SearchPlacesDataSource) {
         self.dataSource = dataSource
+    }
+    
+    func textDidChange(with text: String, in bar: SearchBarType) {
+        switch bar {
+        case .origin:
+            if checkName(with: text, for: originPlace) == false {
+                changeAppearance?(.normal, bar)
+                originPlace = nil
+            }
+        case .destination:
+            if checkName(with: text, for: destinationPlace) == false {
+                changeAppearance?(.normal, bar)
+                destinationPlace = nil
+            }
+        }
+    }
+    
+    private func checkName(with text: String, for place: ResultPlace?) -> Bool {
+        guard let name = place?.name else { return false }
+        return (name == text) ? true :  false
     }
     
     func searchPlace(with text: String, in bar: SearchBarType) {
@@ -50,7 +72,7 @@ final class SearchViewModel {
         })
     }
     
-    func processFetched(with response: [ResultPlace]) {
+    private func processFetched(with response: [ResultPlace]) {
         print("fetched: [\(response.count)]")
         changeDataSource.value = buildDataSource(with: response)
     }
@@ -64,7 +86,7 @@ final class SearchViewModel {
     
     func selectPlace(at indexPath: IndexPath) {
         guard let selectedBar = barSelected ,
-        let model = changeDataSource.value else { return }
+            let model = changeDataSource.value else { return }
         
         let placeSelected = model.placesCells[indexPath.row]
         
@@ -79,7 +101,33 @@ final class SearchViewModel {
         let placeDescription = placeSelected.name
         selectPlace?(placeDescription, selectedBar)
         
-        //MARK: -
+        planning()
+    }
+    
+    //MARK: - Toogle Places
+    
+    func togglePlaces() {
+        tooglePlaceBar()
+        planning()
+    }
+    
+    private func tooglePlaceBar() {
+        let oldOrigin = originPlace
+        let oldDestination = destinationPlace
+        
+        originPlace = oldDestination
+        destinationPlace = oldOrigin
+        
+        if let origin = originPlace {
+            selectPlace?(origin.name, .origin)
+        }
+        
+        if let destination = destinationPlace {
+            selectPlace?(destination.name, .destination)
+        }
+    }
+    
+    private func planning() {
         if let origin = originPlace, let destination = destinationPlace {
             print("Connect with Server Origin: [\(origin.coordinate)]")
             print("Destination: [\(destination.coordinate)]")
@@ -94,5 +142,20 @@ extension SearchViewModel {
         case origin
         
         case destination
+    }
+}
+
+extension SearchViewModel {
+    
+    enum ViewState {
+        case initial
+        
+        case loading
+        
+        case populated
+        
+        case empty
+        
+        case error
     }
 }

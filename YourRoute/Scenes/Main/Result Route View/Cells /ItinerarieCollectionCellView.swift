@@ -78,6 +78,12 @@ class ItinerarieCollectionCellView: UICollectionViewCell {
         //#2fbc35
         detailButton.backgroundColor = UIColor(red: 47/255, green: 188/255, blue: 53/255, alpha: 1.0)  //new green
         
+        //Gris de Google Maps:
+        //UIColor(red: 58/255, green: 63/255, blue: 66/255, alpha: 1.0)
+        
+        //Un rojo más bajo, Google Maps:
+        //UIColor(red: 217/255, green: 55/255, blue: 46/255, alpha: 1.0)
+        
         detailButton.addTarget(self, action: #selector(self.actionSegue(sender:)), for: .touchUpInside)
     }
     

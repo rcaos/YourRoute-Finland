@@ -29,9 +29,7 @@ class MainViewController: UIViewController {
         setupModels()
         setupTableView()
         setupBindables()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        
         configView(with: .initial)
         
         //ONly for Test
@@ -72,6 +70,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func hideKeyboard(_ sender: AnyObject?) {
+        print("tap here MainVC")
         self.view.endEditing(true)
     }
     
@@ -210,4 +209,3 @@ extension MainViewController: CloseViewDelegate {
         configView(with: .initial)
     }
 }
-
