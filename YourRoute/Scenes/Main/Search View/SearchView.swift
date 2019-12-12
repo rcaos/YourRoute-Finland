@@ -27,15 +27,26 @@ class SearchView: NibView {
     weak var delegate: SearchViewDelegate?
     
     @IBOutlet var superView: UIView!
-    @IBOutlet weak var rounderView: UIView!
-    
     @IBOutlet weak var centerView: UIView!
     
-    @IBOutlet weak var horizontalStackView: UIStackView!
-    @IBOutlet weak var verticalStackView: UIStackView!
+    @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var placesView: UIView!
+    @IBOutlet weak var searchStackView: UIStackView!
+    @IBOutlet weak var configView: UIView!
     
-    //@IBOutlet weak var invertedDestinationImageView: UIImageView!
+    @IBOutlet weak var menuBackgroundButton: UIButton!
+    @IBOutlet weak var menuImage: UIImageView!
+    
+    @IBOutlet weak var placesStackView: UIStackView!
+    @IBOutlet weak var dotImage: UIImageView!
+    @IBOutlet weak var moreImage: UIImageView!
+    @IBOutlet weak var placeMarkImage: UIImageView!
+    
+    @IBOutlet weak var ellipsisButton: UIButton!
+    @IBOutlet weak var ellipsisImage: UIImageView!
+    
     @IBOutlet weak var arrowButton: UIButton!
+    @IBOutlet weak var arrowImage: UIImageView!
     
     var originSearchBar: UISearchBar!
     var destinationSearchBar: UISearchBar!
@@ -51,31 +62,48 @@ class SearchView: NibView {
     
     func setupUI() {
         setupView()
-        setupStackViews()
-        setupSearchBars()
-        setupElements()
-        setupGestures()
+        
+        setupMenuView()
+        setupPlacesView()
+        setupSearchBarView()
+        setupConfigView()
+        
+        setupActions()
     }
     
     func setupView() {
-        superView.backgroundColor = .clear
+        superView.backgroundColor = .white
+        centerView.backgroundColor = .white
         
-        rounderView.layer.cornerRadius = 8
-        rounderView.layer.borderWidth = 1
-        rounderView.layer.borderColor = UIColor(red: 182/255, green: 182/255, blue: 182/255, alpha: 1.0).cgColor
-        rounderView.backgroundColor = UIColor(red:245/255, green:246/255, blue:247/255, alpha:1.0)
-        
-        centerView.backgroundColor = .clear
+        let contactRect = CGRect(x: -200, y: 100, width: frame.width * 2, height: 4)
+        superView.layer.shadowPath = UIBezierPath(ovalIn: contactRect).cgPath
+        superView.layer.shadowRadius = 4
+        superView.layer.shadowOpacity = 1
+        superView.layer.shadowColor = UIColor.gray.cgColor
     }
     
-    func setupStackViews() {
-        horizontalStackView.alignment = .center
-        horizontalStackView.distribution = .fill
-        horizontalStackView.axis = .horizontal
+    func setupMenuView() {
+        menuImage.image = UIImage(named: "menu")
+    }
+    
+    func setupPlacesView() {
+        placesStackView.alignment = .center
+        placesStackView.distribution = .fillEqually
+        placesStackView.axis = .vertical
         
-        verticalStackView.alignment = .fill
-        verticalStackView.distribution = .fillEqually
-        verticalStackView.axis = .vertical
+        dotImage.image = UIImage(named: "dot-bold")
+        moreImage.image = UIImage(named: "more-vertical")
+        placeMarkImage.image = UIImage(named: "placemark")
+    }
+    
+    func setupSearchBarView() {
+        setupSearchBars()
+        setupStackViewBars()
+    }
+    
+    func setupConfigView() {
+        ellipsisImage.image = UIImage(named: "ellipsis")
+        arrowImage.image = UIImage(named: "arrow-swap")
     }
     
     func setupSearchBars() {
@@ -83,11 +111,26 @@ class SearchView: NibView {
         
         originSearchBar = UISearchBar(frame: customFrame)
         originSearchBar.delegate = self
+        originSearchBar.placeholder = "Origin"
+        originSearchBar.setImage( UIImage(), for: .search, state: .normal)
+        originSearchBar.setPositionAdjustment(UIOffset(horizontal: -20, vertical: 0), for: .search)
         configAppearance(with: .normal, in: .origin)
         
         destinationSearchBar = UISearchBar(frame: customFrame)
         destinationSearchBar.delegate = self
+        destinationSearchBar.placeholder = "Destination"
+        destinationSearchBar.setImage( UIImage(), for: .search, state: .normal)
+        destinationSearchBar.setPositionAdjustment(UIOffset(horizontal: -20, vertical: 0), for: .search)
         configAppearance(with: .normal, in: .destination)
+    }
+    
+    func setupStackViewBars() {
+        searchStackView.alignment = .fill
+        searchStackView.distribution = .fillEqually
+        searchStackView.axis = .vertical
+        
+        searchStackView.addArrangedSubview(originSearchBar)
+        searchStackView.addArrangedSubview(destinationSearchBar)
     }
     
     func configAppearance(with state: SearchBarState, in barType: SearchViewModel.SearchBarType) {
@@ -107,12 +150,12 @@ class SearchView: NibView {
         if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
             
             textfield.textColor = UIColor.gray
-            textfield.layer.borderWidth = 0
+            textfield.layer.borderWidth = 1.0
             
-            let defaultColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1.0).cgColor
+            let defaultColor = UIColor(red: 213/255, green: 215/255, blue: 219/255, alpha: 1.0).cgColor
             textfield.layer.borderColor = defaultColor
             
-            textfield.layer.cornerRadius = 0
+            textfield.layer.cornerRadius = 5
         }
     }
     
@@ -130,22 +173,31 @@ class SearchView: NibView {
         }
     }
     
-    func setupElements() {
-        arrowButton.setImage( UIImage(named: "arrow") , for: .normal)
-        arrowButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
-        arrowButton.tintColor = UIColor(red: 217/255, green: 55/255, blue: 46/255, alpha: 1.0)
+    //MARK: - Actions
+    
+    func setupActions() {
+        menuBackgroundButton.addTarget(self, action: #selector(self.menuAction(sender:)), for: .touchUpInside)
         
-        verticalStackView.addArrangedSubview(originSearchBar)
-        verticalStackView.addArrangedSubview(destinationSearchBar)
+        ellipsisButton.addTarget(self, action: #selector(self.moreAction(sender:)), for: .touchUpInside)
+        
+        arrowButton.addTarget(self, action: #selector(self.swapAction(sender:)), for: .touchUpInside)
     }
     
-    //MARK: - Gestures
-    
-    func setupGestures() {
-        arrowButton.addTarget(self, action: #selector(self.closeAction(sender:)), for: .touchUpInside)
+    @objc func menuAction(sender: UIButton) {
+        //guard let viewModel = viewModel else { return }
+        
+        //MARK: - TODO
+        //viewModel.togglePlaces()
     }
     
-    @objc func closeAction(sender: UIButton) {
+    @objc func moreAction(sender: UIButton) {
+        //guard let viewModel = viewModel else { return }
+        
+        //MARK: - TODO
+        //viewModel.togglePlaces()
+    }
+    
+    @objc func swapAction(sender: UIButton) {
         guard let viewModel = viewModel else { return }
         viewModel.togglePlaces()
     }
