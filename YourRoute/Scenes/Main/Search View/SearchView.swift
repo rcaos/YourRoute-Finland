@@ -226,10 +226,19 @@ class SearchView: NibView {
         }
     }
     
-    func selectPlace(with text: String, at barType: SearchViewModel.SearchBarType) {
+    func selectPlace(with text: String?, at barType: SearchViewModel.SearchBarType) {
         let searchBar = getSearchBar(for: barType)
         searchBar.text = text
-        configAppearance(with: .highlight, in: barType)
+        
+        if let text = text {
+            if text.isEmpty {
+                configAppearance(with: .normal, in: barType)
+            } else {
+                configAppearance(with: .highlight, in: barType)
+            }
+        } else {
+            configAppearance(with: .normal, in: barType)
+        }
     }
 }
 

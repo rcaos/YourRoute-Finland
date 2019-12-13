@@ -108,7 +108,7 @@
                                             <rect key="frame" x="12" y="56" width="30" height="30"/>
                                         </button>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ellipsis" translatesAutoresizingMaskIntoConstraints="NO" id="ocg-Gs-Hqa">
-                                            <rect key="frame" x="5" y="-27.5" width="44.000000000000057" height="197.00000000000006"/>
+                                            <rect key="frame" x="5" y="63" width="44" height="16"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -127,7 +127,7 @@
                                             <rect key="frame" x="12" y="56" width="30" height="30"/>
                                         </button>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-swap" translatesAutoresizingMaskIntoConstraints="NO" id="G5T-y4-Aaf">
-                                            <rect key="frame" x="5" y="-52.5" width="44" height="247"/>
+                                            <rect key="frame" x="5" y="63" width="44" height="16"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

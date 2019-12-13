@@ -17,19 +17,31 @@ final class SearchViewModel {
     
     //En el Model tengo que tener un objeto encapsulado con las Coordenates
     
-    var originPlace: ResultPlace?
+    var originPlace: ResultPlace? {
+        didSet {
+            if let place = originPlace {
+                selectPlace?( place.name, .origin)
+            }
+        }
+    }
     
-    var destinationPlace: ResultPlace?
+    var destinationPlace: ResultPlace? {
+        didSet {
+            if let place = destinationPlace {
+                selectPlace?( place.name, .destination)
+            }
+        }
+    }
     
     //Reactive
     
-    var changeDataSource: Bindable<(ResultListViewModel?)> = Bindable(nil)
-    
-    var selectPlace: ((String, SearchBarType ) -> Void)?
-    
-    var planningTrip: (() -> Void)?
+    var selectPlace: ((String?, SearchBarType) -> Void)?
     
     var changeAppearance: ((SearchView.SearchBarState, SearchBarType) -> Void)?
+    
+    var changeDataSource: Bindable<(ResultListViewModel?)> = Bindable(nil)
+    
+    var planningTrip: (() -> Void)?
     
     //MARK: - Life Cycle
     
@@ -97,10 +109,6 @@ final class SearchViewModel {
             destinationPlace = placeSelected
         }
         
-        //MARK: - TODO mostrar formatted name Place
-        let placeDescription = placeSelected.name
-        selectPlace?(placeDescription, selectedBar)
-        
         planning()
     }
     
@@ -112,19 +120,14 @@ final class SearchViewModel {
     }
     
     private func tooglePlaceBar() {
+        selectPlace?("", .origin)
+        selectPlace?("", .destination)
+        
         let oldOrigin = originPlace
         let oldDestination = destinationPlace
         
         originPlace = oldDestination
         destinationPlace = oldOrigin
-        
-        if let origin = originPlace {
-            selectPlace?(origin.name, .origin)
-        }
-        
-        if let destination = destinationPlace {
-            selectPlace?(destination.name, .destination)
-        }
     }
     
     private func planning() {
