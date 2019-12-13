@@ -41,18 +41,19 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W0E-EU-hhb" customClass="ResultRouteView" customModule="YourRoute" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="642" width="414" height="220"/>
+                                <rect key="frame" x="0.0" y="632" width="414" height="210"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="220" id="HLp-qA-zTL"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="210" id="7a1-XE-gPS"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="W0E-EU-hhb" firstAttribute="height" secondItem="KXd-CC-Qy5" secondAttribute="height" multiplier="0.28" priority="750" id="2tq-qD-ULm"/>
                             <constraint firstItem="Ca7-hj-avu" firstAttribute="leading" secondItem="9GY-R8-I5J" secondAttribute="leading" id="7Bk-gX-R33"/>
                             <constraint firstItem="WD5-Xd-1eJ" firstAttribute="leading" secondItem="9GY-R8-I5J" secondAttribute="leading" id="AJ6-BR-Zej"/>
-                            <constraint firstItem="9GY-R8-I5J" firstAttribute="bottom" secondItem="W0E-EU-hhb" secondAttribute="bottom" id="B9f-S1-Vf4"/>
+                            <constraint firstItem="9GY-R8-I5J" firstAttribute="bottom" secondItem="W0E-EU-hhb" secondAttribute="bottom" constant="20" id="B9f-S1-Vf4"/>
                             <constraint firstItem="Lhl-Hy-Q5k" firstAttribute="top" secondItem="9GY-R8-I5J" secondAttribute="top" id="D0Q-cW-2jX"/>
                             <constraint firstItem="wcQ-Nd-nzf" firstAttribute="leading" secondItem="9GY-R8-I5J" secondAttribute="leading" id="IPo-IJ-T3X"/>
                             <constraint firstItem="9GY-R8-I5J" firstAttribute="trailing" secondItem="WD5-Xd-1eJ" secondAttribute="trailing" id="Qgc-sU-Az1"/>

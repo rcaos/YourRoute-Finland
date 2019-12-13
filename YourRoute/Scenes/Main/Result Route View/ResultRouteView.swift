@@ -67,6 +67,11 @@ class ResultRouteView: UIView {
         setupUI()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setupLayout()
+    }
+    
     func setupUI() {
         backgroundColor = .clear
         
@@ -86,7 +91,6 @@ class ResultRouteView: UIView {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        setupLayout()
     }
     
     private func setupLayout() {

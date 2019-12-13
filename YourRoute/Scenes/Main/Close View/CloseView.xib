@@ -22,9 +22,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="04z-T5-6c9">
-                    <rect key="frame" x="770" y="8" width="152" height="152"/>
+                    <rect key="frame" x="892" y="69" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="04z-T5-6c9" secondAttribute="height" multiplier="1:1" id="KWG-vj-c54"/>
+                        <constraint firstAttribute="width" constant="30" id="Oe5-CZ-dXe"/>
                     </constraints>
                     <state key="normal" title="Button" image="closeButton2"/>
                 </button>
@@ -32,8 +33,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="04z-T5-6c9" secondAttribute="trailing" constant="16" id="0sK-iw-mfB"/>
-                <constraint firstItem="04z-T5-6c9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="WNL-IE-Icg"/>
-                <constraint firstAttribute="bottom" secondItem="04z-T5-6c9" secondAttribute="bottom" constant="8" id="eKf-oY-pDr"/>
+                <constraint firstItem="04z-T5-6c9" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="EyX-gv-vfq"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
