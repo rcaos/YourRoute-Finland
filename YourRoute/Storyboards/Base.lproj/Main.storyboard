@@ -37,11 +37,8 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wcQ-Nd-nzf" customClass="ResultListView" customModule="YourRoute" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="196" width="414" height="300"/>
+                                <rect key="frame" x="0.0" y="188" width="414" height="708"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="5Ih-1c-rf5"/>
-                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W0E-EU-hhb" customClass="ResultRouteView" customModule="YourRoute" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="642" width="414" height="220"/>
@@ -59,6 +56,7 @@
                             <constraint firstItem="Lhl-Hy-Q5k" firstAttribute="top" secondItem="9GY-R8-I5J" secondAttribute="top" id="D0Q-cW-2jX"/>
                             <constraint firstItem="wcQ-Nd-nzf" firstAttribute="leading" secondItem="9GY-R8-I5J" secondAttribute="leading" id="IPo-IJ-T3X"/>
                             <constraint firstItem="9GY-R8-I5J" firstAttribute="trailing" secondItem="WD5-Xd-1eJ" secondAttribute="trailing" id="Qgc-sU-Az1"/>
+                            <constraint firstAttribute="bottom" secondItem="wcQ-Nd-nzf" secondAttribute="bottom" id="TGr-17-w5z"/>
                             <constraint firstItem="wcQ-Nd-nzf" firstAttribute="trailing" secondItem="9GY-R8-I5J" secondAttribute="trailing" id="XdD-tJ-VK0"/>
                             <constraint firstItem="WD5-Xd-1eJ" firstAttribute="top" secondItem="9GY-R8-I5J" secondAttribute="top" id="YOE-XF-PJ8"/>
                             <constraint firstItem="Ca7-hj-avu" firstAttribute="top" secondItem="9GY-R8-I5J" secondAttribute="top" id="gap-wJ-fhD"/>
@@ -66,7 +64,7 @@
                             <constraint firstItem="9GY-R8-I5J" firstAttribute="trailing" secondItem="W0E-EU-hhb" secondAttribute="trailing" id="r5N-ki-ZFs"/>
                             <constraint firstItem="Lhl-Hy-Q5k" firstAttribute="leading" secondItem="9GY-R8-I5J" secondAttribute="leading" id="rLK-K2-tU6"/>
                             <constraint firstItem="Ca7-hj-avu" firstAttribute="trailing" secondItem="9GY-R8-I5J" secondAttribute="trailing" id="t6V-mZ-jtd"/>
-                            <constraint firstItem="wcQ-Nd-nzf" firstAttribute="top" secondItem="Lhl-Hy-Q5k" secondAttribute="bottom" constant="8" id="tD8-xU-C6x"/>
+                            <constraint firstItem="wcQ-Nd-nzf" firstAttribute="top" secondItem="Lhl-Hy-Q5k" secondAttribute="bottom" id="tD8-xU-C6x"/>
                             <constraint firstAttribute="bottom" secondItem="Ca7-hj-avu" secondAttribute="bottom" id="ueb-CS-h64"/>
                             <constraint firstItem="W0E-EU-hhb" firstAttribute="leading" secondItem="9GY-R8-I5J" secondAttribute="leading" id="wal-Fr-Yk6"/>
                         </constraints>

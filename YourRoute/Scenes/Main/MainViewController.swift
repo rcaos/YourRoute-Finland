@@ -25,7 +25,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        setupGestures()
+        
         setupModels()
         setupTableView()
         setupBindables()
@@ -61,17 +61,6 @@ class MainViewController: UIViewController {
         
         //why??
         searchView.backgroundColor = UIColor(red: 0, green: 0.1, blue: 0.58, alpha: 0)
-    }
-    
-    private func setupGestures() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard(_:)) )
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @IBAction func hideKeyboard(_ sender: AnyObject?) {
-        print("tap here MainVC")
-        self.view.endEditing(true)
     }
     
     func setupModels() {
@@ -185,6 +174,11 @@ extension MainViewController: SearchViewDelegate {
     func searchViewDelegate(_ searchView: SearchView, planningTrip searchModel: SearchViewModel?) {
         guard let searchModel = searchModel else { return }
         viewModel.planningTrip(with: searchModel)
+    }
+    
+    func searchViewDelegateDidEndResults(_ searchView: SearchView) {
+        resultListView.isHidden = true
+        self.view.endEditing(true)
     }
 }
 

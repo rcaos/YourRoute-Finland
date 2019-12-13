@@ -40,6 +40,7 @@ class ResultListView: UIView {
     }
     
     private func setupTableView() {
+        tableView.keyboardDismissMode = .onDrag
         tableView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(tableView)
         

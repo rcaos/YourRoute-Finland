@@ -14,6 +14,8 @@ protocol SearchViewDelegate: class {
     
     func searchViewDelegate(_ searchView: SearchView, planningTrip searchModel: SearchViewModel?)
     
+    func searchViewDelegateDidEndResults(_ searchView: SearchView)
+    
 }
 
 class SearchView: NibView {
@@ -69,6 +71,8 @@ class SearchView: NibView {
         setupConfigView()
         
         setupActions()
+        
+        setupGestures()
     }
     
     func setupView() {
@@ -184,6 +188,7 @@ class SearchView: NibView {
     }
     
     @objc func menuAction(sender: UIButton) {
+        print("menuAction")
         //guard let viewModel = viewModel else { return }
         
         //MARK: - TODO
@@ -191,6 +196,7 @@ class SearchView: NibView {
     }
     
     @objc func moreAction(sender: UIButton) {
+        print("moreAction")
         //guard let viewModel = viewModel else { return }
         
         //MARK: - TODO
@@ -198,6 +204,7 @@ class SearchView: NibView {
     }
     
     @objc func swapAction(sender: UIButton) {
+        print("swapAction")
         guard let viewModel = viewModel else { return }
         viewModel.togglePlaces()
     }
@@ -223,6 +230,7 @@ class SearchView: NibView {
         viewModel?.planningTrip = { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.delegate?.searchViewDelegate(strongSelf, planningTrip: strongSelf.viewModel)
+            strongSelf.hideKeyboard()
         }
     }
     
@@ -239,6 +247,21 @@ class SearchView: NibView {
         } else {
             configAppearance(with: .normal, in: barType)
         }
+        
+        hideKeyboard()
+    }
+    
+    func hideKeyboard() {
+        endEditing(true)
+    }
+    
+    private func setupGestures() {
+        let simpleTap = UITapGestureRecognizer(target: self, action: #selector(handleSingleTap))
+        addGestureRecognizer(simpleTap)
+    }
+    
+    @objc func handleSingleTap(sender:UITapGestureRecognizer){
+        delegate?.searchViewDelegateDidEndResults(self)
     }
 }
 
