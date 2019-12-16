@@ -22,6 +22,10 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fqs-Ls-w20" customClass="ErrorView" customModule="YourRoute" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="183" width="414" height="713"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lhl-Hy-Q5k" customClass="SearchView" customModule="YourRoute" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="414" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -56,9 +60,11 @@
                         <constraints>
                             <constraint firstItem="W0E-EU-hhb" firstAttribute="height" secondItem="KXd-CC-Qy5" secondAttribute="height" multiplier="0.28" priority="750" id="2tq-qD-ULm"/>
                             <constraint firstItem="Ca7-hj-avu" firstAttribute="leading" secondItem="9GY-R8-I5J" secondAttribute="leading" id="7Bk-gX-R33"/>
+                            <constraint firstAttribute="bottom" secondItem="Fqs-Ls-w20" secondAttribute="bottom" id="7to-kc-dCy"/>
                             <constraint firstItem="WD5-Xd-1eJ" firstAttribute="leading" secondItem="9GY-R8-I5J" secondAttribute="leading" id="AJ6-BR-Zej"/>
                             <constraint firstItem="9GY-R8-I5J" firstAttribute="bottom" secondItem="W0E-EU-hhb" secondAttribute="bottom" constant="20" id="B9f-S1-Vf4"/>
                             <constraint firstItem="Lhl-Hy-Q5k" firstAttribute="top" secondItem="9GY-R8-I5J" secondAttribute="top" id="D0Q-cW-2jX"/>
+                            <constraint firstItem="Fqs-Ls-w20" firstAttribute="top" secondItem="Lhl-Hy-Q5k" secondAttribute="bottom" constant="-5" id="FPr-pP-teL"/>
                             <constraint firstItem="wcQ-Nd-nzf" firstAttribute="leading" secondItem="9GY-R8-I5J" secondAttribute="leading" id="IPo-IJ-T3X"/>
                             <constraint firstItem="9GY-R8-I5J" firstAttribute="trailing" secondItem="WD5-Xd-1eJ" secondAttribute="trailing" id="Qgc-sU-Az1"/>
                             <constraint firstItem="9GY-R8-I5J" firstAttribute="bottom" secondItem="cbo-Ur-zH3" secondAttribute="bottom" id="SAD-MT-hnP"/>
@@ -66,6 +72,7 @@
                             <constraint firstItem="wcQ-Nd-nzf" firstAttribute="trailing" secondItem="9GY-R8-I5J" secondAttribute="trailing" id="XdD-tJ-VK0"/>
                             <constraint firstItem="WD5-Xd-1eJ" firstAttribute="top" secondItem="9GY-R8-I5J" secondAttribute="top" id="YOE-XF-PJ8"/>
                             <constraint firstItem="9GY-R8-I5J" firstAttribute="trailing" secondItem="cbo-Ur-zH3" secondAttribute="trailing" id="bly-5m-LEA"/>
+                            <constraint firstItem="9GY-R8-I5J" firstAttribute="trailing" secondItem="Fqs-Ls-w20" secondAttribute="trailing" id="gOy-ce-U0H"/>
                             <constraint firstItem="Ca7-hj-avu" firstAttribute="top" secondItem="9GY-R8-I5J" secondAttribute="top" id="gap-wJ-fhD"/>
                             <constraint firstItem="9GY-R8-I5J" firstAttribute="trailing" secondItem="Lhl-Hy-Q5k" secondAttribute="trailing" id="huo-3I-coD"/>
                             <constraint firstItem="cbo-Ur-zH3" firstAttribute="leading" secondItem="9GY-R8-I5J" secondAttribute="leading" id="o6f-zv-ivt"/>
@@ -75,6 +82,7 @@
                             <constraint firstItem="Ca7-hj-avu" firstAttribute="trailing" secondItem="9GY-R8-I5J" secondAttribute="trailing" id="t6V-mZ-jtd"/>
                             <constraint firstItem="wcQ-Nd-nzf" firstAttribute="top" secondItem="Lhl-Hy-Q5k" secondAttribute="bottom" id="tD8-xU-C6x"/>
                             <constraint firstAttribute="bottom" secondItem="Ca7-hj-avu" secondAttribute="bottom" id="ueb-CS-h64"/>
+                            <constraint firstItem="Fqs-Ls-w20" firstAttribute="leading" secondItem="9GY-R8-I5J" secondAttribute="leading" id="vVI-hg-IzG"/>
                             <constraint firstItem="W0E-EU-hhb" firstAttribute="leading" secondItem="9GY-R8-I5J" secondAttribute="leading" id="wal-Fr-Yk6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9GY-R8-I5J"/>
@@ -82,6 +90,7 @@
                     <navigationItem key="navigationItem" id="vEX-nu-bdz"/>
                     <connections>
                         <outlet property="closeView" destination="WD5-Xd-1eJ" id="Ocs-4g-oi8"/>
+                        <outlet property="errorView" destination="Fqs-Ls-w20" id="ZeU-p6-1cN"/>
                         <outlet property="loadingView" destination="cbo-Ur-zH3" id="n9i-N0-6b7"/>
                         <outlet property="mapView" destination="Ca7-hj-avu" id="JCg-QL-60w"/>
                         <outlet property="resultListView" destination="wcQ-Nd-nzf" id="qrK-z7-GFn"/>

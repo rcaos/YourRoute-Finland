@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		770E5DCF23A7CEB800709CEA /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770E5DCE23A7CEB800709CEA /* ErrorView.swift */; };
+		770E5DD123A7CEC200709CEA /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 770E5DD023A7CEC200709CEA /* ErrorView.xib */; };
 		770ECA812399A240004FC75F /* Polyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770ECA802399A240004FC75F /* Polyline.swift */; };
 		7724BBB1239FCCC70069ECF5 /* ItinerarieCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7724BBB0239FCCC70069ECF5 /* ItinerarieCollectionCellViewModel.swift */; };
 		7724BBB423A00A970069ECF5 /* CloseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7724BBB323A00A970069ECF5 /* CloseView.swift */; };
@@ -63,6 +65,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		770E5DCE23A7CEB800709CEA /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		770E5DD023A7CEC200709CEA /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		770ECA802399A240004FC75F /* Polyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polyline.swift; sourceTree = "<group>"; };
 		7724BBB0239FCCC70069ECF5 /* ItinerarieCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItinerarieCollectionCellViewModel.swift; sourceTree = "<group>"; };
 		7724BBB323A00A970069ECF5 /* CloseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseView.swift; sourceTree = "<group>"; };
@@ -131,6 +135,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		770E5DD223A7CEC600709CEA /* Error View */ = {
+			isa = PBXGroup;
+			children = (
+				770E5DCE23A7CEB800709CEA /* ErrorView.swift */,
+				770E5DD023A7CEC200709CEA /* ErrorView.xib */,
+			);
+			path = "Error View";
+			sourceTree = "<group>";
+		};
 		771BFE6E239939D100DAABA0 /* Walk Mode */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +203,7 @@
 				7730A225239183D200424E5B /* Result List View */,
 				7730A220239171A500424E5B /* Result Route View */,
 				77C851DE23A3FF6700D7D267 /* Loading View */,
+				770E5DD223A7CEC600709CEA /* Error View */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -451,6 +465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7724BBB623A00AA70069ECF5 /* CloseView.xib in Resources */,
+				770E5DD123A7CEC200709CEA /* ErrorView.xib in Resources */,
 				7730A21A23915FD100424E5B /* SearchView.xib in Resources */,
 				77CAF86C2396CACA00134A10 /* DetailRoute.storyboard in Resources */,
 				77C6B2EE238C3E070059219E /* LaunchScreen.storyboard in Resources */,
@@ -513,6 +528,7 @@
 				7724BBB1239FCCC70069ECF5 /* ItinerarieCollectionCellViewModel.swift in Sources */,
 				77DDDA27239EF45300A53376 /* ResultRouteView.swift in Sources */,
 				770ECA812399A240004FC75F /* Polyline.swift in Sources */,
+				770E5DCF23A7CEB800709CEA /* ErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

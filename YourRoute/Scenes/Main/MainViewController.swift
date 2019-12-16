@@ -18,6 +18,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var resultListView: ResultListView!
     @IBOutlet weak var resultRouteView: ResultRouteView!
     @IBOutlet weak var loadingView: LoadingView!
+    @IBOutlet weak var errorView: ErrorView!
     
     private var dataSource: ResultListViewDataSource!
     
@@ -60,7 +61,6 @@ class MainViewController: UIViewController {
     func setupViews() {
         navigationController?.navigationBar.isHidden = true
         
-        //why??
         searchView.backgroundColor = UIColor(red: 0, green: 0.1, blue: 0.58, alpha: 0)
     }
     
@@ -133,6 +133,7 @@ class MainViewController: UIViewController {
         resultListView.isHidden = true
         resultRouteView.isHidden = true
         loadingView.isHidden = true
+        errorView.isHidden = true
         
         mapView.viewModel = viewModel.getMapViewModel()
         
@@ -149,9 +150,9 @@ class MainViewController: UIViewController {
             closeView.isHidden = false
             resultRouteView.isHidden = false
             print("Change view to populated")
-        case .empty:
-            print("Change view to .empty")
         case .error:
+            searchView.isHidden = false
+            errorView.isHidden = false
             print("Change view to .error")
         }
     }

@@ -50,8 +50,6 @@ final class MainViewModel {
         let originCoordinate = (latitude: origin.coordinate.latitude, longitude: origin.coordinate.longitude)
         let destinationCoordinate = (latitude: destination.coordinate.latitude, longitude: destination.coordinate.longitude)
         
-        //MARK: - TODO set State = Loading..
-        
         viewState.value = .loading
         
         planClient.getPlan(origin: originCoordinate, destination: destinationCoordinate, completion: { result in
@@ -86,7 +84,7 @@ final class MainViewModel {
             viewState.value = .populated
             showResultRoute?(resultRouteViewModel)
         } else {
-            viewState.value = .empty
+            viewState.value = .error
         }
     }
     
@@ -101,10 +99,8 @@ final class MainViewModel {
         case .populated:
             guard let mapModel = mapViewModel else { return buildInitialItinerarie() }
             return mapModel
-        case .empty:
-            return buildEmptyItinerarie(with: searchViewModel)
         case .error:
-            return buildEmptyItinerarie(with: searchViewModel)
+            return buildInitialItinerarie()
         }
     }
     
@@ -132,8 +128,6 @@ extension MainViewModel {
         case loading
         
         case populated
-        
-        case empty
         
         case error
     }
