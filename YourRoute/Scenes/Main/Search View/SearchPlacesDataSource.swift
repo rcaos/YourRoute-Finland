@@ -11,23 +11,52 @@ import Foundation
 //Tendría que Borrar para el otro Source
 import MapKit
 
-//MARK: -TODO Crear un Protocol para Otro tipo de Data SOurce
+// MARK: -TODO Crear un Protocol para Otro tipo de Data SOurce
 //Apple vs Google Maps
 
 class SearchPlacesDataSource {
     
+    var defaultLocation: TypeLocation = {
+        //Helsinki
+        let place = ResultPlace(name: "", latitude: 60.1706, longitude: 24.9375)
+        return .defaultLocation(place)
+    }()
+    
     var places: [ResultPlace] = []
     
-    init() {
-        
+    // MARK: - Initializers
+    
+    init(location: TypeLocation? = nil) {
+        configCenter(for: location)
     }
     
-    //Apple needs a Region?
+    func configCenter(for location: TypeLocation?) {
+        guard let location = location else { return }
+        self.defaultLocation = location
+    }
     
-    func search(with text: String, completion: @escaping(Result<[ResultPlace], APIError>) -> Void ) {
+    func buildRegion(for location: TypeLocation) -> MKCoordinateRegion{
+        var center: ResultPlace
         
+        switch location {
+        case .defaultLocation(let place):
+            center = place
+        case .userLocation(let place):
+            center = place
+        }
+        
+        let centerCoordinate = CLLocationCoordinate2D(latitude: center.coordinate.latitude ,
+                                            longitude: center.coordinate.longitude)
+        let region = MKCoordinateRegion(center: centerCoordinate,
+                                        latitudinalMeters: location.radius,
+                                        longitudinalMeters: location.radius)
+        return region
+    }
+     
+    func search(with text: String, completion: @escaping(Result<[ResultPlace], APIError>) -> Void ) {
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = text
+        request.region = buildRegion(for: defaultLocation)
         
         let search = MKLocalSearch(request: request)
         

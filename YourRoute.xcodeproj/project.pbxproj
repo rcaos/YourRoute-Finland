@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		770E5DCF23A7CEB800709CEA /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770E5DCE23A7CEB800709CEA /* ErrorView.swift */; };
 		770E5DD123A7CEC200709CEA /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 770E5DD023A7CEC200709CEA /* ErrorView.xib */; };
+		770E5DD423A7EAC900709CEA /* TypeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770E5DD323A7EAC900709CEA /* TypeLocation.swift */; };
 		770ECA812399A240004FC75F /* Polyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770ECA802399A240004FC75F /* Polyline.swift */; };
 		7724BBB1239FCCC70069ECF5 /* ItinerarieCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7724BBB0239FCCC70069ECF5 /* ItinerarieCollectionCellViewModel.swift */; };
 		7724BBB423A00A970069ECF5 /* CloseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7724BBB323A00A970069ECF5 /* CloseView.swift */; };
@@ -67,6 +68,7 @@
 /* Begin PBXFileReference section */
 		770E5DCE23A7CEB800709CEA /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		770E5DD023A7CEC200709CEA /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
+		770E5DD323A7EAC900709CEA /* TypeLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeLocation.swift; sourceTree = "<group>"; };
 		770ECA802399A240004FC75F /* Polyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polyline.swift; sourceTree = "<group>"; };
 		7724BBB0239FCCC70069ECF5 /* ItinerarieCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItinerarieCollectionCellViewModel.swift; sourceTree = "<group>"; };
 		7724BBB323A00A970069ECF5 /* CloseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseView.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				77CAF8642396996500134A10 /* Itinerarie.swift */,
 				77CAF8662396997000134A10 /* Leg.swift */,
 				77E80546239A9E7D00900FEA /* ResultPlace.swift */,
+				770E5DD323A7EAC900709CEA /* TypeLocation.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				77E80545239A99F600900FEA /* MakeData.swift in Sources */,
 				7724BBB423A00A970069ECF5 /* CloseView.swift in Sources */,
 				7730A21723915F2100424E5B /* SearchViewModel.swift in Sources */,
+				770E5DD423A7EAC900709CEA /* TypeLocation.swift in Sources */,
 				774FA100239965090046486F /* MainMapViewModel.swift in Sources */,
 				77CAF8652396996500134A10 /* Itinerarie.swift in Sources */,
 				77CAF8702396CB1400134A10 /* DetailRouteViewModel.swift in Sources */,
