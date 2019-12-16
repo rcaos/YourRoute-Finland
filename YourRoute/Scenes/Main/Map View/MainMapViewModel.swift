@@ -14,28 +14,45 @@ import CoreLocation
 final class MainMapViewModel {
     
     //Su función es mostrar un Itinerarie
+    //Pero si está en estado Loading???
+    //Solo mostrar Origin y End por ejemplo.
     private let itinerarie: Itinerarie
     
     var places: [LegPlaceView] = []
     
     var routes: [(type: LegMode, coordinates: [CLLocationCoordinate2D])] = []
     
-    //Reactive
-    var updateAnnotations: (()->Void)?
+    var viewState: Bindable<MainMapViewModel.ViewState> = Bindable(.initial)
     
     init(itinerarie: Itinerarie) {
         self.itinerarie = itinerarie
+        showRoute()
     }
     
     func showRoute() {
-        addMarkPlaces()
-        decodedRoutes()
-        updateAnnotations?()
+        places = buildMarkPlaces()
+        routes = buildRoutes()
+        checkState()
+    }
+    
+    private func checkState() {
+        if itinerarie.originPlace == nil || itinerarie.destinationPlace == nil {
+            viewState.value = .initial
+            return
+        }
+        
+        if itinerarie.legs.count == 0 {
+            viewState.value = .empty
+        } else {
+            viewState.value = .populated
+        }
     }
     
     //MARK: - for now only origin and destination
     
-    private func addMarkPlaces() {
+    private func buildMarkPlaces() -> [LegPlaceView] {
+        
+        var places: [LegPlaceView] = []
         
         if let place = itinerarie.originPlace {
             let origin = LegPlaceView(place: place, type: .origin)
@@ -48,7 +65,7 @@ final class MainMapViewModel {
         }
         
         //Missing the intermediate places
-        //TODO
+        //MARK: - TODO
         for leg in itinerarie.legs {
             guard let mode = leg.legMode, case .BUS = mode else { continue }
             
@@ -65,14 +82,16 @@ final class MainMapViewModel {
                     type: .busStation)
                 places.append(placeView)
             }
-            
-            
         }
+        
+        return places
     }
     
     //MARK: - Decoded Routes
     
-    private func decodedRoutes() {
+    private func buildRoutes() -> [(LegMode,[CLLocationCoordinate2D])] {
+        var routes: [(type: LegMode, coordinates: [CLLocationCoordinate2D])] = []
+        
         for leg in itinerarie.legs {
             
             guard let mode = leg.legMode else { continue }
@@ -81,6 +100,7 @@ final class MainMapViewModel {
                 routes.append( (type: mode , coordinates: coordinates) )
             }
         }
+        return routes
     }
     
     private func decodedSingleRoute(encoded: String?) -> [CLLocationCoordinate2D]? {
@@ -92,20 +112,15 @@ final class MainMapViewModel {
         return coordinates
     }
     
-    func showRouteForTest() {
-        //Mock data
+}
+
+extension MainMapViewModel {
+    
+    enum ViewState {
+        case initial
         
-        let from = LegPlaceView(name: "Kampii", latitude: 60.184229958105, longitude: 24.949350357055664)
-        let to = LegPlaceView(name: "Bus Stop", latitude: 60.18433, longitude: 24.92357)
-        places.append(from)
-        places.append(to)
+        case empty
         
-        let encodedPoints = "kvinJuzgwCB??b@@fACHTb@GTGR{B|HGRGRBDBDPZh@dAHLHN`AfBHLCFER_@tAk@nBCFM`@[hAGREPENsApEAFM`@GVSr@Sr@_@tAOd@@R@LBNPxBVxCH`AVbDPdB\\vEJVBLBRb@zEHrAp@xIDTDLJDA`@ANAPAD?HALATARf@NP|@C|@EpAOv@Mh@G`@C^?TNdE@TDv@P~EBTD|@@R@\\?b@AZCRENEHEFGHMRABMTMPCDEFFVBJBFDTFTJZb@rAFVPl@DJi@~@"
-        let decoded = Polyline(encodedPolyline: encodedPoints)
-        if let coordinates = decoded.coordinates  {
-            routes.append( (type: .WALK, coordinates: coordinates) )
-        }
-        
-        updateAnnotations?()
+        case populated
     }
 }

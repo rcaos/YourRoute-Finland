@@ -17,6 +17,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var closeView: CloseView!
     @IBOutlet weak var resultListView: ResultListView!
     @IBOutlet weak var resultRouteView: ResultRouteView!
+    @IBOutlet weak var loadingView: LoadingView!
     
     private var dataSource: ResultListViewDataSource!
     
@@ -30,10 +31,11 @@ class MainViewController: UIViewController {
         setupTableView()
         setupBindables()
         
-        configView(with: .initial)
+        viewModel.viewState.value = .initial
         
         //ONly for Test
         //setupTestDetailItinerarie()
+        //configView(with: .loading)
         //setupTestShowRoute()
     }
     
@@ -42,8 +44,7 @@ class MainViewController: UIViewController {
     func setupTestShowRoute() {
         let testItinerarie = MakeData.makeItinerariePoints()
         let mapViewModel = MainMapViewModel(itinerarie: testItinerarie)
-        mapView.viewModel = mapViewModel
-        mapViewModel.showRoute()
+        configMap(with: mapViewModel)
         
         searchView.isHidden = true
     }
@@ -52,7 +53,7 @@ class MainViewController: UIViewController {
         let itineraries = MakeData.makeItinerarieDetail()
         resultRouteView.viewModel = ResultRouteViewModel(itineraries: itineraries)
         
-        configView(with: .populated)
+        viewModel.viewState.value = .populated
     }
     //END:  Only for Tests
     
@@ -99,15 +100,19 @@ class MainViewController: UIViewController {
         guard let resultRouteViewModel = viewModel else { return }
         resultRouteView.viewModel = resultRouteViewModel
         resultRouteView.viewModel?.checkFirstItinerarie()
-        
-        configView(with: .populated)
     }
     
     func configMap(with viewModel: MainMapViewModel?) {
         guard let mapViewModel = viewModel else { return }
         
-        mapView.viewModel = mapViewModel
-        mapViewModel.showRoute()
+        self.viewModel.mapViewModel = mapViewModel
+        
+        mapView.viewModel = self.viewModel.getMapViewModel()
+        
+        self.viewModel.mapViewModel?.showRoute()
+        
+        //That-s correct? que View interacture con MapViewModel??/
+        //mapViewModel.showRoute()
     }
     
     func configTableView() {
@@ -117,29 +122,37 @@ class MainViewController: UIViewController {
         resultListView.tableView.dataSource = dataSource
         resultListView.tableView.delegate = self
         resultListView.tableView.reloadData()
-        //resultListView.tableView.flashScrollIndicators()
         resultListView.isHidden = false
     }
     
     func configView(with state: MainViewModel.ViewState) {
+        searchView.isUserInteractionEnabled = true
+        
         searchView.isHidden = true
         closeView.isHidden = true
         resultListView.isHidden = true
         resultRouteView.isHidden = true
-        //Add More defautl Views
+        loadingView.isHidden = true
+        
+        mapView.viewModel = viewModel.getMapViewModel()
         
         switch state {
         case .initial:
             searchView.isHidden = false
+            print("Change view to .initial")
         case .loading:
-            print("Show Loading View")
+            searchView.isHidden = false
+            searchView.isUserInteractionEnabled = false
+            loadingView.isHidden = false
+            print("Change view to .loading")
         case .populated:
             closeView.isHidden = false
             resultRouteView.isHidden = false
+            print("Change view to populated")
         case .empty:
-            print("Show Empty View")
+            print("Change view to .empty")
         case .error:
-            print("Show error View")
+            print("Change view to .error")
         }
     }
     
@@ -200,6 +213,6 @@ extension MainViewController: ResultRouteViewDelegate {
 extension MainViewController: CloseViewDelegate {
     
     func closeViewDelegateDidClose(_ searchView: CloseView) {
-        configView(with: .initial)
+        viewModel.viewState.value = .initial
     }
 }

@@ -67,23 +67,75 @@ class MainMapView: UIView {
     }
     
     func setupViewModel() {
-        viewModel?.updateAnnotations = { [weak self] in
-            self?.setupAnnotations()
+        viewModel?.viewState.bindAndFire({ [weak self] state in
+            guard let strongSelf = self else { return }
+            strongSelf.configView(with: state)
+        })
+    }
+    
+    func configView(with state: MainMapViewModel.ViewState) {
+        switch state {
+        case .initial:
+            cleanMapView()
+        case .empty, .populated:
+            setupMapViewElements()
         }
     }
     
-    func setupAnnotations() {
-        guard let viewModel = viewModel else { return }
-        
+    func cleanMapView() {
         mapView.removeAnnotations( mapView.annotations )
-        
-        //Check first Correct Annotations
-        mapView.addAnnotations( viewModel.places )
-        drawRoutes()
+        mapView.removeOverlays( mapView.overlays )
+    }
+    
+    func setupMapViewElements() {
+        setupAnnotations()
+        setupRoutes()
         centerAnnotations()
     }
     
-    func centerAnnotations() {
+    func setupAnnotations() {
+        mapView.removeAnnotations( mapView.annotations )
+        
+        guard let places = viewModel?.places else { return }
+        mapView.addAnnotations( places )
+    }
+    
+    func setupRoutes() {
+        mapView.removeOverlays( mapView.overlays )
+        
+        guard let routes = viewModel?.routes else { return }
+        for (type,route) in routes {
+            let line = CustomMKPolyline(coordinates: route, count: route.count)
+            line.type = type
+            mapView.addOverlay(line)
+        }
+    }
+}
+
+//MARK: - MKMapViewDelegate
+
+extension MainMapView: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if let customPolyLine = overlay as? CustomMKPolyline {
+            let polyLine = MKPolylineRenderer(overlay: overlay)
+            
+            polyLine.strokeColor = customPolyLine.color
+            polyLine.lineWidth = customPolyLine.width
+            polyLine.lineDashPattern = customPolyLine.dashPatter
+            
+            return polyLine
+        }
+        
+        return MKPolylineRenderer()
+    }
+}
+
+//MARK: - Center Map
+
+extension MainMapView {
+    
+    fileprivate func centerAnnotations() {
         guard let _ = viewModel?.places else { return }
         let (topLeftCoord, bottomRightCoord) = calculateEdgeCorners()
         
@@ -92,7 +144,12 @@ class MainMapView: UIView {
                                             longitude:
             topLeftCoord.longitude - (topLeftCoord.longitude - bottomRightCoord.longitude) / 2 )
         
-        let extraSpace = 1.3
+        //MARK: - TODO
+        //Depend of the State
+        //Loading = 1.5
+        //Populated, hay más espacio Top, maybe 1.2?
+        let extraSpace = 1.5
+        
         let span = MKCoordinateSpan(latitudeDelta:
             abs(topLeftCoord.latitude - bottomRightCoord.latitude) * extraSpace
             , longitudeDelta:
@@ -104,7 +161,6 @@ class MainMapView: UIView {
     }
     
     fileprivate func calculateEdgeCorners() -> (CLLocationCoordinate2D, CLLocationCoordinate2D) {
-        
         var topLeftCoord = CLLocationCoordinate2D(latitude: -90, longitude: 180)
         var bottomRightCoord = CLLocationCoordinate2D(latitude: 90, longitude: -180)
         
@@ -118,40 +174,5 @@ class MainMapView: UIView {
         }
         
         return (topLeftCoord, bottomRightCoord)
-    }
-    
-    //MARK: - Draw Routes
-    
-    func drawRoutes() {
-        mapView.removeOverlays( mapView.overlays )
-        
-        guard let routes = viewModel?.routes else { return }
-        
-        for (type,route) in routes {
-            let line = CustomMKPolyline(coordinates: route, count: route.count)
-            line.type = type
-            mapView.addOverlay(line)
-        }
-        
-    }
-}
-
-//MARK: - MKMapViewDelegate
-
-extension MainMapView: MKMapViewDelegate {
-    
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        
-        if let customPolyLine = overlay as? CustomMKPolyline {
-            let polyLine = MKPolylineRenderer(overlay: overlay)
-            
-            polyLine.strokeColor = customPolyLine.color
-            polyLine.lineWidth = customPolyLine.width
-            polyLine.lineDashPattern = customPolyLine.dashPatter
-            
-            return polyLine
-        }
-        
-        return MKPolylineRenderer()
     }
 }

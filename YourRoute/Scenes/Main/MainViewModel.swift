@@ -16,6 +16,8 @@ final class MainViewModel {
     
     var searchViewModel: SearchViewModel
     
+    var mapViewModel: MainMapViewModel?
+    
     var resultListViewModel: ResultListViewModel?
     
     //Reactive
@@ -41,7 +43,6 @@ final class MainViewModel {
     func selectedResultListPlace(at indexPath: IndexPath) {
         searchViewModel.selectPlace(at: indexPath)
     }
-    
     
     func planningTrip(with model: SearchViewModel) {
         guard let origin = model.originPlace, let destination = model.destinationPlace else { return }
@@ -87,6 +88,39 @@ final class MainViewModel {
         } else {
             viewState.value = .empty
         }
+    }
+    
+    //MARK: - Build Models
+    
+    func getMapViewModel() -> MainMapViewModel {
+        switch viewState.value {
+        case .initial:
+            return buildInitialItinerarie()
+        case .loading:
+            return buildEmptyItinerarie(with: searchViewModel)
+        case .populated:
+            guard let mapModel = mapViewModel else { return buildInitialItinerarie() }
+            return mapModel
+        case .empty:
+            return buildEmptyItinerarie(with: searchViewModel)
+        case .error:
+            return buildEmptyItinerarie(with: searchViewModel)
+        }
+    }
+    
+    private func buildEmptyItinerarie(with model: SearchViewModel) -> MainMapViewModel {
+        guard let origin = model.originPlace, let destination = model.destinationPlace else {
+            return buildInitialItinerarie() }
+        
+        let itinerarie = Itinerarie(walkDistance: 0, walkDuration: 0, duration: 0, legs: [],
+                                    originPlace: origin,
+                                    destinationPlace: destination)
+        return MainMapViewModel(itinerarie: itinerarie)
+    }
+    
+    private func buildInitialItinerarie() -> MainMapViewModel {
+        let itinerarie = Itinerarie(walkDistance: 0, walkDuration: 0, duration: 0, legs: [], originPlace: nil, destinationPlace: nil)
+        return MainMapViewModel(itinerarie: itinerarie)
     }
 }
 
