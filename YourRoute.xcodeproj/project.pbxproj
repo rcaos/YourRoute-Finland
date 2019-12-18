@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		26DB230BCDDDCC1F0F2F2A0E /* Pods_YourRoute.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42E6B2CBFC97DBE06A3410B3 /* Pods_YourRoute.framework */; };
+		7704D08E23AAD9B600C375DF /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7704D08D23AAD9B600C375DF /* MainViewModel.swift */; };
 		770E5DCF23A7CEB800709CEA /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770E5DCE23A7CEB800709CEA /* ErrorView.swift */; };
 		770E5DD123A7CEC200709CEA /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 770E5DD023A7CEC200709CEA /* ErrorView.xib */; };
 		770E5DD423A7EAC900709CEA /* TypeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770E5DD323A7EAC900709CEA /* TypeLocation.swift */; };
@@ -15,8 +16,9 @@
 		7724BBB1239FCCC70069ECF5 /* ItinerarieCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7724BBB0239FCCC70069ECF5 /* ItinerarieCollectionCellViewModel.swift */; };
 		7724BBB423A00A970069ECF5 /* CloseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7724BBB323A00A970069ECF5 /* CloseView.swift */; };
 		7724BBB623A00AA70069ECF5 /* CloseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7724BBB523A00AA70069ECF5 /* CloseView.xib */; };
+		772E35BE23AA59AA008ECA88 /* SearchPlacesGoogleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772E35BD23AA59AA008ECA88 /* SearchPlacesGoogleDataSource.swift */; };
+		772E35C023AA59BC008ECA88 /* SearchPlacesAppleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772E35BF23AA59BC008ECA88 /* SearchPlacesAppleDataSource.swift */; };
 		7730A20E23915BA000424E5B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7730A20D23915BA000424E5B /* MainViewController.swift */; };
-		7730A21023915BAE00424E5B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7730A20F23915BAE00424E5B /* MainViewModel.swift */; };
 		7730A21323915ED500424E5B /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7730A21223915ED500424E5B /* NibView.swift */; };
 		7730A21523915F1900424E5B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7730A21423915F1900424E5B /* SearchView.swift */; };
 		7730A21723915F2100424E5B /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7730A21623915F2100424E5B /* SearchViewModel.swift */; };
@@ -72,6 +74,7 @@
 		1E4EABE6804116F87C231EBB /* Pods-YourRoute.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourRoute.release.xcconfig"; path = "Target Support Files/Pods-YourRoute/Pods-YourRoute.release.xcconfig"; sourceTree = "<group>"; };
 		27E450EE26C78DA5B65DFA55 /* Pods-YourRoute.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourRoute.debug.xcconfig"; path = "Target Support Files/Pods-YourRoute/Pods-YourRoute.debug.xcconfig"; sourceTree = "<group>"; };
 		42E6B2CBFC97DBE06A3410B3 /* Pods_YourRoute.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YourRoute.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7704D08D23AAD9B600C375DF /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		770E5DCE23A7CEB800709CEA /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		770E5DD023A7CEC200709CEA /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		770E5DD323A7EAC900709CEA /* TypeLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeLocation.swift; sourceTree = "<group>"; };
@@ -79,8 +82,9 @@
 		7724BBB0239FCCC70069ECF5 /* ItinerarieCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItinerarieCollectionCellViewModel.swift; sourceTree = "<group>"; };
 		7724BBB323A00A970069ECF5 /* CloseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseView.swift; sourceTree = "<group>"; };
 		7724BBB523A00AA70069ECF5 /* CloseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CloseView.xib; sourceTree = "<group>"; };
+		772E35BD23AA59AA008ECA88 /* SearchPlacesGoogleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlacesGoogleDataSource.swift; sourceTree = "<group>"; };
+		772E35BF23AA59BC008ECA88 /* SearchPlacesAppleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlacesAppleDataSource.swift; sourceTree = "<group>"; };
 		7730A20D23915BA000424E5B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		7730A20F23915BAE00424E5B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		7730A21223915ED500424E5B /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
 		7730A21423915F1900424E5B /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		7730A21623915F2100424E5B /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -207,7 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				7730A20D23915BA000424E5B /* MainViewController.swift */,
-				7730A20F23915BAE00424E5B /* MainViewModel.swift */,
+				7704D08D23AAD9B600C375DF /* MainViewModel.swift */,
 				7730A21823915F2500424E5B /* Search View */,
 				7724BBB723A00B570069ECF5 /* Close View */,
 				7730A21D239165C800424E5B /* Map View */,
@@ -226,6 +230,8 @@
 				7730A21623915F2100424E5B /* SearchViewModel.swift */,
 				7730A21923915FD100424E5B /* SearchView.xib */,
 				7730A22623918DCD00424E5B /* SearchPlacesDataSource.swift */,
+				772E35BD23AA59AA008ECA88 /* SearchPlacesGoogleDataSource.swift */,
+				772E35BF23AA59BC008ECA88 /* SearchPlacesAppleDataSource.swift */,
 			);
 			path = "Search View";
 			sourceTree = "<group>";
@@ -595,12 +601,14 @@
 				77DC7C43238D72D90040D541 /* Bindable.swift in Sources */,
 				77C6B30A238C425B0059219E /* CodingUserInfoKey.swift in Sources */,
 				77CAF863239698CA00134A10 /* PlanResult.swift in Sources */,
+				772E35C023AA59BC008ECA88 /* SearchPlacesAppleDataSource.swift in Sources */,
 				77E80545239A99F600900FEA /* MakeData.swift in Sources */,
 				7724BBB423A00A970069ECF5 /* CloseView.swift in Sources */,
 				7730A21723915F2100424E5B /* SearchViewModel.swift in Sources */,
 				770E5DD423A7EAC900709CEA /* TypeLocation.swift in Sources */,
 				774FA100239965090046486F /* MainMapViewModel.swift in Sources */,
 				77CAF8652396996500134A10 /* Itinerarie.swift in Sources */,
+				772E35BE23AA59AA008ECA88 /* SearchPlacesGoogleDataSource.swift in Sources */,
 				77CAF8702396CB1400134A10 /* DetailRouteViewModel.swift in Sources */,
 				77C6B2F6238C40C30059219E /* ApiClient.swift in Sources */,
 				7730A22723918DCD00424E5B /* SearchPlacesDataSource.swift in Sources */,
@@ -611,9 +619,9 @@
 				77CAF85F2396949A00134A10 /* PlanClient.swift in Sources */,
 				77CAF86E2396CAF400134A10 /* DetailRouteViewController.swift in Sources */,
 				77F162A12397E98E00541D91 /* DetailRouteTableViewModel.swift in Sources */,
-				7730A21023915BAE00424E5B /* MainViewModel.swift in Sources */,
 				77E80549239AB2EE00900FEA /* CustomMKPolyline.swift in Sources */,
 				7724BBB1239FCCC70069ECF5 /* ItinerarieCollectionCellViewModel.swift in Sources */,
+				7704D08E23AAD9B600C375DF /* MainViewModel.swift in Sources */,
 				77DDDA27239EF45300A53376 /* ResultRouteView.swift in Sources */,
 				770ECA812399A240004FC75F /* Polyline.swift in Sources */,
 				770E5DCF23A7CEB800709CEA /* ErrorView.swift in Sources */,

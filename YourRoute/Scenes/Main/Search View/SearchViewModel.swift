@@ -13,7 +13,9 @@ final class SearchViewModel {
     
     private var barSelected: SearchBarType?
     
-    private var dataSource: SearchPlacesDataSource
+    //private var dataSource: SearchPlacesDataSource
+    //private var dataSource: SearchPlacesAppleDataSource
+    var dataSource: SearchPlacesGoogleDataSource
     
     //En el Model tengo que tener un objeto encapsulado con las Coordenates
     
@@ -45,7 +47,9 @@ final class SearchViewModel {
     
     //MARK: - Life Cycle
     
-    init(dataSource: SearchPlacesDataSource) {
+    //init(dataSource: SearchPlacesDataSource) {
+    //init(dataSource: SearchPlacesAppleDataSource) {
+    init(dataSource: SearchPlacesGoogleDataSource) {
         self.dataSource = dataSource
     }
     
@@ -131,9 +135,7 @@ final class SearchViewModel {
     }
     
     private func planning() {
-        if let origin = originPlace, let destination = destinationPlace {
-            print("Connect with Server Origin: [\(origin.coordinate)]")
-            print("Destination: [\(destination.coordinate)]")
+        if let _ = originPlace, let _ = destinationPlace {
             planningTrip?()
         }
     }

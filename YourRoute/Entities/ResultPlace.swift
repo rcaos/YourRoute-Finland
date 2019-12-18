@@ -16,6 +16,8 @@ struct ResultPlace: Decodable {
     
     var address: String?
     
+    var placeId: String?
+    
     init(name: String, latitude: Double, longitude: Double) {
         self.name = name
         self.coordinate = Coordinate(latitude: latitude, longitude: longitude)

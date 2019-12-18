@@ -2,7 +2,7 @@
 //  MainViewModel.swift
 //  YourRoute
 //
-//  Created by Jeans on 11/29/19.
+//  Created by Jeans on 12/18/19.
 //  Copyright © 2019 Jeans. All rights reserved.
 //
 
@@ -12,7 +12,9 @@ final class MainViewModel {
     
     private var planClient: PlanClient = PlanClient()
     
-    private var dataSource: SearchPlacesDataSource
+    //private var dataSource: SearchPlacesDataSource
+    //private var dataSource: SearchPlacesAppleDataSource
+    private var dataSource: SearchPlacesGoogleDataSource
     
     var searchViewModel: SearchViewModel
     
@@ -31,7 +33,10 @@ final class MainViewModel {
     //MARK: - Life Cycle
     
     init() {
-        dataSource = SearchPlacesDataSource()
+        //dataSource = SearchPlacesDataSource()
+        //dataSource = SearchPlacesAppleDataSource()
+        dataSource = SearchPlacesGoogleDataSource()
+        
         searchViewModel = SearchViewModel(dataSource: dataSource)
     }
     
@@ -47,10 +52,34 @@ final class MainViewModel {
     func planningTrip(with model: SearchViewModel) {
         guard let origin = model.originPlace, let destination = model.destinationPlace else { return }
         
+        viewState.value = .loading
+        
+        if searchViewModel.dataSource.typeSource == .google &&
+            ( origin.coordinate.latitude == 0 || origin.coordinate.longitude == 0 ||
+                destination.coordinate.latitude == 0 || destination.coordinate.longitude == 0 ) {
+            print("get place Details (coordinates) from Google Place")
+            
+            searchViewModel.dataSource.fetchDetails(for: origin, destination: destination, completion: { result in
+                switch (result) {
+                case .failure(_):
+                    print("error to fetch Place Details to Google")
+                    self.viewState.value = .error
+                case .success(let origin, let destination):
+                    self.getPlan(origin: origin, destination: destination)
+                }
+            })
+        } else {
+            getPlan(origin: origin, destination: destination)
+        }
+    }
+    
+    private func getPlan( origin: ResultPlace, destination: ResultPlace ) {
+        
         let originCoordinate = (latitude: origin.coordinate.latitude, longitude: origin.coordinate.longitude)
         let destinationCoordinate = (latitude: destination.coordinate.latitude, longitude: destination.coordinate.longitude)
         
-        viewState.value = .loading
+        print("Connect with Server Origin: [\(origin.coordinate)]")
+        print("Destination: [\(destination.coordinate)]")
         
         planClient.getPlan(origin: originCoordinate, destination: destinationCoordinate, completion: { result in
             
