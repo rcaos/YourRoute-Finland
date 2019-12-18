@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ca7-hj-avu" customClass="MainMapView" customModule="YourRoute" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ca7-hj-avu" customClass="GoogleMapView" customModule="YourRoute" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -92,7 +92,7 @@
                         <outlet property="closeView" destination="WD5-Xd-1eJ" id="Ocs-4g-oi8"/>
                         <outlet property="errorView" destination="Fqs-Ls-w20" id="ZeU-p6-1cN"/>
                         <outlet property="loadingView" destination="cbo-Ur-zH3" id="n9i-N0-6b7"/>
-                        <outlet property="mapView" destination="Ca7-hj-avu" id="JCg-QL-60w"/>
+                        <outlet property="mapView" destination="Ca7-hj-avu" id="sqN-0g-sjj"/>
                         <outlet property="resultListView" destination="wcQ-Nd-nzf" id="qrK-z7-GFn"/>
                         <outlet property="resultRouteView" destination="W0E-EU-hhb" id="kVf-BY-hZe"/>
                         <outlet property="searchView" destination="Lhl-Hy-Q5k" id="YX9-R7-orn"/>

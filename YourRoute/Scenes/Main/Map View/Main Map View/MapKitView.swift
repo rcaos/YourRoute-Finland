@@ -8,9 +8,9 @@
 
 import MapKit
 
-class MainMapView: UIView {
+class MapKitView: MainMapView {
     
-    var viewModel: MainMapViewModel? {
+    override var viewModel: MainMapViewModel? {
         didSet {
             setupViewModel()
         }
@@ -114,7 +114,7 @@ class MainMapView: UIView {
 
 //MARK: - MKMapViewDelegate
 
-extension MainMapView: MKMapViewDelegate {
+extension MapKitView: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let customPolyLine = overlay as? CustomMKPolyline {
@@ -133,7 +133,7 @@ extension MainMapView: MKMapViewDelegate {
 
 //MARK: - Center Map
 
-extension MainMapView {
+extension MapKitView {
     
     fileprivate func centerAnnotations() {
         guard let _ = viewModel?.places else { return }
@@ -158,6 +158,8 @@ extension MainMapView {
         let region = MKCoordinateRegion(center: center, span: span)
         
         mapView.setRegion(region, animated: true)
+        
+        
     }
     
     fileprivate func calculateEdgeCorners() -> (CLLocationCoordinate2D, CLLocationCoordinate2D) {
