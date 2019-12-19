@@ -16,9 +16,9 @@ class MainViewController: UIViewController {
         }
     }
     
-    //@IBOutlet weak var mapView: MainMapView!
+    @IBOutlet weak var mapView: MainMapView!
     //Aparte he cambiado en el StoryBoard.
-    @IBOutlet weak var mapView: GoogleMapView!
+    //@IBOutlet weak var mapView: GoogleMapView!
     
     @IBOutlet weak var searchView: SearchView!
     @IBOutlet weak var closeView: CloseView!

@@ -21,16 +21,13 @@ class MainNavigationViewController: UINavigationController {
     func setDataSource(source: DataSourceType) {
         let dataSource: SearchPlacesDataSource
         
-//        switch source {
-//        case .apple:
-//            dataSource = SearchPlacesAppleDataSource()
-//        case .google:
-//            configGoogleMapsService()
-//            dataSource = SearchPlacesGoogleDataSource()
-//        }
-        
-        configGoogleMapsService()
-        dataSource = SearchPlacesGoogleDataSource()
+        switch source {
+        case .apple:
+            dataSource = SearchPlacesAppleDataSource()
+        case .google:
+            configGoogleMapsService()
+            dataSource = SearchPlacesGoogleDataSource()
+        }
         
         setupMainController(with: dataSource)
     }

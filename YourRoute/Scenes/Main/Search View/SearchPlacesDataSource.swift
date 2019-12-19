@@ -27,3 +27,13 @@ protocol SearchPlacesDataSource {
                        completion: @escaping(
         Result<(origin: ResultPlace, destination: ResultPlace),APIError>) -> Void )
 }
+
+extension SearchPlacesDataSource {
+    
+    func fetchDetails(for origin: ResultPlace, destination: ResultPlace,
+                      completion: @escaping(
+        Result<(origin: ResultPlace, destination: ResultPlace),APIError>) -> Void ) {
+        //only for google Maps
+        //for mapKit: Thanks but no thanks
+    }
+}

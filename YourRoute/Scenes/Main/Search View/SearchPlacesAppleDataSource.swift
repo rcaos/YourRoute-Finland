@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-class SearchPlacesAppleDataSource {
+class SearchPlacesAppleDataSource: SearchPlacesDataSource {
     
     var defaultLocation: TypeLocation = {
         //Helsinki
@@ -18,6 +18,8 @@ class SearchPlacesAppleDataSource {
     }()
     
     var resultPlaces: [ResultPlace] = []
+    
+    var typeSource: DataSourceType = .apple
     
     // MARK: - Initializers
     
