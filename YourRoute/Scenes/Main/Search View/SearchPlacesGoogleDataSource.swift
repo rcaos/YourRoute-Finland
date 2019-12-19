@@ -27,7 +27,7 @@ class SearchPlacesGoogleDataSource: SearchPlacesDataSource {
         })
     }
     
-    var typeSource: SearchDataSourceType = .google
+    var typeSource: DataSourceType = .google
     
     let token = GMSAutocompleteSessionToken.init()
     

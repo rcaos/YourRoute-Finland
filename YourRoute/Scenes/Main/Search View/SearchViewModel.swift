@@ -13,9 +13,9 @@ final class SearchViewModel {
     
     private var barSelected: SearchBarType?
     
-    //private var dataSource: SearchPlacesDataSource
+    var dataSource: SearchPlacesDataSource
     //private var dataSource: SearchPlacesAppleDataSource
-    var dataSource: SearchPlacesGoogleDataSource
+    //var dataSource: SearchPlacesGoogleDataSource
     
     //En el Model tengo que tener un objeto encapsulado con las Coordenates
     
@@ -47,9 +47,9 @@ final class SearchViewModel {
     
     //MARK: - Life Cycle
     
-    //init(dataSource: SearchPlacesDataSource) {
+    init(dataSource: SearchPlacesDataSource) {
     //init(dataSource: SearchPlacesAppleDataSource) {
-    init(dataSource: SearchPlacesGoogleDataSource) {
+    //init(dataSource: SearchPlacesGoogleDataSource) {
         self.dataSource = dataSource
     }
     

@@ -33,6 +33,7 @@
 		774FA1042399685C0046486F /* LegPlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774FA1032399685C0046486F /* LegPlaceView.swift */; };
 		77555CAA23A9823400EAAAAA /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77555CA923A9823400EAAAAA /* GoogleMapView.swift */; };
 		77555CAD23A983B200EAAAAA /* MainMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77555CAC23A983B200EAAAAA /* MainMapView.swift */; };
+		7758A5E723AC02D60074A927 /* MainNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7758A5E623AC02D60074A927 /* MainNavigationViewController.swift */; };
 		77C6B2E4238C3E060059219E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6B2E3238C3E060059219E /* AppDelegate.swift */; };
 		77C6B2E9238C3E060059219E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77C6B2E7238C3E060059219E /* Main.storyboard */; };
 		77C6B2EB238C3E070059219E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77C6B2EA238C3E070059219E /* Assets.xcassets */; };
@@ -99,6 +100,7 @@
 		774FA1032399685C0046486F /* LegPlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegPlaceView.swift; sourceTree = "<group>"; };
 		77555CA923A9823400EAAAAA /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
 		77555CAC23A983B200EAAAAA /* MainMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapView.swift; sourceTree = "<group>"; };
+		7758A5E623AC02D60074A927 /* MainNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationViewController.swift; sourceTree = "<group>"; };
 		77C6B2E0238C3E060059219E /* YourRoute.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourRoute.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C6B2E3238C3E060059219E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77C6B2E8238C3E060059219E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 		7730A20B23915AED00424E5B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				7758A5E623AC02D60074A927 /* MainNavigationViewController.swift */,
 				77E80544239A99F600900FEA /* MakeData.swift */,
 				7730A21123915BB200424E5B /* Main */,
 				77CAF8712396CB6000134A10 /* Detail Route */,
@@ -611,6 +614,7 @@
 				772E35BE23AA59AA008ECA88 /* SearchPlacesGoogleDataSource.swift in Sources */,
 				77CAF8702396CB1400134A10 /* DetailRouteViewModel.swift in Sources */,
 				77C6B2F6238C40C30059219E /* ApiClient.swift in Sources */,
+				7758A5E723AC02D60074A927 /* MainNavigationViewController.swift in Sources */,
 				7730A22723918DCD00424E5B /* SearchPlacesDataSource.swift in Sources */,
 				77F70C8F238C7E9A00685107 /* Dictionary+Extensions.swift in Sources */,
 				7730A22B2391CB3100424E5B /* ResultListViewModel.swift in Sources */,

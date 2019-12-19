@@ -10,12 +10,15 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    var viewModel = MainViewModel()
+    var viewModel: MainViewModel? {
+        didSet {
+            setupViewModel()
+        }
+    }
     
     //@IBOutlet weak var mapView: MainMapView!
     //Aparte he cambiado en el StoryBoard.
     @IBOutlet weak var mapView: GoogleMapView!
-    
     
     @IBOutlet weak var searchView: SearchView!
     @IBOutlet weak var closeView: CloseView!
@@ -30,32 +33,38 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupViews()
-        
-        setupModels()
         setupTableView()
-        setupBindables()
-        
-        viewModel.viewState.value = .initial
-        
+        setupDelegates()
         //ONly for Test
         //setupTestDetailItinerarie()
         //setupTestShowRoute()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let viewModel = viewModel else { fatalError() }
+        viewModel.viewState.value = .initial
+    }
+    
+    func setupViewModel() {
+        setupModels()
+        setupBindables()
     }
     
     //MARK: - only for Test
     
     func setupTestShowRoute() {
         let testItinerarie = MakeData.makeItinerariePoints()
-        viewModel.mapViewModel = MainMapViewModel(itinerarie: testItinerarie)
-        viewModel.viewState.value = .populated
+        viewModel?.mapViewModel = MainMapViewModel(itinerarie: testItinerarie)
+        viewModel?.viewState.value = .populated
     }
     
     func setupTestDetailItinerarie() {
         let itineraries = MakeData.makeItinerarieDetail()
         resultRouteView.viewModel = ResultRouteViewModel(itineraries: itineraries)
         
-        viewModel.viewState.value = .populated
+        viewModel?.viewState.value = .populated
     }
     //END:  Only for Tests
     
@@ -65,33 +74,36 @@ class MainViewController: UIViewController {
         searchView.backgroundColor = UIColor(red: 0, green: 0.1, blue: 0.58, alpha: 0)
     }
     
-    func setupModels() {
-        searchView.viewModel = viewModel.searchViewModel
-        
-        searchView.delegate = self
-        resultRouteView.delegate = self
-        closeView.delegate = self
-    }
-    
     func setupTableView() {
         let tableView = resultListView.tableView
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
     }
     
+    func setupDelegates() {
+        searchView.delegate = self
+        resultRouteView.delegate = self
+        closeView.delegate = self
+    }
+    
+    func setupModels() {
+        guard let viewModel = viewModel else { return }
+        searchView.viewModel = viewModel.searchViewModel
+    }
+    
     func setupBindables() {
-        viewModel.reloadTable = { [weak self] in
+        viewModel?.reloadTable = { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.configTableView()
         }
         
-        viewModel.showResultRoute = { [weak self] resultRouteViewModel in
+        viewModel?.showResultRoute = { [weak self] resultRouteViewModel in
             guard let strongSelf = self else { return }
             
             strongSelf.configResultView(witth: resultRouteViewModel)
         }
         
-        viewModel.viewState.bind({ [weak self] state in
+        viewModel?.viewState.bind({ [weak self] state in
             guard let strongSelf = self else { return }
             strongSelf.configView(with: state)
         })
@@ -106,15 +118,15 @@ class MainViewController: UIViewController {
     func configMap(with viewModel: MainMapViewModel?) {
         guard let mapViewModel = viewModel else { return }
         
-        self.viewModel.mapViewModel = mapViewModel
+        self.viewModel?.mapViewModel = mapViewModel
         
-        mapView.viewModel = self.viewModel.getMapViewModel()
+        mapView.viewModel = self.viewModel?.getMapViewModel()
         
-        self.viewModel.mapViewModel?.showRoute()
+        self.viewModel?.mapViewModel?.showRoute()
     }
     
     func configTableView() {
-        guard let resultListModel = viewModel.resultListViewModel else { return }
+        guard let resultListModel = viewModel?.resultListViewModel else { return }
         dataSource = ResultListViewDataSource(viewModel: resultListModel)
         
         resultListView.tableView.dataSource = dataSource
@@ -133,7 +145,7 @@ class MainViewController: UIViewController {
         loadingView.isHidden = true
         errorView.isHidden = true
         
-        mapView.viewModel = viewModel.getMapViewModel()
+        mapView.viewModel = viewModel?.getMapViewModel()
         
         switch state {
         case .initial:
@@ -170,7 +182,7 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.selectedResultListPlace(at: indexPath)
+        viewModel?.selectedResultListPlace(at: indexPath)
         resultListView.isHidden = true
     }
 }
@@ -180,12 +192,12 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: SearchViewDelegate {
     
     func searchViewDelegate(_ searchView: SearchView, didChangeSource source: ResultListViewModel) {
-        viewModel.configResultListModel(with: source)
+        viewModel?.configResultListModel(with: source)
     }
     
     func searchViewDelegate(_ searchView: SearchView, planningTrip searchModel: SearchViewModel?) {
         guard let searchModel = searchModel else { return }
-        viewModel.planningTrip(with: searchModel)
+        viewModel?.planningTrip(with: searchModel)
     }
     
     func searchViewDelegateDidEndResults(_ searchView: SearchView) {
@@ -212,6 +224,6 @@ extension MainViewController: ResultRouteViewDelegate {
 extension MainViewController: CloseViewDelegate {
     
     func closeViewDelegateDidClose(_ searchView: CloseView) {
-        viewModel.viewState.value = .initial
+        viewModel?.viewState.value = .initial
     }
 }

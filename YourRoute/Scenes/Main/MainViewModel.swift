@@ -12,9 +12,9 @@ final class MainViewModel {
     
     private var planClient: PlanClient = PlanClient()
     
-    //private var dataSource: SearchPlacesDataSource
+    private var dataSource: SearchPlacesDataSource
     //private var dataSource: SearchPlacesAppleDataSource
-    private var dataSource: SearchPlacesGoogleDataSource
+    //private var dataSource: SearchPlacesGoogleDataSource
     
     var searchViewModel: SearchViewModel
     
@@ -32,10 +32,11 @@ final class MainViewModel {
     
     //MARK: - Life Cycle
     
-    init() {
+    init(dataSource: SearchPlacesDataSource) {
         //dataSource = SearchPlacesDataSource()
         //dataSource = SearchPlacesAppleDataSource()
-        dataSource = SearchPlacesGoogleDataSource()
+        //dataSource = SearchPlacesGoogleDataSource()
+        self.dataSource = dataSource
         
         searchViewModel = SearchViewModel(dataSource: dataSource)
     }

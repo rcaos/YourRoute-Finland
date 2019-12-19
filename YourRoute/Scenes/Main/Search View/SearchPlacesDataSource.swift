@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum SearchDataSourceType {
+enum DataSourceType {
     case apple
     case google
 }
@@ -19,7 +19,7 @@ protocol SearchPlacesDataSource {
     
     var resultPlaces: [ResultPlace] { get }
     
-    var typeSource: SearchDataSourceType { get set }
+    var typeSource: DataSourceType { get set }
     
     func search(with text: String, completion: @escaping(Result<[ResultPlace], APIError>) -> Void )
     
