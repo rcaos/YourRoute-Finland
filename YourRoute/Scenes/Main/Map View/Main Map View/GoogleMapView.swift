@@ -25,6 +25,8 @@ class GoogleMapView: MainMapView {
         return mapView
     }()
     
+    var markers: [GMSMarker] = []
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -75,14 +77,17 @@ class GoogleMapView: MainMapView {
     func configView(with state: MainMapViewModel.ViewState) {
         switch state {
         case .initial:
+            print("change map to initial")
             cleanMapView()
         case .empty, .populated:
+            print("change map empty, populated")
             setupMapViewElements()
         }
     }
     
     func cleanMapView() {
-        //mapView.removeAnnotations( mapView.annotations )
+        mapView.clear()
+        
         //mapView.removeOverlays( mapView.overlays )
     }
     
@@ -90,14 +95,39 @@ class GoogleMapView: MainMapView {
         setupAnnotations()
         setupRoutes()
         
-        //centerAnnotations()
+        centerAnnotations()
     }
     
     func setupAnnotations() {
-//        mapView.removeAnnotations( mapView.annotations )
-//
-//        guard let places = viewModel?.places else { return }
-//        mapView.addAnnotations( places )
+        guard let places = viewModel?.places else { return }
+
+        //Clearn only Markers
+        for marker in markers {
+            marker.map  = nil
+        }
+        markers.removeAll()
+        
+        for place in places {
+            let marker = GMSMarker()
+            marker.position = place.coordinate
+            marker.title = place.place.name
+            marker.map = self.mapView
+            
+            if let typeMarker = place.typePlace {
+                switch typeMarker {
+                case .origin:
+                    marker.icon = GMSMarker.markerImage(with: UIColor(red: 25/255, green: 175/255, blue: 51/255, alpha: 1.0))
+                case .busStation:
+                    marker.icon = GMSMarker.markerImage(with: UIColor(red: 4/255, green: 166/255, blue: 255/255, alpha: 1.0))
+                case .destination, .unknown:
+                    marker.icon = GMSMarker.markerImage(with: nil)
+                }
+            }
+            
+            markers.append( marker )
+        }
+        
+        print("add markers: \(markers.count)")
     }
     
     func setupRoutes() {
@@ -109,6 +139,23 @@ class GoogleMapView: MainMapView {
 //            line.type = type
 //            mapView.addOverlay(line)
 //        }
+    }
+    
+    // MARK: - Center Map
+    
+    fileprivate func centerAnnotations() {
+        guard let firstLocation = markers.first else { return }
+        
+        let firstPosition = firstLocation.position
+        
+        var bounds = GMSCoordinateBounds(coordinate: firstPosition, coordinate: firstPosition)
+        
+        for marker in markers {
+            bounds = bounds.includingCoordinate(marker.position)
+        }
+        
+        let newCamera = GMSCameraUpdate.fit(bounds, withPadding: CGFloat(15))
+        self.mapView.animate(with: newCamera)
     }
 }
 
@@ -128,51 +175,5 @@ class GoogleMapView: MainMapView {
 //        }
 //
 //        return MKPolylineRenderer()
-//    }
-//}
-
-//MARK: - Center Map
-
-//extension GoogleMapView {
-//
-//    fileprivate func centerAnnotations() {
-//        guard let _ = viewModel?.places else { return }
-//        let (topLeftCoord, bottomRightCoord) = calculateEdgeCorners()
-//
-//        let center = CLLocationCoordinate2D(latitude:
-//            topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) / 2,
-//                                            longitude:
-//            topLeftCoord.longitude - (topLeftCoord.longitude - bottomRightCoord.longitude) / 2 )
-
-        //MARK: - TODO
-        //Depend of the State
-        //Loading = 1.5
-        //Populated, hay más espacio Top, maybe 1.2?
-        //let extraSpace = 1.5
-        
-//        let span = MKCoordinateSpan(latitudeDelta:
-//            abs(topLeftCoord.latitude - bottomRightCoord.latitude) * extraSpace
-//            , longitudeDelta:
-//            abs(topLeftCoord.longitude - bottomRightCoord.longitude) * extraSpace)
-//
-//        let region = MKCoordinateRegion(center: center, span: span)
-//
-//        mapView.setRegion(region, animated: true)
-//    }
-//
-//    fileprivate func calculateEdgeCorners() -> (CLLocationCoordinate2D, CLLocationCoordinate2D) {
-//        var topLeftCoord = CLLocationCoordinate2D(latitude: -90, longitude: 180)
-//        var bottomRightCoord = CLLocationCoordinate2D(latitude: 90, longitude: -180)
-//
-//        if let places = viewModel?.places {
-//            for annotation in places {
-//                topLeftCoord.latitude = max(topLeftCoord.latitude, annotation.coordinate.latitude)
-//                topLeftCoord.longitude = min(topLeftCoord.longitude, annotation.coordinate.longitude)
-//                bottomRightCoord.latitude = min(bottomRightCoord.latitude, annotation.coordinate.latitude)
-//                bottomRightCoord.longitude = max(bottomRightCoord.longitude, annotation.coordinate.longitude)
-//            }
-//        }
-//
-//        return (topLeftCoord, bottomRightCoord)
 //    }
 //}
