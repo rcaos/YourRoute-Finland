@@ -18,14 +18,19 @@ class GoogleMapView: MainMapView {
     
     lazy var mapView: GMSMapView = {
         let mapView = GMSMapView(frame: .zero)
+        
+        // MARK: - TODO, check other defaults configurations
 //        mapView.mapType = .normal
 //        mapView.isZoomEnabled = true
 //        mapView.isScrollEnabled = true
 //        mapView.isRotateEnabled = false
+        
         return mapView
     }()
     
     var markers: [GMSMarker] = []
+    
+    var routes: [GMSPolyline] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,6 +47,7 @@ class GoogleMapView: MainMapView {
     private func setupUI() {
         backgroundColor = .white
         setupMapView()
+        setDefaultRegion()
     }
     
     private func setupMapView() {
@@ -52,104 +58,123 @@ class GoogleMapView: MainMapView {
                                      mapView.leadingAnchor.constraint(equalTo: leadingAnchor),
                                      mapView.trailingAnchor.constraint(equalTo: trailingAnchor),
                                      mapView.bottomAnchor.constraint(equalTo: bottomAnchor)])
-        
-        //mapView.register(LegAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
-        //mapView.delegate = self
-        
-        setDefaultRegion()
     }
     
-    func setDefaultRegion() {
+    private func setDefaultRegion() {
         // MARK: - TODO
-        // Default Location debería estar en el ViewMODEL
+        // Default Location should be in ViewMODEL, DataSource?
         
         let location = CLLocation(latitude: 60.1706, longitude: 24.9375)
         mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 13, bearing: 0, viewingAngle: 0)
     }
     
-    func setupViewModel() {
+    private func setupViewModel() {
         viewModel?.viewState.bindAndFire({ [weak self] state in
             guard let strongSelf = self else { return }
             strongSelf.configView(with: state)
         })
     }
     
-    func configView(with state: MainMapViewModel.ViewState) {
+    private func configView(with state: MainMapViewModel.ViewState) {
         switch state {
-        case .initial:
-            print("change map to initial")
+        case .initial, .empty:
             cleanMapView()
-        case .empty, .populated:
-            print("change map empty, populated")
+        case .populated:
             setupMapViewElements()
         }
     }
     
-    func cleanMapView() {
+    private func cleanMapView() {
         mapView.clear()
-        
-        //mapView.removeOverlays( mapView.overlays )
     }
     
-    func setupMapViewElements() {
+    private func setupMapViewElements() {
         setupAnnotations()
         setupRoutes()
-        
         centerAnnotations()
     }
     
-    func setupAnnotations() {
+    private func setupAnnotations() {
+        cleanMarkers()
         guard let places = viewModel?.places else { return }
-
-        //Clearn only Markers
-        for marker in markers {
-            marker.map  = nil
-        }
-        markers.removeAll()
         
         for place in places {
             let marker = GMSMarker()
             marker.position = place.coordinate
             marker.title = place.place.name
             marker.map = self.mapView
+            marker.zIndex = 0
             
             if let typeMarker = place.typePlace {
                 switch typeMarker {
                 case .origin:
                     marker.icon = GMSMarker.markerImage(with: UIColor(red: 25/255, green: 175/255, blue: 51/255, alpha: 1.0))
+                    marker.zIndex = 1
+                    
                 case .busStation:
                     marker.icon = GMSMarker.markerImage(with: UIColor(red: 4/255, green: 166/255, blue: 255/255, alpha: 1.0))
                     
                     let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
                     imageView.backgroundColor = UIColor(red: 4/255, green: 166/255, blue: 255/255, alpha: 1.0)
                     imageView.image = UIImage(named: "busPlaceMark")
-                    
                     marker.iconView = imageView
-                case .destination, .unknown:
+                
+                case .destination:
+                    marker.zIndex = 1
+                    
+                case .unknown:
                     marker.icon = GMSMarker.markerImage(with: nil)
                 }
             }
             
             markers.append( marker )
         }
-        
-        print("add markers: \(markers.count)")
     }
     
-    func setupRoutes() {
-//        mapView.removeOverlays( mapView.overlays )
-//
-//        guard let routes = viewModel?.routes else { return }
-//        for (type,route) in routes {
-//            let line = CustomMKPolyline(coordinates: route, count: route.count)
-//            line.type = type
-//            mapView.addOverlay(line)
-//        }
+    private func setupRoutes() {
+        cleanRoutes()
+        guard let routesModel = viewModel?.routesGoogle else { return }
+        
+        for (type, encodedRoute) in routesModel {
+            let route = drawRoute(type, from: encodedRoute)
+            routes.append( route )
+        }
+    }
+    
+    private func drawRoute(_ type: LegMode, from polyStr: String) -> GMSPolyline {
+        let path = GMSPath(fromEncodedPath: polyStr)
+        let polyline = GMSPolyline(path: path)
+        polyline.map = mapView
+        
+        switch type {
+        case .WALK:
+            polyline.strokeWidth = 3.0
+            polyline.strokeColor = UIColor.green
+        case .BUS:
+            polyline.strokeWidth = 3.0
+            polyline.strokeColor = UIColor.blue
+        }
+        
+        return polyline
+    }
+    
+    private func cleanMarkers() {
+        for marker in markers {
+            marker.map  = nil
+        }
+        markers.removeAll()
+    }
+    
+    private func cleanRoutes() {
+        for route in routes {
+            route.map = nil
+        }
+        routes.removeAll()
     }
     
     // MARK: - Center Map
     
-    fileprivate func centerAnnotations() {
+    private func centerAnnotations() {
         guard let firstLocation = markers.first else { return }
         
         let firstPosition = firstLocation.position
@@ -164,22 +189,3 @@ class GoogleMapView: MainMapView {
         self.mapView.animate(with: newCamera)
     }
 }
-
-//MARK: - MKMapViewDelegate TODO
-
-//extension MainGMapView: MKMapViewDelegate {
-//
-//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-//        if let customPolyLine = overlay as? CustomMKPolyline {
-//            let polyLine = MKPolylineRenderer(overlay: overlay)
-//
-//            polyLine.strokeColor = customPolyLine.color
-//            polyLine.lineWidth = customPolyLine.width
-//            polyLine.lineDashPattern = customPolyLine.dashPatter
-//
-//            return polyLine
-//        }
-//
-//        return MKPolylineRenderer()
-//    }
-//}

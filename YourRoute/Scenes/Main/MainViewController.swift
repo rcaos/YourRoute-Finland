@@ -40,7 +40,6 @@ class MainViewController: UIViewController {
         
         //ONly for Test
         //setupTestDetailItinerarie()
-        //configView(with: .loading)
         //setupTestShowRoute()
     }
     
@@ -48,10 +47,8 @@ class MainViewController: UIViewController {
     
     func setupTestShowRoute() {
         let testItinerarie = MakeData.makeItinerariePoints()
-        let mapViewModel = MainMapViewModel(itinerarie: testItinerarie)
-        configMap(with: mapViewModel)
-        
-        searchView.isHidden = true
+        viewModel.mapViewModel = MainMapViewModel(itinerarie: testItinerarie)
+        viewModel.viewState.value = .populated
     }
     
     func setupTestDetailItinerarie() {
@@ -114,9 +111,6 @@ class MainViewController: UIViewController {
         mapView.viewModel = self.viewModel.getMapViewModel()
         
         self.viewModel.mapViewModel?.showRoute()
-        
-        //That-s correct? que View interacture con MapViewModel??/
-        //mapViewModel.showRoute()
     }
     
     func configTableView() {

@@ -22,6 +22,8 @@ final class MainMapViewModel {
     
     var routes: [(type: LegMode, coordinates: [CLLocationCoordinate2D])] = []
     
+    var routesGoogle: [(type: LegMode, encodedPath: String)] = []
+    
     var viewState: Bindable<MainMapViewModel.ViewState> = Bindable(.initial)
     
     init(itinerarie: Itinerarie) {
@@ -32,6 +34,9 @@ final class MainMapViewModel {
     func showRoute() {
         places = buildMarkPlaces()
         routes = buildRoutes()
+        
+        routesGoogle = buildRoutesGoogle()
+        
         checkState()
     }
     
@@ -110,6 +115,17 @@ final class MainMapViewModel {
         guard let coordinates = decoded.coordinates else { return nil }
         
         return coordinates
+    }
+    
+    private func buildRoutesGoogle() -> [(type: LegMode, encodedPath: String)] {
+        var routes: [(type: LegMode, encodedPath: String)] = []
+        
+        for leg in itinerarie.legs {
+            guard let mode = leg.legMode,
+                let encoded = leg.legGeometry?.points else { continue }
+            routes.append( (type: mode , encodedPath: encoded) )
+        }
+        return routes
     }
     
 }
