@@ -119,6 +119,12 @@ class GoogleMapView: MainMapView {
                     marker.icon = GMSMarker.markerImage(with: UIColor(red: 25/255, green: 175/255, blue: 51/255, alpha: 1.0))
                 case .busStation:
                     marker.icon = GMSMarker.markerImage(with: UIColor(red: 4/255, green: 166/255, blue: 255/255, alpha: 1.0))
+                    
+                    let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
+                    imageView.backgroundColor = UIColor(red: 4/255, green: 166/255, blue: 255/255, alpha: 1.0)
+                    imageView.image = UIImage(named: "busPlaceMark")
+                    
+                    marker.iconView = imageView
                 case .destination, .unknown:
                     marker.icon = GMSMarker.markerImage(with: nil)
                 }
