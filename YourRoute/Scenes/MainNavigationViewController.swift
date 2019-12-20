@@ -35,12 +35,14 @@ class MainNavigationViewController: UINavigationController {
     // MARK: - Private
     
     private func configGoogleMapsService() {
-        //let googleApiKey = "AIzaSyBw9Rd2T5LpnkdIa0jF_Ud58vPNqVsD828"
         
-        //Please put your api Keys here
+        // MARK: - put your Google Api KEYS here
+        let mapAPIKey = ""
+        let placesAPIKey = ""
         
-        let mapAPIKey = "AIzaSyDRNvDotxs0oR4rP7-Eid62XD9WLcDU2Mw"
-        let placesAPIKey = "AIzaSyDRNvDotxs0oR4rP7-Eid62XD9WLcDU2Mw"
+        if mapAPIKey.isEmpty || placesAPIKey.isEmpty {
+            fatalError("\nGet Google API keys for Free at: [https://developers.google.com/maps/gmp-get-started]\n\n")
+        }
         
         GMSServices.provideAPIKey(mapAPIKey)
         GMSPlacesClient.provideAPIKey(placesAPIKey)
