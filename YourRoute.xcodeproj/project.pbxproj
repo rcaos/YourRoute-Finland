@@ -232,9 +232,7 @@
 				7730A21423915F1900424E5B /* SearchView.swift */,
 				7730A21623915F2100424E5B /* SearchViewModel.swift */,
 				7730A21923915FD100424E5B /* SearchView.xib */,
-				7730A22623918DCD00424E5B /* SearchPlacesDataSource.swift */,
-				772E35BD23AA59AA008ECA88 /* SearchPlacesGoogleDataSource.swift */,
-				772E35BF23AA59BC008ECA88 /* SearchPlacesAppleDataSource.swift */,
+				77FB1FD323AC515A00DBF528 /* Data Source */,
 			);
 			path = "Search View";
 			sourceTree = "<group>";
@@ -437,6 +435,16 @@
 				77F70C90238C7EBF00685107 /* CharacterSet+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		77FB1FD323AC515A00DBF528 /* Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				7730A22623918DCD00424E5B /* SearchPlacesDataSource.swift */,
+				772E35BD23AA59AA008ECA88 /* SearchPlacesGoogleDataSource.swift */,
+				772E35BF23AA59BC008ECA88 /* SearchPlacesAppleDataSource.swift */,
+			);
+			path = "Data Source";
 			sourceTree = "<group>";
 		};
 		95992FA25DD6882891F39A54 /* Pods */ = {

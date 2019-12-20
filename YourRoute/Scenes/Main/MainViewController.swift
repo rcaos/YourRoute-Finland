@@ -16,16 +16,15 @@ class MainViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var mapView: MainMapView!
-    //Aparte he cambiado en el StoryBoard.
-    //@IBOutlet weak var mapView: GoogleMapView!
-    
+    @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var searchView: SearchView!
     @IBOutlet weak var closeView: CloseView!
     @IBOutlet weak var resultListView: ResultListView!
     @IBOutlet weak var resultRouteView: ResultRouteView!
     @IBOutlet weak var loadingView: LoadingView!
     @IBOutlet weak var errorView: ErrorView!
+    
+    private var genericMapView: UIView?
     
     private var dataSource: ResultListViewDataSource!
     
@@ -37,19 +36,14 @@ class MainViewController: UIViewController {
         setupViews()
         setupTableView()
         setupDelegates()
-        //ONly for Test
-        //setupTestDetailItinerarie()
-        //setupTestShowRoute()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        guard let viewModel = viewModel else { fatalError() }
-        viewModel.viewState.value = .initial
     }
     
     func setupViewModel() {
         setupModels()
         setupBindables()
+        setupMapView()
+        
+        viewModel?.viewState.value = .initial
     }
     
     //MARK: - only for Test
@@ -86,6 +80,29 @@ class MainViewController: UIViewController {
         closeView.delegate = self
     }
     
+    func setupMapView() {
+        guard let typeMap = viewModel?.searchViewModel.dataSource.typeSource else { return }
+        
+        switch typeMap {
+        case .apple:
+            let mapKitView = MapKitView(frame: mapView.frame)
+            genericMapView = mapKitView
+           
+        case .google:
+            let googleMapView = GoogleMapView(frame: mapView.frame)
+            genericMapView = googleMapView
+        }
+        
+        guard let genericView = genericMapView else { return }
+        
+        genericView.translatesAutoresizingMaskIntoConstraints = false
+        mapView.addSubview( genericView )
+        NSLayoutConstraint.activate([genericView.topAnchor.constraint(equalTo: mapView.topAnchor),
+                                     genericView.leadingAnchor.constraint(equalTo: mapView.leadingAnchor),
+                                     genericView.trailingAnchor.constraint(equalTo: mapView.trailingAnchor),
+                                     genericView.bottomAnchor.constraint(equalTo: mapView.bottomAnchor)])
+    }
+    
     func setupModels() {
         guard let viewModel = viewModel else { return }
         searchView.viewModel = viewModel.searchViewModel
@@ -115,12 +132,12 @@ class MainViewController: UIViewController {
         resultRouteView.viewModel?.checkFirstItinerarie()
     }
     
-    func configMap(with viewModel: MainMapViewModel?) {
-        guard let mapViewModel = viewModel else { return }
+    func configMap(with model: MainMapViewModel?) {
+        guard let mapViewModel = model else { return }
         
         self.viewModel?.mapViewModel = mapViewModel
         
-        mapView.viewModel = self.viewModel?.getMapViewModel()
+        setViewModeltoMap()
         
         self.viewModel?.mapViewModel?.showRoute()
     }
@@ -145,7 +162,7 @@ class MainViewController: UIViewController {
         loadingView.isHidden = true
         errorView.isHidden = true
         
-        mapView.viewModel = viewModel?.getMapViewModel()
+        setViewModeltoMap()
         
         switch state {
         case .initial:
@@ -164,6 +181,23 @@ class MainViewController: UIViewController {
             searchView.isHidden = false
             errorView.isHidden = false
             print("Change view to .error")
+        }
+    }
+    
+    // MARK: - TODO Refactor this
+    
+    private func setViewModeltoMap() {
+        guard let type = viewModel?.searchViewModel.dataSource.typeSource else { return }
+        
+        switch type {
+        case .apple:
+            if let mapView = genericMapView as? MapKitView {
+                mapView.viewModel = self.viewModel?.getMapViewModel()
+            }
+        case .google:
+            if let mapView = genericMapView as? GoogleMapView {
+                mapView.viewModel = self.viewModel?.getMapViewModel()
+            }
         }
     }
     

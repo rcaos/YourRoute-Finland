@@ -152,7 +152,7 @@ class GoogleMapView: MainMapView {
             polyline.strokeColor = UIColor.green
         case .BUS:
             polyline.strokeWidth = 3.0
-            polyline.strokeColor = UIColor.blue
+            polyline.strokeColor = UIColor(red: 4/255, green: 166/255, blue: 255/255, alpha: 1.0)
         }
         
         return polyline

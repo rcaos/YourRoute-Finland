@@ -104,21 +104,11 @@ class ResultRouteView: UIView {
         flowLayout.minimumInteritemSpacing = 0
     }
     
-    private func indexOfMajorCell() -> Int {
-        let itemWidth = flowLayout.itemSize.width
-        
-        let proportionalOffset = collectionView.contentOffset.x / itemWidth
-        let index = Int(round(proportionalOffset))
-        let numberOfItems = collectionView.numberOfItems(inSection: 0)
-        let safeIndex = max(0, min(numberOfItems - 1, index))
-        
-        return safeIndex
-    }
-    
     func setupViewModel() {
         guard let viewModel = viewModel else { return }
         
         collectionView.reloadData()
+        collectionView.contentOffset = .zero
         
         viewModel.showRoute = {[weak self] index in
             self?.lastIndexSelected = 0
@@ -149,6 +139,17 @@ extension ResultRouteView: UICollectionViewDataSource {
 //MARK: - UICollectionViewDelegateFlowLayout
 
 extension ResultRouteView: UICollectionViewDelegateFlowLayout {
+    
+    private func indexOfMajorCell() -> Int {
+        let itemWidth = flowLayout.itemSize.width
+        
+        let proportionalOffset = collectionView.contentOffset.x / itemWidth
+        let index = Int(round(proportionalOffset))
+        let numberOfItems = collectionView.numberOfItems(inSection: 0)
+        let safeIndex = max(0, min(numberOfItems - 1, index))
+        
+        return safeIndex
+    }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         let safeIndex = indexOfMajorCell()
